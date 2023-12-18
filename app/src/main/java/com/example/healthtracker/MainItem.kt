@@ -7,6 +7,6 @@ import androidx.annotation.StringRes
 data class MainItem(
     val id: Int,
     @StringRes val text: Int,
-    @ColorRes val color: Int,
+    val color: Int,
     @DrawableRes val icon: Int
 )

@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">HealthTracker</string>
+    <string name="imc">IMC</string>
+    <string name="tmb">TMB</string>
+    <string name="tgc">TGC</string>
+    <string name="imc_info">O Índice de Massa Corporal (IMC) é um índice que mede se você está abaixo, dentro ou acima do peso, de acordo com a relação entre seu peso e altura. </string>
+    <string name="imc_height">Altura (cm)</string>
+    <string name="imc_weight">Peso (kg)</string>
+    <string name="imc_button">Calcular</string>
+    <string name="toast_invalid_imc_info">Informe valores válidos sem começar com 0</string>
+    <string name="imc_severely_low_weight">Severamente abaixo do peso</string>
+    <string name="imc_very_low_weight">Muito abaixo do peso</string>
+    <string name="imc_low_weight">Abaixo do peso</string>
+    <string name="imc_normal_weight">Peso normal</string>
+    <string name="imc_so_above_weight">Moderadamente acima do peso</string>
+    <string name="imc_above_weight">Obeso</string>
+    <string name="imc_very_above_weight">Muito obeso</string>
+    <string name="imc_severely_above_weight">Severamente obeso</string>
 </resources>
