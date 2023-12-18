@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 
 class ImcActivity : AppCompatActivity() {
 
@@ -21,15 +22,26 @@ class ImcActivity : AppCompatActivity() {
         buttonResult = findViewById(R.id.imc_button)
 
         buttonResult.setOnClickListener {
-            if(validate(editHeight.toString(), editWeight.toString())){
+            if(!validate(editHeight.toString(), editWeight.toString())){
                 Toast.makeText(this,R.string.toast_invalid_imc_info,Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            val height = editHeight.toString().toDouble()
-            val weight = editWeight.toString().toDouble()
+            val height = editHeight.text.toString().toDouble()
+            val weight = editWeight.text.toString().toDouble()
             val imcResult = calculateImc(height.toInt(),weight.toInt())
-            //val imcSituation = getImcSituation(imcResult)
-            
+
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.dialog_imc_title,imcResult))
+                setMessage(getImcSituation(imcResult))
+                setPositiveButton(R.string.ok){ _,_ ->
+
+                }
+                setNegativeButton(R.string.save){ _,_ ->
+
+                }
+                create()
+                show()
+            }
         }
     }
 

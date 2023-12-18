@@ -16,4 +16,8 @@
     <string name="imc_above_weight">Obeso</string>
     <string name="imc_very_above_weight">Muito obeso</string>
     <string name="imc_severely_above_weight">Severamente obeso</string>
+    <string name="dialog_imc_title">Seu IMC é %1$.2f</string>
+    <string name="dialog_tmb_title">Seu TMB é %1$.2f</string>
+    <string name="ok">Ok</string>
+    <string name="save">Salvar</string>
 </resources>

@@ -52,8 +52,12 @@ class MainActivity : AppCompatActivity() {
     fun onClick(id: Int){
         when(id){
             0 -> startActivity(Intent(this,ImcActivity::class.java))
-            //1 -> Log.i("teste","abrindo tmbbbbb")
-            2 -> startActivity(Intent(this,ImcActivity::class.java))
+            1 -> {
+
+            }
+            2 -> {
+                
+            }
         }
     }
 
