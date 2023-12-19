@@ -21,17 +21,17 @@
         <EditText
             android:id="@+id/imc_height"
             style="@style/DefaultEditText"
-            android:hint="@string/imc_height"/>
+            android:hint="@string/height"/>
 
         <EditText
             android:id="@+id/imc_weight"
             style="@style/DefaultEditText"
-            android:hint="@string/imc_weight" />
+            android:hint="@string/weight" />
 
         <Button
             android:id="@+id/imc_button"
             style="@style/DefaultButton"
-            android:text="@string/imc_button"
+            android:text="@string/calc"
             android:backgroundTint="@color/black"/>
 
     </LinearLayout>

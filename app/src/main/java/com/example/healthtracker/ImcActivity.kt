@@ -23,7 +23,7 @@ class ImcActivity : AppCompatActivity() {
 
         buttonResult.setOnClickListener {
             if(!validate(editHeight.toString(), editWeight.toString())){
-                Toast.makeText(this,R.string.toast_invalid_imc_info,Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,R.string.toast_invalid_info,Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             val height = editHeight.text.toString().toDouble()

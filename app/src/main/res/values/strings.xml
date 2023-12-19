@@ -4,10 +4,11 @@
     <string name="tmb">TMB</string>
     <string name="tgc">TGC</string>
     <string name="imc_info">O Índice de Massa Corporal (IMC) é um índice que mede se você está abaixo, dentro ou acima do peso, de acordo com a relação entre seu peso e altura. </string>
-    <string name="imc_height">Altura (cm)</string>
-    <string name="imc_weight">Peso (kg)</string>
-    <string name="imc_button">Calcular</string>
-    <string name="toast_invalid_imc_info">Informe valores válidos sem começar com 0</string>
+    <string name="height">Altura (cm)</string>
+    <string name="weight">Peso (kg)</string>
+    <string name="age">Idade</string>
+    <string name="calc">Calcular</string>
+    <string name="toast_invalid_info">Informe valores válidos sem começar com 0</string>
     <string name="imc_severely_low_weight">Severamente abaixo do peso</string>
     <string name="imc_very_low_weight">Muito abaixo do peso</string>
     <string name="imc_low_weight">Abaixo do peso</string>
@@ -18,6 +19,7 @@
     <string name="imc_severely_above_weight">Severamente obeso</string>
     <string name="dialog_imc_title">Seu IMC é %1$.2f</string>
     <string name="dialog_tmb_title">Seu TMB é %1$.2f</string>
+    <string name="tmb_info">TMB é o cálculo para descobrir a quantidade calórica que o corpo necessita com base no seu estilo de vida</string>
     <string name="ok">Ok</string>
     <string name="save">Salvar</string>
 </resources>

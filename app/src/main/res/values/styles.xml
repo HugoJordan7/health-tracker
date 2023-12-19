@@ -6,28 +6,34 @@
         <item name="android:layout_width">wrap_content</item>
     </style>
 
-    <style name="ImcAlignment">
+    <style name="DefaultAlignment">
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:layout_marginRight">30dp</item>
         <item name="android:layout_marginBottom">40dp</item>
     </style>
 
-    <style name="DefaultTextView" parent="ImcAlignment">
+    <style name="DefaultTextView" parent="DefaultAlignment">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="DefaultEditText" parent="ImcAlignment">
+    <style name="DefaultEditText" parent="DefaultAlignment">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:textAlignment">center</item>
         <item name="android:inputType">number</item>
     </style>
 
-    <style name="DefaultButton" parent="ImcAlignment">
+    <style name="DefaultButton" parent="DefaultAlignment">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="AutoTextViewForm" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginBottom">40dp</item>
     </style>
 </resources>

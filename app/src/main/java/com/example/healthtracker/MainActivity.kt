@@ -52,12 +52,8 @@ class MainActivity : AppCompatActivity() {
     fun onClick(id: Int){
         when(id){
             0 -> startActivity(Intent(this,ImcActivity::class.java))
-            1 -> {
-
-            }
-            2 -> {
-                
-            }
+            1 -> startActivity(Intent(this,TmbActivity::class.java))
+            2 -> startActivity(Intent(this,TgcActivity::class.java))
         }
     }
 
