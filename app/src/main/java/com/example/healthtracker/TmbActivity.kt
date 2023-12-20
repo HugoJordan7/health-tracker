@@ -3,6 +3,7 @@ package com.example.healthtracker
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 
 class TmbActivity : AppCompatActivity() {
 
@@ -30,12 +31,22 @@ class TmbActivity : AppCompatActivity() {
                 Toast.makeText(this,R.string.toast_invalid_info,Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-            val height = editHeight.text.toString().toDouble()
-            val weight = editWeight.text.toString().toDouble()
+            val height = editHeight.text.toString().toInt()
+            val weight = editWeight.text.toString().toInt()
             val age = editAge.text.toString().toInt()
+            val tmb = calculateTmb(height, weight, age)
+            val tmbAdapted = tmbAdaptedForLifestyle(tmb,items)
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.dialog_tmb_title,tmbAdapted))
+                setPositiveButton(R.string.ok){_,_ ->
 
+                }
+                setNegativeButton(R.string.save){_,_ ->
 
+                }
+                create()
+                show()
+            }
         }
     }
 
@@ -44,4 +55,20 @@ class TmbActivity : AppCompatActivity() {
                 weight.isNotEmpty() && !weight.startsWith("0") &&
                 age.isNotEmpty() && !age.startsWith("0") )
     }
+
+    private fun calculateTmb(height: Int, weight: Int, age: Int): Double{
+        return (66 + (13.8 * weight) + (5 * height) - (6.8 * age))
+    }
+
+    private fun tmbAdaptedForLifestyle(tmb: Double, arrayLifestyle: Array<String>): Double{
+        return when(autoLifestyle.text.toString()){
+            arrayLifestyle[0] -> tmb * 1.2
+            arrayLifestyle[1] -> tmb * 1.375
+            arrayLifestyle[2] -> tmb * 1.55
+            arrayLifestyle[3] -> tmb * 1.725
+            arrayLifestyle[4] -> tmb * 1.9
+            else->0.0
+        }
+    }
+
 }
