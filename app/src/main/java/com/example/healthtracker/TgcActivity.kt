@@ -30,23 +30,28 @@ class TgcActivity : AppCompatActivity() {
             }
 
             val tgc = calculateTgc()
-            AlertDialog.Builder(this)
-                .setTitle(getString(R.string.dialog_tgc_title,tgc))
 
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.dialog_tgc_title,tgc))
+                setPositiveButton(R.string.ok){_,_->}
+                setNegativeButton(R.string.save){_,_->}
+                create()
+                show()
+            }
 
         }
 
     }
 
     private fun validate(): Boolean{
-        return (editImc.text.toString().isNotEmpty() && editImc.text.toString().startsWith("0") &&
-                editAge.text.toString().isNotEmpty() && editAge.text.toString().startsWith("0"))
+        return (editImc.text.toString().isNotEmpty() && !editImc.text.toString().startsWith("0") &&
+                editAge.text.toString().isNotEmpty() && !editAge.text.toString().startsWith("0"))
     }
 
     private fun calculateTgc(): Double{
         return when(radioMasculine.isChecked){
-                true -> ((1.2 * editImc.text.toString().toInt()) - (10.8 * 1) + (0.23 * editAge.text.toString().toInt()) - 5.4 * 1000.1/ (25.5*25.5))
-                false -> ((1.2 * editImc.text.toString().toInt()) - (10.8 * 0) + (0.23 * editAge.text.toString().toInt()) - 5.4 * 1000.1/ (25.5*25.5))
+                true -> ((1.2 * editImc.text.toString().toDouble()) - (10.8 * 1) + (0.23 * editAge.text.toString().toInt()) - 5.4 * 1000.1/ (25.5*25.5))
+                false -> ((1.2 * editImc.text.toString().toDouble()) - (10.8 * 0) + (0.23 * editAge.text.toString().toInt()) - 5.4 * 1000.1/ (25.5*25.5))
         }
     }
 }

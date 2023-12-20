@@ -24,11 +24,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:textAlignment">center</item>
         <item name="android:inputType">number</item>
+        <item name="android:maxLength">3</item>
     </style>
 
     <style name="DefaultButton" parent="DefaultAlignment">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
+        <item name="cornerRadius">80dp</item>
     </style>
 
     <style name="AutoTextViewForm" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">

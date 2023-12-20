@@ -21,6 +21,8 @@
         <EditText
             android:id="@+id/tgc_value_imc"
             style="@style/DefaultEditText"
+            android:inputType="numberDecimal"
+            android:maxLength="6"
             android:hint="@string/imc"/>
 
         <RadioGroup
@@ -45,7 +47,7 @@
         <EditText
             android:id="@+id/tgc_age"
             style="@style/DefaultEditText"
-            android:hint="@string/age" />
+            android:hint="@string/age"/>
 
         <Button
             android:id="@+id/tgc_button"
