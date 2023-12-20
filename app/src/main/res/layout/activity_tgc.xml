@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TgcActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/tgc_info"
+            style="@style/DefaultTextView"
+            android:text="@string/tgc_info"/>
+
+        <EditText
+            android:id="@+id/tgc_value_imc"
+            style="@style/DefaultEditText"
+            android:hint="@string/imc"/>
+
+        <RadioGroup
+            android:id="@+id/tgc_radio_group_sex"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/DefaultAlignment"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/tgc_radio_masculine"
+                android:text="@string/masculine"
+                android:textSize="20sp"
+                android:layout_marginRight="40dp"/>
+            <RadioButton
+                android:id="@+id/tgc_radio_feminine"
+                android:text="@string/feminine"
+                android:textSize="20sp"/>
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/tgc_age"
+            style="@style/DefaultEditText"
+            android:hint="@string/age" />
+
+        <Button
+            android:id="@+id/tgc_button"
+            style="@style/DefaultButton"
+            android:text="@string/calc"
+            android:backgroundTint="@color/black"/>
+
+    </LinearLayout>
+
+</ScrollView>
