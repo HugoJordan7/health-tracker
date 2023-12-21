@@ -17,36 +17,34 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        listItems.add(
-            MainItem(
-                id = 0,
-                text = R.string.imc,
-                color = Color.YELLOW,
-                icon = R.drawable.ic_baseline_accessibility_new_24
-            )
-        )
-        listItems.add(
-            MainItem(
-                id = 1,
-                text = R.string.tmb,
-                color = Color.CYAN,
-                icon = R.drawable.ic_outline_directions_run_24
-            )
-        )
-        listItems.add(
-            MainItem(
-                id = 2,
-                text = R.string.tgc,
-                color = Color.GREEN,
-                icon = R.drawable.ic_baseline_fitness_center_24
-            )
-        )
+
+        listItems.apply {
+            add( MainItem(
+                    id = 0,
+                    text = R.string.imc,
+                    color = Color.YELLOW,
+                    icon = R.drawable.ic_baseline_accessibility_new_24))
+            add( MainItem(
+                    id = 1,
+                    text = R.string.tmb,
+                    color = Color.CYAN,
+                    icon = R.drawable.ic_outline_directions_run_24))
+            add( MainItem(
+                    id = 2,
+                    text = R.string.tgc,
+                    color = Color.GREEN,
+                    icon = R.drawable.ic_baseline_fitness_center_24))
+            add( MainItem(
+                id = 3,
+                text = R.string.water,
+                color = Color.LTGRAY,
+                icon = R.drawable.ic_baseline_local_fire_department_24))
+        }
 
         var mainAdapter = MainAdapter(listItems)
         var recyclerViewMain: RecyclerView = findViewById(R.id.main_rv)
         recyclerViewMain.adapter = mainAdapter
         recyclerViewMain.layoutManager = GridLayoutManager(this,2)
-
     }
 
     fun onClick(id: Int){
@@ -54,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             0 -> startActivity(Intent(this,ImcActivity::class.java))
             1 -> startActivity(Intent(this,TmbActivity::class.java))
             2 -> startActivity(Intent(this,TgcActivity::class.java))
+            3 -> startActivity(Intent(this,WaterActivity::class.java))
         }
     }
 

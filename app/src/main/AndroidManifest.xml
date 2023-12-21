@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthTracker">
-        <activity android:name=".TgcActivity"></activity>
+        <activity android:name=".WaterActivity"></activity>
+        <activity android:name=".TgcActivity" />
         <activity android:name=".TmbActivity" />
         <activity android:name=".ImcActivity" />
         <activity

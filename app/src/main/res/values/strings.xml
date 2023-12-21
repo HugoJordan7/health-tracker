@@ -19,7 +19,7 @@
     <string name="imc_severely_above_weight">Severamente obeso</string>
     <string name="dialog_imc_title">Seu IMC é %1$.2f</string>
     <string name="dialog_tmb_title">Sua TMB é %1$.2f</string>
-    <string name="dialog_tgc_title">Sua TGC é %1$.2f</string>
+    <string name="dialog_tgc_title">Sua TGC é %1$.2f%%</string>
     <string name="tmb_info">A Taxa de Metabolismo Basal (TMB) é o cálculo usado para descobrir a quantidade calórica que o corpo necessita com base no seu estilo de vida</string>
     <string name="ok">Ok</string>
     <string name="save">Salvar</string>
@@ -27,4 +27,11 @@
     <string name="sex">Sexo (Masculino/Feminino)</string>
     <string name="masculine">Masculino</string>
     <string name="feminine">Feminino</string>
+
+    <string name="tgc_essential_fat">Nível de gordura essencial</string>
+    <string name="tgc_athletic_fat">Nível de gordura de atleta</string>
+    <string name="tgc_gymnast_fat">Nível de gordura de praticante de atividades físicas</string>
+    <string name="tgc_acceptable_fat">Nível de gordura aceitável</string>
+    <string name="tgc_obesity_fat">Nível de gordura de obesidade</string>
+    <string name="water">Água</string>
 </resources>
