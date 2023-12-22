@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
                     id = 1,
                     text = R.string.tmb,
                     color = Color.CYAN,
-                    icon = R.drawable.ic_outline_directions_run_24))
+                    icon = R.drawable.ic_outline_directions_run_24
+            ))
             add( MainItem(
                     id = 2,
                     text = R.string.tgc,

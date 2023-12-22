@@ -34,4 +34,10 @@
     <string name="tgc_acceptable_fat">Nível de gordura aceitável</string>
     <string name="tgc_obesity_fat">Nível de gordura de obesidade</string>
     <string name="water">Água</string>
+    <string name="water_info">É de extrema importância para a saúde conhecer qual a quantidade ideal de água que deve ser ingerida por dia, preencha as informações abaixo para saber a quantidade ideal para você</string>
+    <string name="dialog_water_message">A quantidade de água ideal para você é de %1$d mL ou %1$.2f L diários</string>
+    <string name="dialog_water_title">%1$s você está bebendo %2$s do que o ideal</string>
+    <string name="water_quantity"> Quantidade diária consumida (L)</string>
+    <string name="congratilations">Parabéns</string>
+    <string name="warning">Cuidado</string>
 </resources>
