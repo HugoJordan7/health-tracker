@@ -32,7 +32,9 @@
         <EditText
             android:id="@+id/water_quantity"
             style="@style/DefaultEditText"
-            android:hint="@string/water_quantity"/>
+            android:hint="@string/water_quantity"
+            android:inputType="numberDecimal"
+            android:maxLength="5"/>
 
         <Button
             android:id="@+id/water_button"

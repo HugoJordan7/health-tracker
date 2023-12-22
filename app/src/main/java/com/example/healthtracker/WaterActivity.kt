@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.StringDef
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 
@@ -30,13 +31,19 @@ class WaterActivity : AppCompatActivity() {
             val age = editAge.text.toString().toInt()
             val quantity = editQuantity.text.toString().toDouble()
             val idealQuantityWater = calculateIdealQuantityWater(age,weight)
+            val idealQuantityWaterMl = (idealQuantityWater*1000.0).toInt()
+
+            @StringRes
+            val titleType: Int =
+                if (quantity > idealQuantityWater) R.string.dialog_water_title_above
+                else R.string.dialog_water_title_below
+
             AlertDialog.Builder(this).apply {
-                setTitle(R.string.dialog_water_title)
-
-                setMessage(getString(R.string.dialog_water_message,
-                if(quantity < idealQuantityWater) R.string.warning else R.string.congratilations,
-
-                ))
+                setTitle(titleType)
+                setMessage(getString(R.string.dialog_water_message,idealQuantityWaterMl,idealQuantityWater))
+                setPositiveButton(R.string.ok){_,_->}
+                create()
+                show()
             }
         }
     }
@@ -55,15 +62,5 @@ class WaterActivity : AppCompatActivity() {
             in 56 .. 65 -> (30 * weight)/1000.0
             else -> (25 * weight)/1000.0
         }
-    }
-
-    @StringRes
-    private fun situationOfQuantityWater(quantity: Double, idealQuantity: Double): Int{
-        return if(quantity > idealQuantity) {
-            R.string.congratilations
-        } else{
-            R.string.warning
-        }
-
     }
 }
