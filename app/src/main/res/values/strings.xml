@@ -23,6 +23,7 @@
     <string name="tmb_info">A Taxa de Metabolismo Basal (TMB) é o cálculo usado para descobrir a quantidade calórica que o corpo necessita com base no seu estilo de vida</string>
     <string name="ok">Ok</string>
     <string name="save">Salvar</string>
+    <string name="saved">Salvo com sucesso!</string>
     <string name="tgc_info">A Taxa de Gordura Corporal (TGC) é uma medida imperfeita da obesidade e não discrimina entre a massa magra e a gordura. Uma pesquisa sugere que o índice de massa gorda está associado a um maior risco de eventos cardiovasculares em pessoas com diabetes.</string>
     <string name="sex">Sexo (Masculino/Feminino)</string>
     <string name="masculine">Masculino</string>

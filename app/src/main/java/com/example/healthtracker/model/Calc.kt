@@ -8,7 +8,7 @@ import java.util.*
 @Entity
 data class Calc(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    @ColumnInfo(name = "result") var res: Double,
-    @ColumnInfo(name = "type") var type: String,
+    @ColumnInfo(name = "type") val type: String,
+    @ColumnInfo(name = "result") val res: Double,
     @ColumnInfo(name = "date") val createdDate: Date = Date()
 )
