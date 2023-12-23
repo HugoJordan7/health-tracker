@@ -1,10 +1,12 @@
 package com.example.healthtracker
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import com.example.healthtracker.model.Calc
 
 class TgcActivity : AppCompatActivity() {
 
@@ -36,7 +38,18 @@ class TgcActivity : AppCompatActivity() {
                 setTitle(getString(R.string.dialog_tgc_title,tgc))
                 setMessage(tgcClassification(tgc.toInt()))
                 setPositiveButton(R.string.ok){_,_->}
-                setNegativeButton(R.string.save){_,_->}
+                setNegativeButton(R.string.save){_,_->
+                    Thread{
+                        val app = application as App
+                        val dao = app.db.calcDao()
+                        dao.insert(Calc(type = "tgc", res = tgc))
+                        runOnUiThread{
+                            startActivity(
+                                Intent(this@TgcActivity,ListCalcActivity::class.java)
+                                .putExtra("type","tgc"))
+                        }
+                    }.start()
+                }
                 create()
                 show()
             }
