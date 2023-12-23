@@ -50,6 +50,7 @@ class ListCalcActivity : AppCompatActivity() {
         fun bind(itemCalc: Calc){
             val textView: TextView = itemView as TextView
             val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt","BR"))
+            sdf.timeZone = TimeZone.getTimeZone("UTC-3")
             val date = sdf.format(itemCalc.createdDate)
             val stringId: Int = when(itemCalc.type){
                 "imc" -> R.string.list_calc_register_imc

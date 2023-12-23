@@ -1,9 +1,11 @@
 package com.example.healthtracker
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.example.healthtracker.model.Calc
 
 class TmbActivity : AppCompatActivity() {
 
@@ -42,7 +44,15 @@ class TmbActivity : AppCompatActivity() {
 
                 }
                 setNegativeButton(R.string.save){_,_ ->
-
+                    Thread{
+                        val app = application as App
+                        val dao = app.db.calcDao()
+                        dao.insert(Calc(type = "tmb", res = tmbAdapted))
+                        runOnUiThread{
+                            startActivity(Intent(this@TmbActivity,ListCalcActivity::class.java)
+                                .putExtra("type","tmb"))
+                        }
+                    }.start()
                 }
                 create()
                 show()
