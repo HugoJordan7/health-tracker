@@ -1,5 +1,6 @@
 package com.example.healthtracker
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -44,7 +45,8 @@ class ImcActivity : AppCompatActivity() {
                         val dao = app.db.calcDao()
                         dao.insert(Calc(type = "imc",res = imcResult))
                         runOnUiThread{
-                            Toast.makeText(this@ImcActivity,R.string.saved,Toast.LENGTH_LONG).show()
+                            startActivity(Intent(this@ImcActivity,ListCalcActivity::class.java)
+                                .putExtra("type","imc"))
                         }
                     }.start()
                 }
