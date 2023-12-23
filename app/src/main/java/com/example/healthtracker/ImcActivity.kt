@@ -3,8 +3,13 @@ package com.example.healthtracker
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -13,9 +18,9 @@ import com.example.healthtracker.model.Calc
 
 class ImcActivity : AppCompatActivity() {
 
-    lateinit var editHeight: EditText
-    lateinit var editWeight: EditText
-    lateinit var buttonResult: Button
+    private lateinit var editHeight: EditText
+    private lateinit var editWeight: EditText
+    private lateinit var buttonResult: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +50,7 @@ class ImcActivity : AppCompatActivity() {
                         val dao = app.db.calcDao()
                         dao.insert(Calc(type = "imc",res = imcResult))
                         runOnUiThread{
-                            startActivity(Intent(this@ImcActivity,ListCalcActivity::class.java)
-                                .putExtra("type","imc"))
+                            openListCalcActivity()
                         }
                     }.start()
                 }
@@ -77,6 +81,24 @@ class ImcActivity : AppCompatActivity() {
             imc<40.0 -> R.string.imc_very_above_weight
             else -> R.string.imc_severely_above_weight
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.menu_item_search){
+            openListCalcActivity()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun openListCalcActivity() {
+        startActivity(
+            Intent(this,ListCalcActivity::class.java).putExtra("type","imc")
+        )
     }
 
 }

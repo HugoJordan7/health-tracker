@@ -47,4 +47,5 @@
     <string name="list_calc_register_imc">O seu IMC em %1$s foi de %2$.2f</string>
     <string name="list_calc_register_tmb">A sua TMB em %1$s foi de %2$.2f</string>
     <string name="list_calc_register_tgc">A sua TGC em %1$s foi de %2$.2f</string>
+    <string name="search">Buscar</string>
 </resources>

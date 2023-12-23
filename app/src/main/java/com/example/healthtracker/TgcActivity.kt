@@ -3,6 +3,8 @@ package com.example.healthtracker
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.*
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -44,9 +46,7 @@ class TgcActivity : AppCompatActivity() {
                         val dao = app.db.calcDao()
                         dao.insert(Calc(type = "tgc", res = tgc))
                         runOnUiThread{
-                            startActivity(
-                                Intent(this@TgcActivity,ListCalcActivity::class.java)
-                                .putExtra("type","tgc"))
+                            openListCalcActivity()
                         }
                     }.start()
                 }
@@ -89,4 +89,23 @@ class TgcActivity : AppCompatActivity() {
             else -> R.string.tgc_obesity_fat
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.menu_item_search){
+            openListCalcActivity()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun openListCalcActivity() {
+        startActivity(
+            Intent(this,ListCalcActivity::class.java).putExtra("type","tgc")
+        )
+    }
+
 }
