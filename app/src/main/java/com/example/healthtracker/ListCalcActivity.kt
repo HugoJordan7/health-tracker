@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healthtracker.model.Calc
 import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ListCalcActivity : AppCompatActivity() {
 
@@ -29,31 +31,33 @@ class ListCalcActivity : AppCompatActivity() {
                 rvListCalc.layoutManager = LinearLayoutManager(this)
             }
         }.start()
-
     }
 
-    inner class ListCalcAdapter(var list: List<Calc>): RecyclerView.Adapter<ListCalcAdapter.ListCalcViewHolder>(){
-
+    inner class ListCalcAdapter(var list: List<Calc>): RecyclerView.Adapter<ListCalcViewHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListCalcViewHolder {
             val layout = layoutInflater.inflate(android.R.layout.simple_list_item_1,parent,false)
             return ListCalcViewHolder(layout)
         }
-
         override fun onBindViewHolder(holder: ListCalcViewHolder, position: Int) {
             holder.bind(list[position])
         }
-
         override fun getItemCount(): Int {
             return list.size
         }
-
-        inner class ListCalcViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-            fun bind(itemCalc: Calc){
-                val textView: TextView = itemView.findViewById(android.R.id.text1)
-                textView.text = itemCalc.type + itemCalc.res
-            }
-        }
-
     }
 
+    inner class ListCalcViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        fun bind(itemCalc: Calc){
+            val textView: TextView = itemView as TextView
+            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt","BR"))
+            val date = sdf.format(itemCalc.createdDate)
+            val stringId: Int = when(itemCalc.type){
+                "imc" -> R.string.list_calc_register_imc
+                "tmb" -> R.string.list_calc_register_tmb
+                "tgc"-> R.string.list_calc_register_tgc
+                else -> 0
+            }
+            textView.text = getString(stringId, date, itemCalc.res)
+        }
+    }
 }

@@ -44,4 +44,7 @@
     <string name="warning">Cuidado</string>
     <string name="above">acima</string>
     <string name="below">abaixo</string>
+    <string name="list_calc_register_imc">O seu IMC em %1$s foi de %2$.2f</string>
+    <string name="list_calc_register_tmb">A sua TMB em %1$s foi de %2$.2f</string>
+    <string name="list_calc_register_tgc">A sua TGC em %1$s foi de %2$.2f</string>
 </resources>
