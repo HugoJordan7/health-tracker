@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HealthTracker</string>
+    <string name="app_name">Health Tracker</string>
     <string name="imc">IMC</string>
     <string name="tmb">TMB</string>
     <string name="tgc">TGC</string>

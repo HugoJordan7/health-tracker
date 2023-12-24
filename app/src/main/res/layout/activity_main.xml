@@ -5,14 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:layout_gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="30sp"
+        android:layout_marginBottom="200dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:paddingTop="8dp"
-        android:paddingBottom="450dp"/>
+        android:paddingTop="8dp"/>
 
 </LinearLayout>

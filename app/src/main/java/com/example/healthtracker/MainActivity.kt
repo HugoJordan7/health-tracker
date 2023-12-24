@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -22,23 +23,19 @@ class MainActivity : AppCompatActivity() {
             add( MainItem(
                     id = 0,
                     text = R.string.imc,
-                    color = Color.YELLOW,
                     icon = R.drawable.ic_baseline_accessibility_new_24))
             add( MainItem(
                     id = 1,
                     text = R.string.tmb,
-                    color = Color.CYAN,
                     icon = R.drawable.ic_outline_directions_run_24
             ))
             add( MainItem(
                     id = 2,
                     text = R.string.tgc,
-                    color = Color.GREEN,
                     icon = R.drawable.ic_baseline_fitness_center_24))
             add( MainItem(
                 id = 3,
                 text = R.string.water,
-                color = Color.LTGRAY,
                 icon = R.drawable.ic_baseline_local_fire_department_24))
         }
 
@@ -73,12 +70,15 @@ class MainActivity : AppCompatActivity() {
 
         inner class MainViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             fun bind(item: MainItem){
+
                 var itemText: TextView = itemView.findViewById(R.id.item_text)
                 var itemIcon: ImageView = itemView.findViewById(R.id.item_icon)
                 var itemBackground: LinearLayout = itemView.findViewById(R.id.item_layout)
+
                 itemText.setText(item.text)
                 itemIcon.setImageResource(item.icon)
-                itemBackground.setBackgroundColor(item.color)
+                itemBackground.background = ContextCompat.getDrawable(itemView.context,item.gradient)
+
                 itemView.setOnClickListener {
                     onClick(item.id)
                 }
