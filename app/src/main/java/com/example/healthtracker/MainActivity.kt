@@ -1,16 +1,11 @@
 package com.example.healthtracker
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -24,20 +19,20 @@ class MainActivity : AppCompatActivity() {
             add( MainItem(
                     id = 0,
                     text = R.string.imc,
-                    icon = R.drawable.ic_baseline_accessibility_new_24))
+                    icon = R.drawable.body))
             add( MainItem(
                     id = 1,
                     text = R.string.tmb,
-                    icon = R.drawable.ic_outline_directions_run_24
+                    icon = R.drawable.fire
             ))
             add( MainItem(
                     id = 2,
                     text = R.string.tgc,
-                    icon = R.drawable.ic_baseline_fitness_center_24))
+                    icon = R.drawable.body_run))
             add( MainItem(
                 id = 3,
                 text = R.string.water,
-                icon = R.drawable.ic_baseline_local_fire_department_24))
+                icon = R.drawable.water))
         }
 
         var mainAdapter = MainAdapter(listItems)
