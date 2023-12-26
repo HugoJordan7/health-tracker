@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -73,12 +74,9 @@ class MainActivity : AppCompatActivity() {
 
                 var itemText: TextView = itemView.findViewById(R.id.item_text)
                 var itemIcon: ImageView = itemView.findViewById(R.id.item_icon)
-                var itemBackground: LinearLayout = itemView.findViewById(R.id.item_layout)
 
                 itemText.setText(item.text)
                 itemIcon.setImageResource(item.icon)
-                itemBackground.background = ContextCompat.getDrawable(itemView.context,item.gradient)
-
                 itemView.setOnClickListener {
                     onClick(item.id)
                 }

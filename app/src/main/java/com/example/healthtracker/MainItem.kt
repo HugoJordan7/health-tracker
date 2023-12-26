@@ -7,6 +7,5 @@ import androidx.annotation.StringRes
 data class MainItem(
     val id: Int,
     @StringRes val text: Int,
-    @DrawableRes val gradient: Int = R.drawable.red_gradient,
     @DrawableRes val icon: Int
 )
