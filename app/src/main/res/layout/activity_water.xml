@@ -1,46 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/DefaultLinearLayout"
     tools:context=".WaterActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center">
+        android:background="@drawable/shape_bottom_corner_rounded">
 
         <TextView
             android:id="@+id/water_info"
             style="@style/DefaultTextView"
-            android:text="@string/water_info"/>
-
-        <EditText
-            android:id="@+id/water_weight"
-            style="@style/DefaultEditText"
-            android:hint="@string/weight"/>
-
-        <EditText
-            android:id="@+id/water_age"
-            style="@style/DefaultEditText"
-            android:hint="@string/age"/>
-
-        <EditText
-            android:id="@+id/water_quantity"
-            style="@style/DefaultEditText"
-            android:hint="@string/water_quantity"
-            android:inputType="numberDecimal"
-            android:maxLength="5"/>
-
-        <Button
-            android:id="@+id/water_button"
-            style="@style/DefaultButton"
-            android:text="@string/calc"
-            android:backgroundTint="@color/black"/>
-
+            android:text="@string/water_info" /> />
     </LinearLayout>
 
-</ScrollView>
+    <EditText
+        android:id="@+id/water_weight"
+        android:layout_marginTop="50dp"
+        style="@style/DefaultEditText"
+        android:hint="@string/weight" />
+
+    <EditText
+        android:id="@+id/water_age"
+        style="@style/DefaultEditText"
+        android:hint="@string/age" />
+
+    <EditText
+        android:id="@+id/water_quantity"
+        style="@style/DefaultEditText"
+        android:hint="@string/water_quantity"
+        android:inputType="numberDecimal"
+        android:maxLength="5" />
+
+    <Button
+        android:id="@+id/water_button"
+        style="@style/DefaultButton"
+        android:backgroundTint="@color/black"
+        android:text="@string/calc" />
+</LinearLayout>

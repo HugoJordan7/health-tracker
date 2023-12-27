@@ -1,60 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TgcActivity">
+    tools:context=".TgcActivity"
+    style="@style/DefaultLinearLayout">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center">
-
+        android:background="@drawable/shape_bottom_corner_rounded">
         <TextView
             android:id="@+id/tgc_info"
             style="@style/DefaultTextView"
-            android:text="@string/tgc_info"/>
-
-        <EditText
-            android:id="@+id/tgc_value_imc"
-            style="@style/DefaultEditText"
-            android:inputType="numberDecimal"
-            android:maxLength="6"
-            android:hint="@string/imc"/>
-
-        <RadioGroup
-            android:id="@+id/tgc_radio_group_sex"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            style="@style/DefaultAlignment"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <RadioButton
-                android:id="@+id/tgc_radio_masculine"
-                android:text="@string/masculine"
-                android:textSize="20sp"
-                android:layout_marginRight="40dp"/>
-            <RadioButton
-                android:id="@+id/tgc_radio_feminine"
-                android:text="@string/feminine"
-                android:textSize="20sp"/>
-        </RadioGroup>
-
-        <EditText
-            android:id="@+id/tgc_age"
-            style="@style/DefaultEditText"
-            android:hint="@string/age"/>
-
-        <Button
-            android:id="@+id/tgc_button"
-            style="@style/DefaultButton"
-            android:text="@string/calc"
-            android:backgroundTint="@color/black"/>
-
+            android:text="@string/tgc_info" />
     </LinearLayout>
 
-</ScrollView>
+    <EditText
+        android:id="@+id/tgc_value_imc"
+        android:layout_marginTop="50dp"
+        style="@style/DefaultEditText"
+        android:hint="@string/imc"
+        android:inputType="numberDecimal"
+        android:maxLength="6" />
+
+    <RadioGroup
+        android:id="@+id/tgc_radio_group_sex"
+        style="@style/DefaultAlignment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/tgc_radio_masculine"
+            android:layout_marginRight="40dp"
+            android:text="@string/masculine"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/tgc_radio_feminine"
+            android:text="@string/feminine"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/tgc_age"
+        style="@style/DefaultEditText"
+        android:hint="@string/age" />
+
+    <Button
+        android:id="@+id/tgc_button"
+        style="@style/DefaultButton"
+        android:backgroundTint="@color/black"
+        android:text="@string/calc" />
+
+</LinearLayout>

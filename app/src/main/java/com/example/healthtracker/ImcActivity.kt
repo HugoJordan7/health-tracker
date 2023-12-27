@@ -30,7 +30,7 @@ class ImcActivity : AppCompatActivity() {
         buttonResult = findViewById(R.id.imc_button)
 
         buttonResult.setOnClickListener {
-            if(!validate(editHeight.toString(), editWeight.toString())){
+            if(!validate(editHeight.text.toString(), editWeight.text.toString())){
                 Toast.makeText(this,R.string.toast_invalid_info,Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
