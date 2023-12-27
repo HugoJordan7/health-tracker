@@ -7,37 +7,47 @@
     tools:context=".ReferencesActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/DefaultTextView"
-        android:text="@string/refs_title"
-        android:textSize="24sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bottom_corner_rounded">
+        <TextView
+            style="@style/DefaultTextView"
+            android:text="@string/refs_title"
+            android:textSize="24sp"/>
+    </LinearLayout>
+
 
     <TextView
+        android:id="@+id/ref_imc"
         style="@style/DefaultTextView"
         android:text="@string/imc_ref"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
 
     <TextView
+        android:id="@+id/ref_tmb"
         style="@style/DefaultTextView"
         android:text="@string/tmb_ref"
         android:textSize="20sp"/>
 
     <TextView
+        android:id="@+id/ref_tgc"
         style="@style/DefaultTextView"
         android:text="@string/tgc_ref"
         android:textSize="20sp"/>
 
     <TextView
+        android:id="@+id/ref_water"
         style="@style/DefaultTextView"
         android:text="@string/water_ref"
         android:textSize="20sp"/>
 
     <TextView
+        android:id="@+id/textView"
         style="@style/DefaultTextView"
         android:text="@string/date_access"
         android:textSize="20sp"
         android:layout_gravity="center_horizontal"/>
-
 
 </LinearLayout>
