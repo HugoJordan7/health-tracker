@@ -14,7 +14,6 @@ class TgcActivity : AppCompatActivity() {
 
     private lateinit var editImc: EditText
     private lateinit var editAge: EditText
-    private lateinit var radioGroupSex: RadioGroup
     private lateinit var radioMasculine: RadioButton
     private lateinit var button: Button
 
@@ -23,7 +22,6 @@ class TgcActivity : AppCompatActivity() {
         setContentView(R.layout.activity_tgc)
         editImc = findViewById(R.id.tgc_value_imc)
         editAge = findViewById(R.id.tgc_age)
-        radioGroupSex = findViewById(R.id.tgc_radio_group_sex)
         radioMasculine = findViewById(R.id.tgc_radio_masculine)
         button = findViewById(R.id.tgc_button)
         radioMasculine.isChecked = true

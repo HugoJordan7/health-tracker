@@ -12,8 +12,6 @@
         <TextView
             android:id="@+id/imc_info"
             style="@style/DefaultTextView"
-            android:layout_gravity="top"
-            android:layout_marginTop="50dp"
             android:text="@string/imc_info" />
 
     </LinearLayout>

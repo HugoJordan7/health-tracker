@@ -72,14 +72,12 @@ class ImcActivity : AppCompatActivity() {
     @StringRes
     private fun getImcSituation(imc: Double): Int{
         return when{
-            imc<15.0 -> R.string.imc_severely_low_weight
-            imc<16.0 -> R.string.imc_very_low_weight
             imc<18.5 -> R.string.imc_low_weight
             imc<25.0 -> R.string.imc_normal_weight
             imc<30.0 -> R.string.imc_so_above_weight
-            imc<35.0 -> R.string.imc_above_weight
-            imc<40.0 -> R.string.imc_very_above_weight
-            else -> R.string.imc_severely_above_weight
+            imc<35.0 -> R.string.imc_above_1
+            imc<40.0 -> R.string.imc_above_2
+            else -> R.string.imc_above_3
         }
     }
 

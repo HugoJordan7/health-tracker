@@ -16,6 +16,7 @@ class TmbActivity : AppCompatActivity() {
     lateinit var editAge: EditText
     lateinit var buttonResult: Button
     lateinit var autoLifestyle: AutoCompleteTextView
+    lateinit var radioButtonMasculine: RadioButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,9 @@ class TmbActivity : AppCompatActivity() {
         editAge = findViewById(R.id.tmb_age)
         buttonResult = findViewById(R.id.tmb_button)
         autoLifestyle = findViewById(R.id.auto_lifestyle)
+        radioButtonMasculine = findViewById(R.id.radio_button_masculine_tmb)
+        radioButtonMasculine.isChecked = true
+
         val items = resources.getStringArray(R.array.lifestye_tmb)
         autoLifestyle.setText(items.first())
         val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,items)
@@ -68,7 +72,10 @@ class TmbActivity : AppCompatActivity() {
     }
 
     private fun calculateTmb(height: Int, weight: Int, age: Int): Double{
-        return (66 + (13.8 * weight) + (5 * height) - (6.8 * age))
+        if(radioButtonMasculine.isChecked) {
+            return (66 + (13.7 * weight) + (5 * height) - (6.8 * age))
+        }
+        return (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age))
     }
 
     private fun tmbAdaptedForLifestyle(tmb: Double, arrayLifestyle: Array<String>): Double{

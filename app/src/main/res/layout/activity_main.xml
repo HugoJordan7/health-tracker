@@ -22,15 +22,14 @@
         android:id="@+id/vector_main"
         android:layout_width="73dp"
         android:layout_height="67dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="60dp"
         android:src="@drawable/health_metrics" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_rv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:paddingTop="8dp"/>
+        android:clipToPadding="false"/>
 
     <TextView
         android:layout_width="wrap_content"

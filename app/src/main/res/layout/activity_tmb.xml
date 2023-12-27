@@ -13,13 +13,12 @@
         <TextView
             android:id="@+id/tmb_info"
             style="@style/DefaultTextView"
-            android:text="@string/tmb_info"
-            android:layout_marginTop="50dp"/>
+            android:text="@string/tmb_info"/>
 
     </LinearLayout>
 
     <EditText
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/tmb_height"
         style="@style/DefaultEditText"
         android:hint="@string/height" />
@@ -28,6 +27,21 @@
         android:id="@+id/tmb_weight"
         style="@style/DefaultEditText"
         android:hint="@string/weight" />
+
+    <RadioGroup
+        android:layout_height="wrap_content"
+        android:id="@+id/radio_group_tmb"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <RadioButton
+            android:id="@+id/radio_button_masculine_tmb"
+            android:text="@string/masculine"
+            android:layout_marginRight="40dp"/>
+        <RadioButton
+            android:id="@+id/radio_button_feminine_tmb"
+            android:text="@string/feminine"/>
+    </RadioGroup>
 
     <EditText
         android:id="@+id/tmb_age"

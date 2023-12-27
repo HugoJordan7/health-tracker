@@ -10,16 +10,14 @@
     <string name="age">Idade</string>
     <string name="calc">Calcular</string>
     <string name="toast_invalid_info">Informe valores válidos sem começar com 0</string>
-    <string name="imc_severely_low_weight">Severamente abaixo do peso</string>
-    <string name="imc_very_low_weight">Muito abaixo do peso</string>
     <string name="imc_low_weight">Abaixo do peso</string>
     <string name="imc_normal_weight">Peso normal</string>
     <string name="imc_so_above_weight">Moderadamente acima do peso</string>
-    <string name="imc_above_weight">Obeso</string>
-    <string name="imc_very_above_weight">Muito obeso</string>
-    <string name="imc_severely_above_weight">Severamente obeso</string>
+    <string name="imc_above_1">Obesidade grau I</string>
+    <string name="imc_above_2">Obesidade grau II</string>
+    <string name="imc_above_3">Obesidade grau III</string>
     <string name="dialog_imc_title">Seu IMC é %1$.2f</string>
-    <string name="dialog_tmb_title">Sua TMB é %1$.2f</string>
+    <string name="dialog_tmb_title">Sua TMB é %1$.2f Kcal</string>
     <string name="dialog_tgc_title">Sua TGC é %1$.2f%%</string>
     <string name="tmb_info">A Taxa de Metabolismo Basal (TMB) é o cálculo usado para descobrir a quantidade calórica que o corpo necessita com base no seu estilo de vida</string>
     <string name="ok">Ok</string>
@@ -49,4 +47,10 @@
     <string name="list_calc_register_tmb">A sua TMB em %1$s foi de %2$.2f</string>
     <string name="list_calc_register_tgc">A sua TGC em %1$s foi de %2$.2f</string>
     <string name="search">Buscar</string>
+    <string name="refs_title">Todas as informações necessárias para realizar os cálculos deste aplicativo estão disponíveis em:</string>
+    <string name="imc_ref">https://www.tuasaude.com/calculadora/imc/</string>
+    <string name="tmb_ref">https://www.essentialnutrition.com.br/conteudos/taxa-metabolica-basal/</string>
+    <string name="tgc_ref">https://www.tuasaude.com/gordura-corporal-ideal/</string>
+    <string name="water_ref">https://www.tuasaude.com/beber-agua/</string>
+    <string name="date_access">Acessados em 27/12/2023 17:52h</string>
 </resources>

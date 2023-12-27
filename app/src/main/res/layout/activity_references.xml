@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReferencesActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/DefaultTextView"
+        android:text="@string/refs_title"
+        android:textSize="24sp"/>
+
+    <TextView
+        style="@style/DefaultTextView"
+        android:text="@string/imc_ref"
+        android:textSize="20sp"/>
+
+    <TextView
+        style="@style/DefaultTextView"
+        android:text="@string/tmb_ref"
+        android:textSize="20sp"/>
+
+    <TextView
+        style="@style/DefaultTextView"
+        android:text="@string/tgc_ref"
+        android:textSize="20sp"/>
+
+    <TextView
+        style="@style/DefaultTextView"
+        android:text="@string/water_ref"
+        android:textSize="20sp"/>
+
+    <TextView
+        style="@style/DefaultTextView"
+        android:text="@string/date_access"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"/>
+
+
+</LinearLayout>
