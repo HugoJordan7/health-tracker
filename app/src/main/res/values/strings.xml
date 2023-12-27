@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Health Tracker</string>
+    <string name="author_mark">Powered by H. Jordan</string>
     <string name="imc">IMC</string>
     <string name="tmb">TMB</string>
     <string name="tgc">TGC</string>

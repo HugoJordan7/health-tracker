@@ -10,17 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthTracker">
-        <activity android:name=".ListCalcActivity"></activity>
+        <activity android:name=".ListCalcActivity" />
         <activity android:name=".WaterActivity" />
         <activity android:name=".TgcActivity" />
         <activity android:name=".TmbActivity" />
         <activity android:name=".ImcActivity" />
+        <activity android:name=".MainActivity"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.HealthTracker.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

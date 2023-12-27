@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
             add( MainItem(
                     id = 0,
                     text = R.string.imc,
-                    icon = R.drawable.body))
+                    icon = R.drawable.conditions))
             add( MainItem(
                     id = 1,
                     text = R.string.tmb,
