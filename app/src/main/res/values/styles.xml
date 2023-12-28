@@ -21,11 +21,12 @@
     </style>
 
     <style name="DefaultEditText" parent="DefaultAlignment">
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:textAlignment">center</item>
         <item name="android:inputType">number</item>
         <item name="android:maxLength">3</item>
+        <item name="android:background">@drawable/edit_text_background</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_marginBottom">18dp</item>
     </style>
