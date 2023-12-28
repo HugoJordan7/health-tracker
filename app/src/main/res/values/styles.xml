@@ -16,7 +16,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginBottom">16dp</item>
     </style>
 
     <style name="DefaultEditText" parent="DefaultAlignment">
@@ -25,12 +26,15 @@
         <item name="android:textAlignment">center</item>
         <item name="android:inputType">number</item>
         <item name="android:maxLength">3</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginBottom">18dp</item>
     </style>
 
     <style name="DefaultButton" parent="DefaultAlignment">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:background">@drawable/button_shape</item>
+        <item name="android:layout_marginTop">20dp</item>
     </style>
 
     <style name="AutoTextViewForm" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">

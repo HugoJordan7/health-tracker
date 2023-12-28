@@ -7,17 +7,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_bottom_corner_rounded">
-        <TextView
-            android:id="@+id/tgc_info"
-            style="@style/DefaultTextView"
-            android:text="@string/tgc_info" />
+        android:layout_height="120dp"
+        android:background="@drawable/shape_bottom_corner_rounded"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/vector_main"
+            android:layout_width="73dp"
+            android:layout_height="67dp"
+            android:src="@drawable/health_metrics_white" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/imc_info"
+        style="@style/DefaultTextView"
+        android:text="@string/tgc_info"
+        android:textColor="@color/red_end"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/tgc_value_imc"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         style="@style/DefaultEditText"
         android:hint="@string/imc"
         android:inputType="numberDecimal"
