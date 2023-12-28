@@ -38,7 +38,10 @@
     <string name="dialog_water_message">A quantidade de água ideal para você é de %1$d mL ou %2$.2f L diários</string>
     <string name="dialog_water_title_above">Parabéns, você consome além do ideal</string>
     <string name="dialog_water_title_below">Cuidado, você consome abaixo do ideal</string>
-    <string name="water_quantity"> Quantidade diária consumida (L)</string>
+    <string name="water_quantity"> Quantidade diária consumida (mL)</string>
+    <string name="exercise_quantity">Tempo de exercício físico diário:</string>
+    <string name="hours">Horas</string>
+    <string name="minutes">Minutos</string>
     <string name="congratulations">Parabéns</string>
     <string name="warning">Cuidado</string>
     <string name="above">acima</string>

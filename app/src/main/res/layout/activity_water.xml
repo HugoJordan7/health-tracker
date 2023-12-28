@@ -21,14 +21,14 @@
     <TextView
         android:id="@+id/water_info"
         style="@style/DefaultTextView"
+        android:layout_marginTop="10dp"
         android:text="@string/water_info"
-        android:textColor="@color/red_end"
-        android:layout_marginTop="10dp"/>
+        android:textColor="@color/red_end" />
 
     <EditText
         android:id="@+id/water_weight"
-        android:layout_marginTop="20dp"
         style="@style/DefaultEditText"
+        android:layout_marginTop="20dp"
         android:hint="@string/weight" />
 
     <EditText
@@ -36,12 +36,24 @@
         style="@style/DefaultEditText"
         android:hint="@string/age" />
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/AutoTextViewForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/auto_exercise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <EditText
         android:id="@+id/water_quantity"
         style="@style/DefaultEditText"
         android:hint="@string/water_quantity"
-        android:inputType="numberDecimal"
-        android:maxLength="5" />
+        android:maxLength="4" />
 
     <Button
         android:id="@+id/water_button"

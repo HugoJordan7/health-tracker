@@ -7,4 +7,13 @@
         <item>Exercício pesado, de 6 a 7 dias por semana</item>
         <item>Exercício pesado 2 vezes todos os dias</item>
     </string-array>
+
+    <string-array name="exercise_frequency">
+        <item>Nenhum exercício diário</item>
+        <item>30 minutos de exercício diário</item>
+        <item>1h de exercício diário</item>
+        <item>1:30h de exercício diário</item>
+        <item>2h de exercício diário</item>
+        <item>3h de exercício diário</item>
+    </string-array>
 </resources>
