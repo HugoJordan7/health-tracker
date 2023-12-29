@@ -7,10 +7,7 @@ import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.PopupMenu
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import com.example.healthtracker.model.AppDataBase
@@ -28,6 +25,16 @@ class ImcActivity : AppCompatActivity() {
         editHeight = findViewById(R.id.imc_height)
         editWeight = findViewById(R.id.imc_weight)
         buttonResult = findViewById(R.id.imc_button)
+
+        val arrowBackButton: ImageButton = findViewById(R.id.arrow_refs_imc)
+        arrowBackButton.setOnClickListener {
+            finish()
+        }
+
+        val historyButton: ImageButton = findViewById(R.id.historic_refs_imc)
+        historyButton.setOnClickListener {
+            openListCalcActivity()
+        }
 
         buttonResult.setOnClickListener {
             if(!validate(editHeight.text.toString(), editWeight.text.toString())){

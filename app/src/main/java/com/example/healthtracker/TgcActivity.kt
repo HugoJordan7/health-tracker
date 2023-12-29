@@ -26,6 +26,16 @@ class TgcActivity : AppCompatActivity() {
         button = findViewById(R.id.tgc_button)
         radioMasculine.isChecked = true
 
+        val arrowBackButton: ImageButton = findViewById(R.id.arrow_refs_tgc)
+        arrowBackButton.setOnClickListener {
+            finish()
+        }
+
+        val historyButton: ImageButton = findViewById(R.id.historic_refs_tgc)
+        historyButton.setOnClickListener {
+            openListCalcActivity()
+        }
+
         button.setOnClickListener {
             if(!validate()){
                 Toast.makeText(this,R.string.toast_invalid_info,Toast.LENGTH_SHORT).show()

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.text.method.LinkMovementMethod
+import android.widget.ImageButton
 import android.widget.TextView
 
 class ReferencesActivity : AppCompatActivity() {
@@ -25,5 +26,11 @@ class ReferencesActivity : AppCompatActivity() {
         tmbRef.movementMethod = LinkMovementMethod.getInstance()
         tgcRef.movementMethod = LinkMovementMethod.getInstance()
         waterRef.movementMethod = LinkMovementMethod.getInstance()
+
+        val arrowBackButton: ImageButton = findViewById(R.id.arrow_refs)
+        arrowBackButton.setOnClickListener {
+            finish()
+        }
+
     }
 }

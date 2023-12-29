@@ -22,6 +22,11 @@ class WaterActivity : AppCompatActivity() {
         editQuantity = findViewById(R.id.water_quantity)
         button = findViewById(R.id.water_button)
 
+        val arrowBackButton: ImageButton = findViewById(R.id.arrow_refs_water)
+        arrowBackButton.setOnClickListener {
+            finish()
+        }
+
         autoExercise = findViewById(R.id.auto_exercise)
         val arrayExercise: Array<String> = resources.getStringArray(R.array.exercise_frequency)
         autoExercise.setText(arrayExercise.first())

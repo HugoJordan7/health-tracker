@@ -7,16 +7,30 @@
     tools:context=".ReferencesActivity"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_bottom_corner_rounded">
-        <TextView
-            style="@style/DefaultTextView"
-            android:text="@string/refs_title"
-            android:textSize="24sp"/>
-    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ConstraintLayoutForHeader">
+        <ImageButton
+            android:id="@+id/arrow_refs"
+            style="@style/ImageButtonArrowBack"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/vector_main"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/vector_main"
+            style="@style/ImageAppLogo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        style="@style/DefaultTextView"
+        android:text="@string/refs_title"
+        android:textSize="24sp"
+        android:textColor="@color/red_end" />
 
     <TextView
         android:id="@+id/ref_imc"
@@ -48,6 +62,7 @@
         style="@style/DefaultTextView"
         android:text="@string/date_access"
         android:textSize="20sp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/red_end"/>
 
 </LinearLayout>

@@ -29,6 +29,16 @@ class TmbActivity : AppCompatActivity() {
         radioButtonMasculine = findViewById(R.id.radio_button_masculine_tmb)
         radioButtonMasculine.isChecked = true
 
+        val arrowBackButton: ImageButton = findViewById(R.id.arrow_refs_tmb)
+        arrowBackButton.setOnClickListener {
+            finish()
+        }
+
+        val historyButton: ImageButton = findViewById(R.id.historic_refs_tmb)
+        historyButton.setOnClickListener {
+            openListCalcActivity()
+        }
+
         val items = resources.getStringArray(R.array.lifestye_tmb)
         autoLifestyle.setText(items.first())
         val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,items)

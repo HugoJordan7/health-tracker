@@ -51,4 +51,35 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="ConstraintLayoutForHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:background">@drawable/shape_bottom_corner_rounded</item>
+    </style>
+
+    <style name="ImageButtonArrowBack">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:src">@drawable/arrow_back</item>
+        <item name="android:layout_marginRight">110dp</item>
+        <item name="android:layout_marginBottom">40dp</item>
+    </style>
+
+    <style name="ImageAppLogo">
+        <item name="android:layout_width">82dp</item>
+        <item name="android:layout_height">79dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:src">@drawable/health_metrics_white</item>
+    </style>
+
+    <style name="ImageButtonHistory">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:src">@drawable/history</item>
+        <item name="android:layout_marginLeft">110dp</item>
+        <item name="android:layout_marginBottom">40dp</item>
+    </style>
+
 </resources>

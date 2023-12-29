@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,6 +17,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val infoButton: ImageButton = findViewById(R.id.info_button)
+
+        infoButton.setOnClickListener{
+            startActivity(Intent(this,ReferencesActivity::class.java))
+        }
 
         listItems.apply {
             add( MainItem(
