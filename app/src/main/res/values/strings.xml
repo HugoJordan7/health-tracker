@@ -72,4 +72,9 @@
         ]]>
     </string>
     <string name="date_access">Acessados em 27/12/2023 17:52h</string>
+    <string name="dialog_title_delete_history">Deseja excluir o histórico de todos os registros salvos?</string>
+    <string name="yes">Sim</string>
+    <string name="back">Voltar</string>
+    <string name="toast_delete_history">Histórico deletado com sucesso!</string>
+    <string name="toast_delete_history_error">Não há registros salvos para serem deletados</string>
 </resources>
