@@ -57,18 +57,19 @@
         ]]>
     </string>
     <string name="tmb_ref">
+
         <![CDATA[
-            <a href="https://www.essentialnutrition.com.br/conteudos/taxa-metabolica-basal/">TMB: www.essentialnutrition.com</a>
+            <a href="https://nutrium.com/blog/pt-br/calculadora-da-equacao-de-harris-benedict-para-nutricionistas/">TMB: www.nutrium.com</a>
         ]]>
     </string>
-    <string name="tgc_ref">
+    <string name="tgc_ref"> <!-- Trocar ref-->
         <![CDATA[
             <a href="https://www.tuasaude.com/gordura-corporal-ideal/">TGC: www.tuasaude.com</a>
         ]]>
     </string>
     <string name="water_ref">
         <![CDATA[
-            <a href="https://www.tuasaude.com/beber-agua/">Água: www.tuasaude.com</a>
+            <a href="https://blog.portoseguro.com.br/quantos-litros-de-agua-devemos-beber-por-dia">Água: www.blog.portoseguro.com.br</a>
         ]]>
     </string>
     <string name="date_access">Acessados em 27/12/2023 17:52h</string>

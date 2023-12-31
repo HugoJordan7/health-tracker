@@ -41,6 +41,11 @@
         style="@style/DefaultEditText"
         android:hint="@string/age" />
 
+    <EditText
+        android:id="@+id/water_quantity"
+        style="@style/DefaultEditText"
+        android:hint="@string/water_quantity"
+        android:maxLength="4" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/AutoTextViewForm"
@@ -53,12 +58,6 @@
             android:layout_height="wrap_content"/>
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <EditText
-        android:id="@+id/water_quantity"
-        style="@style/DefaultEditText"
-        android:hint="@string/water_quantity"
-        android:maxLength="4" />
 
     <Button
         android:id="@+id/water_button"

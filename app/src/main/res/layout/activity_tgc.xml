@@ -45,6 +45,11 @@
         android:inputType="numberDecimal"
         android:maxLength="6" />
 
+    <EditText
+        android:id="@+id/tgc_age"
+        style="@style/DefaultEditText"
+        android:hint="@string/age" />
+
     <RadioGroup
         android:id="@+id/tgc_radio_group_sex"
         style="@style/DefaultAlignment"
@@ -64,11 +69,6 @@
             android:text="@string/feminine"
             android:textSize="20sp" />
     </RadioGroup>
-
-    <EditText
-        android:id="@+id/tgc_age"
-        style="@style/DefaultEditText"
-        android:hint="@string/age" />
 
     <Button
         android:id="@+id/tgc_button"
