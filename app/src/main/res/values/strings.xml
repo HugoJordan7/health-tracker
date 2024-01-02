@@ -18,7 +18,7 @@
     <string name="imc_above_3">Obesidade grau III</string>
     <string name="dialog_imc_title">Seu IMC é %1$.2f</string>
     <string name="dialog_tmb_title">Sua TMB é %1$.2f Kcal</string>
-    <string name="dialog_tgc_title">Sua TGC é %1$.2f%%</string>
+    <string name="dialog_bpm_title">Sua TGC é %1$.2f%%</string>
     <string name="tmb_info">A Taxa de Metabolismo Basal (TMB) é o cálculo usado para descobrir a quantidade calórica que o corpo necessita com base no seu estilo de vida</string>
     <string name="ok">Ok</string>
     <string name="save">Salvar</string>
@@ -42,7 +42,7 @@
     <string name="below">abaixo</string>
     <string name="list_calc_register_imc">O seu IMC em %1$s foi de %2$.2f</string>
     <string name="list_calc_register_tmb">A sua TMB em %1$s foi de %2$.2f</string>
-    <string name="list_calc_register_tgc">A sua TGC em %1$s foi de %2$.2f</string>
+    <string name="list_calc_register_bpm">A sua frequência cardíaca em %1$s foi de %2$.0f e estava %3$s</string>
     <string name="search">Buscar</string>
     <string name="refs_title">Todas as informações necessárias para realizar os cálculos deste aplicativo estão disponíveis em:</string>
     <string name="imc_ref">
@@ -51,7 +51,6 @@
         ]]>
     </string>
     <string name="tmb_ref">
-
         <![CDATA[
             <a href="https://nutrium.com/blog/pt-br/calculadora-da-equacao-de-harris-benedict-para-nutricionistas/">TMB: www.nutrium.com</a>
         ]]>
@@ -74,11 +73,17 @@
     <string name="toast_delete_history_error">Não há registros salvos para serem deletados</string>
     <string name="heart_rate">Frequência cardíaca (bpm em repouso)</string>
     <string name="bpm">BPM</string>
-    <string name="excellent_heart_rate">A sua frequência cardíaca é excelente!</string>
-    <string name="optimum_heart_rate">A sua frequência cardíaca é ótima!</string>
-    <string name="good_heart_rate">A sua frequência cardíaca é boa</string>
-    <string name="normal_heart_rate">A sua frequência cardíaca é normal!</string>
-    <string name="less_good_heart_rate">A sua frequência cardíaca é menos boa!</string>
-    <string name="bad_heart_rate">A sua frequência cardíaca é ruim!</string>
+    <string name="excellent_heart_rate">excelente</string>
+    <string name="optimum_heart_rate">ótima</string>
+    <string name="good_heart_rate">boa</string>
+    <string name="normal_heart_rate">normal</string>
+    <string name="less_good_heart_rate">menos boa</string>
+    <string name="bad_heart_rate">ruim</string>
     <string name="toast_bellow_age">A idade mínima necessária é de 18 anos</string>
+    <string name="men">um homem</string>
+    <string name="women">uma mulher</string>
+    <string name="dialog_message_bpm">O número de uma frequência cardíaca %1$s para %2$s de %3$d anos está %4$s bpm</string>
+    <string name="dialog_title_bpm">A sua frequência cardíaca é %1$s!</string>
+    <string name="current_hear_rate_range">entre %1$d a %2$d</string>
+    <string name="current_hear_rate_range_bad">acima de %1$d</string>
 </resources>

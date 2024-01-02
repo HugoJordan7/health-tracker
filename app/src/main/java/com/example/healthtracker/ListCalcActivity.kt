@@ -94,10 +94,16 @@ class ListCalcActivity : AppCompatActivity() {
             val stringId: Int = when(itemCalc.type){
                 "imc" -> R.string.list_calc_register_imc
                 "tmb" -> R.string.list_calc_register_tmb
-                "tgc"-> R.string.list_calc_register_tgc
+                "bpm"-> R.string.list_calc_register_bpm
                 else -> 0
             }
-            textView.text = getString(stringId, date, itemCalc.res)
+
+            if(itemCalc.type == "imc" || itemCalc.type == "tmb"){
+                textView.text = getString(stringId, date, itemCalc.res)
+            } else{
+                textView.text = getString(stringId,date,itemCalc.res)
+            }
+
         }
     }
 }

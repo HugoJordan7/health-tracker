@@ -40,22 +40,34 @@ class HeartRateActivity : AppCompatActivity() {
             val age = editAge.text.toString().toInt()
             val bpm = editHeartRate.text.toString().toInt()
 
-            if(age < 18){
-                Toast.makeText(this,R.string.toast_bellow_age,Toast.LENGTH_SHORT).show()
+            if (age < 18) {
+                Toast.makeText(this, R.string.toast_bellow_age, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             val heartRateSituation = getClassificationHeartRate(bpm, age)
+            val hrClassification = getString(heartRateSituation.first)
+            val firstHrValueRange = heartRateSituation.second.first
+            val secondHrValueRange = heartRateSituation.second.second
+            val currentHrRange = when{
+                secondHrValueRange != 999 -> getString(R.string.current_hear_rate_range,firstHrValueRange,secondHrValueRange)
+                else -> getString(R.string.current_hear_rate_range_bad,firstHrValueRange)
+            }
+            val stringSex = when{
+                radioMasculine.isChecked -> getString(R.string.men)
+                else -> getString(R.string.women)
+            }
 
             AlertDialog.Builder(this).apply {
-                setTitle(heartRateSituation)
-                setPositiveButton(R.string.ok){_,_->}
-                setNegativeButton(R.string.save){_,_->
-                    Thread{
+                setTitle(getString(R.string.dialog_title_bpm,hrClassification))
+                setMessage(getString(R.string.dialog_message_bpm,hrClassification,stringSex,age,currentHrRange))
+                setPositiveButton(R.string.ok) { _, _ -> }
+                setNegativeButton(R.string.save) { _, _ ->
+                    Thread {
                         val app = application as App
                         val dao = app.db.calcDao()
                         dao.insert(Calc(type = "bpm", res = bpm.toDouble()))
-                        runOnUiThread{
+                        runOnUiThread {
                             openListCalcActivity()
                         }
                     }.start()
@@ -68,143 +80,146 @@ class HeartRateActivity : AppCompatActivity() {
 
     }
 
-    @StringRes
-    private fun getClassificationHeartRate(bpm: Int, age: Int): Int{
-        //Masculine
-        if (radioMasculine.isChecked){
-            when(age){
-                in 18..25 -> {
-                    return when(bpm){
-                        in 56..61 -> R.string.excellent_heart_rate
-                        in 62..65 -> R.string.optimum_heart_rate
-                        in 66..69 -> R.string.good_heart_rate
-                        in 70..73 -> R.string.normal_heart_rate
-                        in 74..81 -> R.string.less_good_heart_rate
-                        else -> R.string.bad_heart_rate
-                    }
-                }
-                in 26..35 -> {
-                    return when(bpm){
-                        in 55..61 -> R.string.excellent_heart_rate
-                        in 62..65 -> R.string.optimum_heart_rate
-                        in 66..70 -> R.string.good_heart_rate
-                        in 71..74 -> R.string.normal_heart_rate
-                        in 75..81 -> R.string.less_good_heart_rate
-                        else -> R.string.bad_heart_rate
-                    }
-                }
-                in 36..45 -> {
-                    return when(bpm){
-                        in 57..62 -> R.string.excellent_heart_rate
-                        in 63..66 -> R.string.optimum_heart_rate
-                        in 67..70 -> R.string.good_heart_rate
-                        in 71..75 -> R.string.normal_heart_rate
-                        in 76..82 -> R.string.less_good_heart_rate
-                        else -> R.string.bad_heart_rate
-                    }
-                }
-                in 46..55 -> {
-                    return when(bpm){
-                        in 58..63 -> R.string.excellent_heart_rate
-                        in 64..67 -> R.string.optimum_heart_rate
-                        in 68..71 -> R.string.good_heart_rate
-                        in 72..76 -> R.string.normal_heart_rate
-                        in 77..83 -> R.string.less_good_heart_rate
-                        else -> R.string.bad_heart_rate
-                    }
-                }
-                in 56..65 -> {
-                    return when(bpm){
-                        in 57..61 -> R.string.excellent_heart_rate
-                        in 62..67 -> R.string.optimum_heart_rate
-                        in 68..71 -> R.string.good_heart_rate
-                        in 72..75 -> R.string.normal_heart_rate
-                        in 76..81 -> R.string.less_good_heart_rate
-                        else -> R.string.bad_heart_rate
-                    }
-                }
-                else-> {
-                    return when(bpm){
-                        in 56..61 -> R.string.excellent_heart_rate
-                        in 62..65 -> R.string.optimum_heart_rate
-                        in 66..69 -> R.string.good_heart_rate
-                        in 70..73 -> R.string.normal_heart_rate
-                        in 74..79 -> R.string.less_good_heart_rate
-                        else -> R.string.bad_heart_rate
-                    }
-                }
+    private fun openListCalcActivity() {
+        val intent = Intent(this, ListCalcActivity::class.java)
+        startActivity(
+            Intent(this, ListCalcActivity::class.java).apply {
+                putExtra("type", "tgc")
+                putExtra("situation", "")
             }
-        }
-
-        //Feminine
-        when(age){
-            in 18..25 -> {
-                return when(bpm){
-                    in 61..65 -> R.string.excellent_heart_rate
-                    in 66..69 -> R.string.optimum_heart_rate
-                    in 70..73 -> R.string.good_heart_rate
-                    in 74..78 -> R.string.normal_heart_rate
-                    in 79..84 -> R.string.less_good_heart_rate
-                    else -> R.string.bad_heart_rate
-                }
-            }
-            in 26..35 -> {
-                return when(bpm){
-                    in 60..64 -> R.string.excellent_heart_rate
-                    in 65..68 -> R.string.optimum_heart_rate
-                    in 69..72 -> R.string.good_heart_rate
-                    in 73..76 -> R.string.normal_heart_rate
-                    in 77..82 -> R.string.less_good_heart_rate
-                    else -> R.string.bad_heart_rate
-                }
-            }
-            in 36..45 -> {
-                return when(bpm){
-                    in 60..64 -> R.string.excellent_heart_rate
-                    in 65..69 -> R.string.optimum_heart_rate
-                    in 70..73 -> R.string.good_heart_rate
-                    in 74..78 -> R.string.normal_heart_rate
-                    in 79..84 -> R.string.less_good_heart_rate
-                    else -> R.string.bad_heart_rate
-                }
-            }
-            in 46..55 -> {
-                return when(bpm){
-                    in 61..65 -> R.string.excellent_heart_rate
-                    in 66..69 -> R.string.optimum_heart_rate
-                    in 70..73 -> R.string.good_heart_rate
-                    in 74..77 -> R.string.normal_heart_rate
-                    in 78..83 -> R.string.less_good_heart_rate
-                    else -> R.string.bad_heart_rate
-                }
-            }
-            in 56..65 -> {
-                return when(bpm){
-                    in 60..64 -> R.string.excellent_heart_rate
-                    in 65..68 -> R.string.optimum_heart_rate
-                    in 69..73 -> R.string.good_heart_rate
-                    in 74..77 -> R.string.normal_heart_rate
-                    in 78..83 -> R.string.less_good_heart_rate
-                    else -> R.string.bad_heart_rate
-                }
-            }
-            else-> {
-                return when(bpm){
-                    in 60..64 -> R.string.excellent_heart_rate
-                    in 65..68 -> R.string.optimum_heart_rate
-                    in 69..72 -> R.string.good_heart_rate
-                    in 73..76 -> R.string.normal_heart_rate
-                    in 77..84 -> R.string.less_good_heart_rate
-                    else -> R.string.bad_heart_rate
-                }
-            }
-        }
+        )
     }
 
-    private fun openListCalcActivity() {
-        startActivity(
-            Intent(this,ListCalcActivity::class.java).putExtra("type","tgc")
-        )
+    private fun getClassificationHeartRate(bpm: Int, age: Int): Pair<Int, Pair<Int, Int>> {
+        val classification: Pair<Int, Pair<Int, Int>> =
+            if (radioMasculine.isChecked) {
+                when (age) {
+                    in 18..25 -> {
+                        return when (bpm) {
+                            in 56..61 -> Pair(R.string.excellent_heart_rate, Pair(56, 61))
+                            in 62..65 -> Pair(R.string.optimum_heart_rate, Pair(62, 65))
+                            in 66..69 -> Pair(R.string.good_heart_rate, Pair(66, 69))
+                            in 70..73 -> Pair(R.string.normal_heart_rate, Pair(70, 73))
+                            in 74..81 -> Pair(R.string.less_good_heart_rate, Pair(74, 81))
+                            else -> Pair(R.string.bad_heart_rate, Pair(81, 999))
+                        }
+                    }
+                    in 26..35 -> {
+                        return when (bpm) {
+                            in 55..61 -> Pair(R.string.excellent_heart_rate, Pair(55, 61))
+                            in 62..65 -> Pair(R.string.optimum_heart_rate, Pair(62, 65))
+                            in 66..70 -> Pair(R.string.good_heart_rate, Pair(66, 70))
+                            in 71..74 -> Pair(R.string.normal_heart_rate, Pair(71, 74))
+                            in 75..81 -> Pair(R.string.less_good_heart_rate, Pair(75, 81))
+                            else -> Pair(R.string.bad_heart_rate, Pair(81, 999))
+                        }
+                    }
+                    in 36..45 -> {
+                        return when (bpm) {
+                            in 57..62 -> Pair(R.string.excellent_heart_rate, Pair(57, 62))
+                            in 63..66 -> Pair(R.string.optimum_heart_rate, Pair(63, 66))
+                            in 67..70 -> Pair(R.string.good_heart_rate, Pair(67, 70))
+                            in 71..75 -> Pair(R.string.normal_heart_rate, Pair(71, 75))
+                            in 76..82 -> Pair(R.string.less_good_heart_rate, Pair(76, 82))
+                            else -> Pair(R.string.bad_heart_rate, Pair(82, 999))
+                        }
+                    }
+                    in 46..55 -> {
+                        return when (bpm) {
+                            in 58..63 -> Pair(R.string.excellent_heart_rate, Pair(58, 63))
+                            in 64..67 -> Pair(R.string.optimum_heart_rate, Pair(64, 67))
+                            in 68..71 -> Pair(R.string.good_heart_rate, Pair(68, 71))
+                            in 72..76 -> Pair(R.string.normal_heart_rate, Pair(72, 76))
+                            in 77..83 -> Pair(R.string.less_good_heart_rate, Pair(77, 83))
+                            else -> Pair(R.string.bad_heart_rate, Pair(83, 999))
+                        }
+                    }
+                    in 56..65 -> {
+                        return when (bpm) {
+                            in 57..61 -> Pair(R.string.excellent_heart_rate, Pair(57, 61))
+                            in 62..67 -> Pair(R.string.optimum_heart_rate, Pair(62, 67))
+                            in 68..71 -> Pair(R.string.good_heart_rate, Pair(68, 71))
+                            in 72..75 -> Pair(R.string.normal_heart_rate, Pair(72, 75))
+                            in 76..81 -> Pair(R.string.less_good_heart_rate, Pair(76, 81))
+                            else -> Pair(R.string.bad_heart_rate, Pair(81, 999))
+                        }
+                    }
+                    else -> {
+                        return when (bpm) {
+                            in 56..61 -> Pair(R.string.excellent_heart_rate, Pair(56, 61))
+                            in 62..65 -> Pair(R.string.optimum_heart_rate, Pair(62, 65))
+                            in 66..69 -> Pair(R.string.good_heart_rate, Pair(66, 69))
+                            in 70..73 -> Pair(R.string.normal_heart_rate, Pair(70, 73))
+                            in 74..79 -> Pair(R.string.less_good_heart_rate, Pair(74, 79))
+                            else -> Pair(R.string.bad_heart_rate, Pair(79, 999))
+                        }
+                    }
+                }
+            } else {
+                when (age) {
+                    in 18..25 -> {
+                        return when (bpm) {
+                            in 61..65 -> Pair(R.string.excellent_heart_rate, Pair(61, 65))
+                            in 66..69 -> Pair(R.string.optimum_heart_rate, Pair(66, 69))
+                            in 70..73 -> Pair(R.string.good_heart_rate, Pair(70, 73))
+                            in 74..78 -> Pair(R.string.normal_heart_rate, Pair(74, 78))
+                            in 79..84 -> Pair(R.string.less_good_heart_rate, Pair(79, 84))
+                            else -> Pair(R.string.bad_heart_rate, Pair(84, 999))
+                        }
+                    }
+                    in 26..35 -> {
+                        return when (bpm) {
+                            in 60..64 -> Pair(R.string.excellent_heart_rate, Pair(60, 64))
+                            in 65..68 -> Pair(R.string.optimum_heart_rate, Pair(65, 68))
+                            in 69..72 -> Pair(R.string.good_heart_rate, Pair(69, 72))
+                            in 73..76 -> Pair(R.string.normal_heart_rate, Pair(73, 76))
+                            in 77..82 -> Pair(R.string.less_good_heart_rate, Pair(77, 82))
+                            else -> Pair(R.string.bad_heart_rate, Pair(82, 999))
+                        }
+                    }
+                    in 36..45 -> {
+                        return when (bpm) {
+                            in 60..64 -> Pair(R.string.excellent_heart_rate, Pair(60, 64))
+                            in 65..69 -> Pair(R.string.optimum_heart_rate, Pair(65, 69))
+                            in 70..73 -> Pair(R.string.good_heart_rate, Pair(70, 73))
+                            in 74..78 -> Pair(R.string.normal_heart_rate, Pair(74, 78))
+                            in 79..84 -> Pair(R.string.less_good_heart_rate, Pair(79, 84))
+                            else -> Pair(R.string.bad_heart_rate, Pair(84, 999))
+                        }
+                    }
+                    in 46..55 -> {
+                        return when (bpm) {
+                            in 61..65 -> Pair(R.string.excellent_heart_rate, Pair(61, 65))
+                            in 66..69 -> Pair(R.string.optimum_heart_rate, Pair(66, 69))
+                            in 70..73 -> Pair(R.string.good_heart_rate, Pair(70, 73))
+                            in 74..77 -> Pair(R.string.normal_heart_rate, Pair(74, 77))
+                            in 78..83 -> Pair(R.string.less_good_heart_rate, Pair(78, 83))
+                            else -> Pair(R.string.bad_heart_rate, Pair(83, 999))
+                        }
+                    }
+                    in 56..65 -> {
+                        return when (bpm) {
+                            in 60..64 -> Pair(R.string.excellent_heart_rate, Pair(60, 64))
+                            in 65..68 -> Pair(R.string.optimum_heart_rate, Pair(65, 68))
+                            in 69..73 -> Pair(R.string.good_heart_rate, Pair(69, 73))
+                            in 74..77 -> Pair(R.string.normal_heart_rate, Pair(74, 77))
+                            in 78..83 -> Pair(R.string.less_good_heart_rate, Pair(78, 83))
+                            else -> Pair(R.string.bad_heart_rate, Pair(83, 999))
+                        }
+                    }
+                    else -> {
+                        return when (bpm) {
+                            in 60..64 -> Pair(R.string.excellent_heart_rate, Pair(60, 64))
+                            in 65..68 -> Pair(R.string.optimum_heart_rate, Pair(65, 68))
+                            in 69..72 -> Pair(R.string.good_heart_rate, Pair(69, 72))
+                            in 73..76 -> Pair(R.string.normal_heart_rate, Pair(73, 76))
+                            in 77..84 -> Pair(R.string.less_good_heart_rate, Pair(77, 84))
+                            else -> Pair(R.string.bad_heart_rate, Pair(84, 999))
+                        }
+                    }
+                }
+            }
+        return classification
     }
 
 }
