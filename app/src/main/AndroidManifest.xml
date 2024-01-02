@@ -13,7 +13,7 @@
         <activity android:name=".ReferencesActivity"></activity>
         <activity android:name=".ListCalcActivity" />
         <activity android:name=".WaterActivity" />
-        <activity android:name=".TgcActivity" />
+        <activity android:name=".HeartRateActivity" />
         <activity android:name=".TmbActivity" />
         <activity android:name=".ImcActivity" />
         <activity android:name=".MainActivity" />

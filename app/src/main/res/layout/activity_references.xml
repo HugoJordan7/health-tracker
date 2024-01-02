@@ -48,7 +48,7 @@
     <TextView
         android:id="@+id/ref_tgc"
         style="@style/DefaultTextView"
-        android:text="@string/tgc_ref"
+        android:text="@string/hr_ref"
         android:textSize="20sp"/>
 
     <TextView

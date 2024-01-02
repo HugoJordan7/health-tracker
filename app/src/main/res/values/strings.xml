@@ -23,16 +23,10 @@
     <string name="ok">Ok</string>
     <string name="save">Salvar</string>
     <string name="saved">Salvo com sucesso!</string>
-    <string name="tgc_info">A Taxa de Gordura Corporal (TGC) é uma medida imperfeita da obesidade e não discrimina entre a massa magra e a gordura. Uma pesquisa sugere que o índice de massa gorda está associado a um maior risco de eventos cardiovasculares em pessoas com diabetes.</string>
+    <string name="tgc_info">A frequência cardíaca é o valor que representa o número de vezes que o coração bate por minuto. Insira seus dados na calculadora para saber qual a frequência cardíaca recomendada para você ou para entender se a sua frequência está adequada, de acordo com a idade</string>
     <string name="sex">Sexo (Masculino/Feminino)</string>
     <string name="masculine">Masculino</string>
     <string name="feminine">Feminino</string>
-
-    <string name="tgc_essential_fat">Nível de gordura essencial</string>
-    <string name="tgc_athletic_fat">Nível de gordura de atleta</string>
-    <string name="tgc_gymnast_fat">Nível de gordura de praticante de atividades físicas</string>
-    <string name="tgc_acceptable_fat">Nível de gordura aceitável</string>
-    <string name="tgc_obesity_fat">Nível de gordura de obesidade</string>
     <string name="water">Água</string>
     <string name="water_info">É de extrema importância para a saúde conhecer qual a quantidade ideal de água que deve ser ingerida por dia, preencha as informações abaixo para saber a quantidade ideal para você</string>
     <string name="dialog_water_message">A quantidade de água ideal para você é de %1$d mL ou %2$.2f L diários</string>
@@ -62,9 +56,9 @@
             <a href="https://nutrium.com/blog/pt-br/calculadora-da-equacao-de-harris-benedict-para-nutricionistas/">TMB: www.nutrium.com</a>
         ]]>
     </string>
-    <string name="tgc_ref"> <!-- Trocar ref-->
+    <string name="hr_ref">
         <![CDATA[
-            <a href="https://www.tuasaude.com/gordura-corporal-ideal/">TGC: www.tuasaude.com</a>
+            <a href="https://www.tuasaude.com/frequencia-cardiaca/">Frequência Cardíaca: www.tuasaude.com</a>
         ]]>
     </string>
     <string name="water_ref">
@@ -78,4 +72,13 @@
     <string name="back">Voltar</string>
     <string name="toast_delete_history">Histórico deletado com sucesso!</string>
     <string name="toast_delete_history_error">Não há registros salvos para serem deletados</string>
+    <string name="heart_rate">Frequência cardíaca (bpm em repouso)</string>
+    <string name="bpm">BPM</string>
+    <string name="excellent_heart_rate">A sua frequência cardíaca é excelente!</string>
+    <string name="optimum_heart_rate">A sua frequência cardíaca é ótima!</string>
+    <string name="good_heart_rate">A sua frequência cardíaca é boa</string>
+    <string name="normal_heart_rate">A sua frequência cardíaca é normal!</string>
+    <string name="less_good_heart_rate">A sua frequência cardíaca é menos boa!</string>
+    <string name="bad_heart_rate">A sua frequência cardíaca é ruim!</string>
+    <string name="toast_bellow_age">A idade mínima necessária é de 18 anos</string>
 </resources>

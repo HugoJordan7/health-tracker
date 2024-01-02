@@ -36,8 +36,9 @@ class MainActivity : AppCompatActivity() {
             ))
             add( MainItem(
                     id = 2,
-                    text = R.string.tgc,
-                    icon = R.drawable.body_run))
+                    text = R.string.bpm,
+                    icon = R.drawable.heart_rate
+            ))
             add( MainItem(
                 id = 3,
                 text = R.string.water,
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         when(id){
             0 -> startActivity(Intent(this,ImcActivity::class.java))
             1 -> startActivity(Intent(this,TmbActivity::class.java))
-            2 -> startActivity(Intent(this,TgcActivity::class.java))
+            2 -> startActivity(Intent(this,HeartRateActivity::class.java))
             3 -> startActivity(Intent(this,WaterActivity::class.java))
         }
     }

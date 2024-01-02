@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".TgcActivity"
+    tools:context=".HeartRateActivity"
     style="@style/DefaultLinearLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/ConstraintLayoutForHeader">
         <ImageButton
-            android:id="@+id/arrow_refs_tgc"
+            android:id="@+id/arrow_refs_hr"
             style="@style/ImageButtonArrowBack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/vector_main"
@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/historic_refs_tgc"
+            android:id="@+id/historic_refs_hr"
             style="@style/ImageButtonHistory"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/vector_main"
@@ -31,27 +31,26 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/imc_info"
         style="@style/DefaultTextView"
         android:text="@string/tgc_info"
         android:textColor="@color/red_end"
         android:layout_marginTop="10dp"/>
 
     <EditText
-        android:id="@+id/tgc_value_imc"
+        android:id="@+id/hr_edit_heart_rate"
         android:layout_marginTop="20dp"
         style="@style/DefaultEditText"
-        android:hint="@string/imc"
+        android:hint="@string/heart_rate"
         android:inputType="numberDecimal"
         android:maxLength="6" />
 
     <EditText
-        android:id="@+id/tgc_age"
+        android:id="@+id/hr_age"
         style="@style/DefaultEditText"
         android:hint="@string/age" />
 
     <RadioGroup
-        android:id="@+id/tgc_radio_group_sex"
+        android:id="@+id/hr_radio_group_sex"
         style="@style/DefaultAlignment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,19 +58,19 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/tgc_radio_masculine"
+            android:id="@+id/hr_radio_masculine"
             android:layout_marginRight="40dp"
             android:text="@string/masculine"
             android:textSize="20sp" />
 
         <RadioButton
-            android:id="@+id/tgc_radio_feminine"
+            android:id="@+id/hr_radio_feminine"
             android:text="@string/feminine"
             android:textSize="20sp" />
     </RadioGroup>
 
     <Button
-        android:id="@+id/tgc_button"
+        android:id="@+id/hr_button"
         style="@style/DefaultButton"
         android:backgroundTint="@color/black"
         android:text="@string/calc" />

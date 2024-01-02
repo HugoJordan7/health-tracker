@@ -55,13 +55,13 @@
         <AutoCompleteTextView
             android:id="@+id/auto_exercise"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:inputType="none"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/water_button"
         style="@style/DefaultButton"
-        android:backgroundTint="@color/black"
-        android:text="@string/calc" />
+        android:text="@string/calc"/>
 </LinearLayout>
