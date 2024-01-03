@@ -32,7 +32,7 @@ abstract class AppDataBase: RoomDatabase() {
             return INSTANCE as AppDataBase
         }
 
-        val MIGRATION_1_2 = object : Migration(1, 2) {
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 // Execute o SQL para adicionar a nova coluna 'situation'
                 database.execSQL("ALTER TABLE Calc ADD COLUMN situation TEXT")

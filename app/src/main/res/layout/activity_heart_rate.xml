@@ -60,11 +60,13 @@
         <RadioButton
             android:id="@+id/hr_radio_masculine"
             android:layout_marginRight="40dp"
+            android:buttonTint="@color/red_end"
             android:text="@string/masculine"
             android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/hr_radio_feminine"
+            android:buttonTint="@color/red_end"
             android:text="@string/feminine"
             android:textSize="20sp" />
     </RadioGroup>
@@ -73,6 +75,7 @@
         android:id="@+id/hr_button"
         style="@style/DefaultButton"
         android:backgroundTint="@color/black"
+        android:layout_marginTop="0dp"
         android:text="@string/calc" />
 
 </LinearLayout>

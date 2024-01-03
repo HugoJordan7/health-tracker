@@ -10,7 +10,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#B8B5B5</color>
     <color name="dark_gray">#686666</color>
-    <color name="red_start">#F46F6F</color>
-    <color name="red_center">#FF3030</color>
+    <color name="red_start">#FF9C9C</color>
+    <color name="red_center">#FF3D3D</color>
     <color name="red_end">#FF0000</color>
 </resources>
