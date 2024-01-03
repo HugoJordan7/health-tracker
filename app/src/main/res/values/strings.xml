@@ -56,7 +56,7 @@
     </string>
     <string name="hr_ref">
         <![CDATA[
-            <a href="https://www.tuasaude.com/frequencia-cardiaca/">Frequência Cardíaca: www.tuasaude.com</a>
+            <a href="https://www.tuasaude.com/frequencia-cardiaca/">BPM: www.tuasaude.com</a>
         ]]>
     </string>
     <string name="water_ref">
@@ -86,4 +86,5 @@
     <string name="current_hear_rate_range">entre %1$d a %2$d</string>
     <string name="current_hear_rate_range_bad">acima de %1$d</string>
     <string name="list_calc_register_bpm">A sua frequência cardíaca estava %1$s com %3$.0f bpm em %2$s</string>
+    <string name="info">O presente aplicativo apenas tem por objetivo fornecer informações prévias e aproximadas dos cálculos realizados, em todos os casos é sempre recomendado o atendimento ou acompanhamento com um profissional da área de saúde</string>
 </resources>
