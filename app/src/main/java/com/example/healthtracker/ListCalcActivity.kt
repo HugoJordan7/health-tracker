@@ -101,7 +101,7 @@ class ListCalcActivity : AppCompatActivity() {
             if(itemCalc.type == "imc" || itemCalc.type == "tmb"){
                 textView.text = getString(stringId, date, itemCalc.res)
             } else{
-                textView.text = getString(stringId,date,itemCalc.res)
+                textView.text = getString(stringId,itemCalc.situation,date,itemCalc.res)
             }
 
         }

@@ -42,7 +42,6 @@
     <string name="below">abaixo</string>
     <string name="list_calc_register_imc">O seu IMC em %1$s foi de %2$.2f</string>
     <string name="list_calc_register_tmb">A sua TMB em %1$s foi de %2$.2f</string>
-    <string name="list_calc_register_bpm">A sua frequência cardíaca em %1$s foi de %2$.0f e estava %3$s</string>
     <string name="search">Buscar</string>
     <string name="refs_title">Todas as informações necessárias para realizar os cálculos deste aplicativo estão disponíveis em:</string>
     <string name="imc_ref">
@@ -86,4 +85,5 @@
     <string name="dialog_title_bpm">A sua frequência cardíaca é %1$s!</string>
     <string name="current_hear_rate_range">entre %1$d a %2$d</string>
     <string name="current_hear_rate_range_bad">acima de %1$d</string>
+    <string name="list_calc_register_bpm">A sua frequência cardíaca estava %1$s com %3$.0f bpm em %2$s</string>
 </resources>

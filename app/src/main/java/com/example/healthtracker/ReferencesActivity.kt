@@ -19,7 +19,7 @@ class ReferencesActivity : AppCompatActivity() {
 
         imcRef.text = Html.fromHtml(getString(R.string.imc_ref))
         tmbRef.text = Html.fromHtml(getString(R.string.tmb_ref))
-        tgcRef.text = Html.fromHtml(getString(R.string.tgc_ref))
+        tgcRef.text = Html.fromHtml(getString(R.string.hr_ref))
         waterRef.text = Html.fromHtml(getString(R.string.water_ref))
 
         imcRef.movementMethod = LinkMovementMethod.getInstance()

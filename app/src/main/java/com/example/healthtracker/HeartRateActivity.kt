@@ -46,7 +46,7 @@ class HeartRateActivity : AppCompatActivity() {
             }
 
             val heartRateSituation = getClassificationHeartRate(bpm, age)
-            val hrClassification = getString(heartRateSituation.first)
+            val hrClassification: String = getString(heartRateSituation.first)
             val firstHrValueRange = heartRateSituation.second.first
             val secondHrValueRange = heartRateSituation.second.second
             val currentHrRange = when{
@@ -66,7 +66,7 @@ class HeartRateActivity : AppCompatActivity() {
                     Thread {
                         val app = application as App
                         val dao = app.db.calcDao()
-                        dao.insert(Calc(type = "bpm", res = bpm.toDouble()))
+                        dao.insert(Calc(type = "bpm", res = bpm.toDouble(), situation = hrClassification))
                         runOnUiThread {
                             openListCalcActivity()
                         }
@@ -81,12 +81,8 @@ class HeartRateActivity : AppCompatActivity() {
     }
 
     private fun openListCalcActivity() {
-        val intent = Intent(this, ListCalcActivity::class.java)
         startActivity(
-            Intent(this, ListCalcActivity::class.java).apply {
-                putExtra("type", "tgc")
-                putExtra("situation", "")
-            }
+            Intent(this, ListCalcActivity::class.java).putExtra("type", "bpm")
         )
     }
 
