@@ -1,97 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".TmbActivity"
-    style="@style/DefaultLinearLayout">>
+    style="@style/DefaultLinearLayout"
+    tools:context=".TmbActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/ConstraintLayoutForHeader">
-        <ImageButton
-            android:id="@+id/arrow_refs_tmb"
-            style="@style/ImageButtonArrowBack"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/vector_main"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/vector_main"
-            style="@style/ImageAppLogo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/historic_refs_tmb"
-            style="@style/ImageButtonHistory"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/vector_main"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/tmb_info"
-        style="@style/DefaultTextView"
-        android:text="@string/tmb_info"
-        android:textColor="@color/red_end"
-        android:layout_marginTop="10dp"/>
-
-    <EditText
-        android:id="@+id/tmb_height"
-        style="@style/DefaultEditText"
-        android:hint="@string/height"
-        />
-
-    <EditText
-        android:id="@+id/tmb_weight"
-        style="@style/DefaultEditText"
-        android:hint="@string/weight" />
-
-    <RadioGroup
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/radio_group_tmb"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="20dp">
+        android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/radio_button_masculine_tmb"
-            android:layout_marginRight="40dp"
-            android:buttonTint="@color/red_end"
-            android:text="@string/masculine"
-            android:textSize="18dp"
-            app:useMaterialThemeColors="false" />
-        <RadioButton
-            android:id="@+id/radio_button_feminine_tmb"
-            android:buttonTint="@color/red_end"
-            android:textSize="18dp"
-            android:text="@string/feminine"/>
-    </RadioGroup>
+        <androidx.constraintlayout.widget.ConstraintLayout style="@style/ConstraintLayoutForHeader">
 
-    <EditText
-        android:id="@+id/tmb_age"
-        style="@style/DefaultEditText"
-        android:hint="@string/age" />
+            <ImageButton
+                android:id="@+id/arrow_refs_tmb"
+                style="@style/ImageButtonArrowBack"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/vector_main"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/AutoTextViewForm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/vector_main"
+                style="@style/ImageAppLogo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <AutoCompleteTextView
-            android:id="@+id/auto_lifestyle"
+            <ImageButton
+                android:id="@+id/historic_refs_tmb"
+                style="@style/ImageButtonHistory"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/vector_main"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tmb_info"
+            style="@style/DefaultTextView"
+            android:layout_marginTop="10dp"
+            android:text="@string/tmb_info"
+            android:textColor="@color/red_end" />
+
+        <EditText
+            android:id="@+id/tmb_height"
+            style="@style/DefaultEditText"
+            android:hint="@string/height" />
+
+        <EditText
+            android:id="@+id/tmb_weight"
+            style="@style/DefaultEditText"
+            android:hint="@string/weight" />
+
+        <RadioGroup
+            android:id="@+id/radio_group_tmb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <RadioButton
+                android:id="@+id/radio_button_masculine_tmb"
+                android:layout_marginRight="40dp"
+                android:buttonTint="@color/red_end"
+                android:text="@string/masculine"
+                android:textSize="18dp"
+                app:useMaterialThemeColors="false" />
 
-    <Button
-        android:id="@+id/tmb_button"
-        style="@style/DefaultButton"
-        android:text="@string/calc" />
+            <RadioButton
+                android:id="@+id/radio_button_feminine_tmb"
+                android:buttonTint="@color/red_end"
+                android:text="@string/feminine"
+                android:textSize="18dp" />
+        </RadioGroup>
 
+        <EditText
+            android:id="@+id/tmb_age"
+            style="@style/DefaultEditText"
+            android:hint="@string/age" />
 
-</LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/AutoTextViewForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/auto_lifestyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/tmb_button"
+            style="@style/DefaultButton"
+            android:text="@string/calc" />
+
+    </LinearLayout>
+</ScrollView>
