@@ -67,7 +67,7 @@ class ListCalcActivity : AppCompatActivity() {
                 var adapter = ListCalcAdapter(imcList)
                 var rvListCalc: RecyclerView = findViewById(R.id.rv_list_calc)
                 rvListCalc.adapter = adapter
-                rvListCalc.layoutManager = LinearLayoutManager(this)
+                rvListCalc.layoutManager = LinearLayoutManager(this@ListCalcActivity)
             }
         }.start()
     }

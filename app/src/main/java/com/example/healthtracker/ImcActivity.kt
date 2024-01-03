@@ -3,14 +3,11 @@ package com.example.healthtracker
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.*
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
-import com.example.healthtracker.model.AppDataBase
 import com.example.healthtracker.model.Calc
 
 class ImcActivity : AppCompatActivity() {

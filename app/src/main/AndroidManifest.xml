@@ -5,22 +5,31 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_default"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_default_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HealthTracker">
-        <activity android:name=".ReferencesActivity"></activity>
-        <activity android:name=".ListCalcActivity" />
-        <activity android:name=".WaterActivity" />
-        <activity android:name=".HeartRateActivity" />
-        <activity android:name=".TmbActivity" />
-        <activity android:name=".ImcActivity" />
-        <activity android:name=".MainActivity" />
+        android:theme="@style/Theme.HealthTracker"
+        android:screenOrientation="portrait">
+        <activity android:name=".ReferencesActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ListCalcActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".WaterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HeartRateActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TmbActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ImcActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.HealthTracker.Splash">
+            android:theme="@style/Theme.HealthTracker.Splash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
