@@ -72,6 +72,7 @@
     <string name="toast_delete_history_error">Não há registros salvos para serem deletados</string>
     <string name="heart_rate">Frequência cardíaca (bpm em repouso)</string>
     <string name="bpm">BPM</string>
+    <string name="bellow_normal_heart_rate">abaixo do normal</string>
     <string name="excellent_heart_rate">excelente</string>
     <string name="optimum_heart_rate">ótima</string>
     <string name="good_heart_rate">boa</string>
@@ -85,6 +86,7 @@
     <string name="dialog_title_bpm">A sua frequência cardíaca é %1$s!</string>
     <string name="current_hear_rate_range">entre %1$d a %2$d</string>
     <string name="current_hear_rate_range_bad">acima de %1$d</string>
+    <string name="current_hear_rate_range_bellow_normal">abaixo de %1$d</string>
     <string name="list_calc_register_bpm">A sua frequência cardíaca estava %1$s com %3$.0f bpm em %2$s</string>
     <string name="info">O presente aplicativo apenas tem por objetivo fornecer informações prévias e aproximadas dos cálculos realizados, em todos os casos é sempre recomendado o atendimento ou acompanhamento com um profissional da área de saúde</string>
 </resources>

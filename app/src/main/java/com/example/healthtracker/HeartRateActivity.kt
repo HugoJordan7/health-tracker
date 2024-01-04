@@ -49,9 +49,10 @@ class HeartRateActivity : AppCompatActivity() {
             val hrClassification: String = getString(heartRateSituation.first)
             val firstHrValueRange = heartRateSituation.second.first
             val secondHrValueRange = heartRateSituation.second.second
-            val currentHrRange = when{
-                secondHrValueRange != 999 -> getString(R.string.current_hear_rate_range,firstHrValueRange,secondHrValueRange)
-                else -> getString(R.string.current_hear_rate_range_bad,firstHrValueRange)
+            val currentHrRange = when {
+                secondHrValueRange == 999 -> getString(R.string.current_hear_rate_range_bad,firstHrValueRange)
+                firstHrValueRange == 0 -> getString(R.string.current_hear_rate_range_bellow_normal,secondHrValueRange)
+                else -> getString(R.string.current_hear_rate_range,firstHrValueRange,secondHrValueRange)
             }
             val stringSex = when{
                 radioMasculine.isChecked -> getString(R.string.men)
@@ -92,6 +93,7 @@ class HeartRateActivity : AppCompatActivity() {
                 when (age) {
                     in 18..25 -> {
                         return when (bpm) {
+                            in 0..55 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,60))
                             in 56..61 -> Pair(R.string.excellent_heart_rate, Pair(56, 61))
                             in 62..65 -> Pair(R.string.optimum_heart_rate, Pair(62, 65))
                             in 66..69 -> Pair(R.string.good_heart_rate, Pair(66, 69))
@@ -102,6 +104,7 @@ class HeartRateActivity : AppCompatActivity() {
                     }
                     in 26..35 -> {
                         return when (bpm) {
+                            in 0..54 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,54))
                             in 55..61 -> Pair(R.string.excellent_heart_rate, Pair(55, 61))
                             in 62..65 -> Pair(R.string.optimum_heart_rate, Pair(62, 65))
                             in 66..70 -> Pair(R.string.good_heart_rate, Pair(66, 70))
@@ -112,6 +115,7 @@ class HeartRateActivity : AppCompatActivity() {
                     }
                     in 36..45 -> {
                         return when (bpm) {
+                            in 0..56 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,56))
                             in 57..62 -> Pair(R.string.excellent_heart_rate, Pair(57, 62))
                             in 63..66 -> Pair(R.string.optimum_heart_rate, Pair(63, 66))
                             in 67..70 -> Pair(R.string.good_heart_rate, Pair(67, 70))
@@ -122,6 +126,7 @@ class HeartRateActivity : AppCompatActivity() {
                     }
                     in 46..55 -> {
                         return when (bpm) {
+                            in 0..57 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,57))
                             in 58..63 -> Pair(R.string.excellent_heart_rate, Pair(58, 63))
                             in 64..67 -> Pair(R.string.optimum_heart_rate, Pair(64, 67))
                             in 68..71 -> Pair(R.string.good_heart_rate, Pair(68, 71))
@@ -132,6 +137,7 @@ class HeartRateActivity : AppCompatActivity() {
                     }
                     in 56..65 -> {
                         return when (bpm) {
+                            in 0..56 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,56))
                             in 57..61 -> Pair(R.string.excellent_heart_rate, Pair(57, 61))
                             in 62..67 -> Pair(R.string.optimum_heart_rate, Pair(62, 67))
                             in 68..71 -> Pair(R.string.good_heart_rate, Pair(68, 71))
@@ -142,6 +148,7 @@ class HeartRateActivity : AppCompatActivity() {
                     }
                     else -> {
                         return when (bpm) {
+                            in 0..55 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,55))
                             in 56..61 -> Pair(R.string.excellent_heart_rate, Pair(56, 61))
                             in 62..65 -> Pair(R.string.optimum_heart_rate, Pair(62, 65))
                             in 66..69 -> Pair(R.string.good_heart_rate, Pair(66, 69))
@@ -155,6 +162,7 @@ class HeartRateActivity : AppCompatActivity() {
                 when (age) {
                     in 18..25 -> {
                         return when (bpm) {
+                            in 0..60 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,60))
                             in 61..65 -> Pair(R.string.excellent_heart_rate, Pair(61, 65))
                             in 66..69 -> Pair(R.string.optimum_heart_rate, Pair(66, 69))
                             in 70..73 -> Pair(R.string.good_heart_rate, Pair(70, 73))
@@ -165,6 +173,7 @@ class HeartRateActivity : AppCompatActivity() {
                     }
                     in 26..35 -> {
                         return when (bpm) {
+                            in 0..59 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,59))
                             in 60..64 -> Pair(R.string.excellent_heart_rate, Pair(60, 64))
                             in 65..68 -> Pair(R.string.optimum_heart_rate, Pair(65, 68))
                             in 69..72 -> Pair(R.string.good_heart_rate, Pair(69, 72))
@@ -175,6 +184,7 @@ class HeartRateActivity : AppCompatActivity() {
                     }
                     in 36..45 -> {
                         return when (bpm) {
+                            in 0..59 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,59))
                             in 60..64 -> Pair(R.string.excellent_heart_rate, Pair(60, 64))
                             in 65..69 -> Pair(R.string.optimum_heart_rate, Pair(65, 69))
                             in 70..73 -> Pair(R.string.good_heart_rate, Pair(70, 73))
@@ -185,6 +195,7 @@ class HeartRateActivity : AppCompatActivity() {
                     }
                     in 46..55 -> {
                         return when (bpm) {
+                            in 0..60 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,60))
                             in 61..65 -> Pair(R.string.excellent_heart_rate, Pair(61, 65))
                             in 66..69 -> Pair(R.string.optimum_heart_rate, Pair(66, 69))
                             in 70..73 -> Pair(R.string.good_heart_rate, Pair(70, 73))
@@ -195,6 +206,7 @@ class HeartRateActivity : AppCompatActivity() {
                     }
                     in 56..65 -> {
                         return when (bpm) {
+                            in 0..59 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,59))
                             in 60..64 -> Pair(R.string.excellent_heart_rate, Pair(60, 64))
                             in 65..68 -> Pair(R.string.optimum_heart_rate, Pair(65, 68))
                             in 69..73 -> Pair(R.string.good_heart_rate, Pair(69, 73))
@@ -205,6 +217,7 @@ class HeartRateActivity : AppCompatActivity() {
                     }
                     else -> {
                         return when (bpm) {
+                            in 0..59 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,59))
                             in 60..64 -> Pair(R.string.excellent_heart_rate, Pair(60, 64))
                             in 65..68 -> Pair(R.string.optimum_heart_rate, Pair(65, 68))
                             in 69..72 -> Pair(R.string.good_heart_rate, Pair(69, 72))
