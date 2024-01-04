@@ -51,7 +51,7 @@ class HeartRateActivity : AppCompatActivity() {
             val secondHrValueRange = heartRateSituation.second.second
             val currentHrRange = when {
                 secondHrValueRange == 999 -> getString(R.string.current_hear_rate_range_bad,firstHrValueRange)
-                firstHrValueRange == 0 -> getString(R.string.current_hear_rate_range_bellow_normal,secondHrValueRange)
+                firstHrValueRange == 0 -> getString(R.string.current_hear_rate_range_bellow_normal,(secondHrValueRange+1))
                 else -> getString(R.string.current_hear_rate_range,firstHrValueRange,secondHrValueRange)
             }
             val stringSex = when{
@@ -93,7 +93,7 @@ class HeartRateActivity : AppCompatActivity() {
                 when (age) {
                     in 18..25 -> {
                         return when (bpm) {
-                            in 0..55 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,60))
+                            in 0..55 -> Pair(R.string.bellow_normal_heart_rate, Pair(0,55))
                             in 56..61 -> Pair(R.string.excellent_heart_rate, Pair(56, 61))
                             in 62..65 -> Pair(R.string.optimum_heart_rate, Pair(62, 65))
                             in 66..69 -> Pair(R.string.good_heart_rate, Pair(66, 69))
