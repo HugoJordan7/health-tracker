@@ -37,6 +37,11 @@ class HeartRateActivity : AppCompatActivity() {
         }
 
         button.setOnClickListener {
+            if(!validate(editAge.text.toString(),editHeartRate.text.toString())){
+                Toast.makeText(this, R.string.toast_invalid_info, Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val age = editAge.text.toString().toInt()
             val bpm = editHeartRate.text.toString().toInt()
 
@@ -79,6 +84,11 @@ class HeartRateActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun validate(age: String, bpm: String): Boolean{
+        return (bpm.isNotEmpty() && !bpm.startsWith("0")
+                && age.isNotEmpty() && !age.startsWith("0"))
     }
 
     private fun openListCalcActivity() {

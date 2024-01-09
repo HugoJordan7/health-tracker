@@ -9,7 +9,7 @@
     <string name="weight">Peso (kg)</string>
     <string name="age">Idade</string>
     <string name="calc">Calcular</string>
-    <string name="toast_invalid_info">Informe valores válidos sem começar com 0</string>
+    <string name="toast_invalid_info">Informe valores válidos que não comecem com 0</string>
     <string name="imc_low_weight">Abaixo do peso</string>
     <string name="imc_normal_weight">Peso normal</string>
     <string name="imc_so_above_weight">Moderadamente acima do peso</string>
