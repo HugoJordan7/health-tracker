@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdk = 34
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.healthtracker"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 3
         versionName "1.0.2"
 
