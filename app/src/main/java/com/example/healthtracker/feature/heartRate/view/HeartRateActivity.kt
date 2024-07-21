@@ -1,13 +1,13 @@
-package com.example.healthtracker
+package com.example.healthtracker.feature.heartRate.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.*
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import com.example.healthtracker.App
+import com.example.healthtracker.feature.listCalc.view.ListCalcActivity
+import com.example.healthtracker.R
 import com.example.healthtracker.model.Calc
 
 class HeartRateActivity : AppCompatActivity() {

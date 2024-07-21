@@ -1,4 +1,4 @@
-package com.example.healthtracker
+package com.example.healthtracker.feature.tmb.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.example.healthtracker.App
+import com.example.healthtracker.R
+import com.example.healthtracker.feature.listCalc.view.ListCalcActivity
 import com.example.healthtracker.model.Calc
 
 class TmbActivity : AppCompatActivity() {
@@ -46,7 +49,7 @@ class TmbActivity : AppCompatActivity() {
 
         buttonResult.setOnClickListener {
             if(!validate(editHeight.text.toString(),editWeight.text.toString(),editAge.text.toString())){
-                Toast.makeText(this,R.string.toast_invalid_info,Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.toast_invalid_info,Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             val height = editHeight.text.toString().toInt()
@@ -56,10 +59,10 @@ class TmbActivity : AppCompatActivity() {
             val tmbAdapted = tmbAdaptedForLifestyle(tmb,items)
             AlertDialog.Builder(this).apply {
                 setTitle(getString(R.string.dialog_tmb_title,tmbAdapted))
-                setPositiveButton(R.string.ok){_,_ ->
+                setPositiveButton(R.string.ok){ _, _ ->
 
                 }
-                setNegativeButton(R.string.save){_,_ ->
+                setNegativeButton(R.string.save){ _, _ ->
                     Thread{
                         val app = application as App
                         val dao = app.db.calcDao()
@@ -113,7 +116,7 @@ class TmbActivity : AppCompatActivity() {
 
     private fun openListCalcActivity() {
         startActivity(
-            Intent(this,ListCalcActivity::class.java).putExtra("type","tmb")
+            Intent(this, ListCalcActivity::class.java).putExtra("type","tmb")
         )
     }
 

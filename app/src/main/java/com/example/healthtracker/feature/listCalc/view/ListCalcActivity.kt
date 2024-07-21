@@ -1,4 +1,4 @@
-package com.example.healthtracker
+package com.example.healthtracker.feature.listCalc.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.healthtracker.App
+import com.example.healthtracker.R
 import com.example.healthtracker.model.Calc
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -32,27 +34,29 @@ class ListCalcActivity : AppCompatActivity() {
         clearHistoryButton.setOnClickListener {
             AlertDialog.Builder(this).apply {
                 setTitle(R.string.dialog_title_delete_history)
-                setPositiveButton(R.string.yes){_,_->
+                setPositiveButton(R.string.yes){ _, _->
                     Thread{
                         val app = application as App
                         val dao = app.db.calcDao()
                         if(dao.getRegisterByType(type).isEmpty()){
                             runOnUiThread{
-                                Toast.makeText(this@ListCalcActivity,R.string.toast_delete_history_error,Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@ListCalcActivity,
+                                    R.string.toast_delete_history_error,Toast.LENGTH_LONG).show()
                             }
                             return@Thread
                         }
                         dao.deleteAllByType(type)
                         runOnUiThread{
-                            Toast.makeText(this@ListCalcActivity,R.string.toast_delete_history,Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@ListCalcActivity,
+                                R.string.toast_delete_history,Toast.LENGTH_LONG).show()
                             finish()
                             startActivity(
-                                Intent(this@ListCalcActivity,ListCalcActivity::class.java).putExtra("type",type)
+                                Intent(this@ListCalcActivity, ListCalcActivity::class.java).putExtra("type",type)
                             )
                         }
                     }.start()
                 }
-                setNegativeButton(R.string.back){_,_->}
+                setNegativeButton(R.string.back){ _, _->}
                 create()
                 show()
             }

@@ -1,9 +1,11 @@
-package com.example.healthtracker
+package com.example.healthtracker.feature.splash.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.healthtracker.R
+import com.example.healthtracker.feature.main.view.MainActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed(
                 {
-                    startActivity(Intent(this,MainActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }, 2000)
 

@@ -1,4 +1,4 @@
-package com.example.healthtracker
+package com.example.healthtracker.feature.main.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +11,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.healthtracker.feature.heartRate.view.HeartRateActivity
+import com.example.healthtracker.feature.imc.view.ImcActivity
+import com.example.healthtracker.R
+import com.example.healthtracker.feature.references.view.ReferencesActivity
+import com.example.healthtracker.feature.tmb.view.TmbActivity
+import com.example.healthtracker.feature.water.view.WaterActivity
 
 class MainActivity : AppCompatActivity() {
     var listItems = mutableListOf<MainItem>()
@@ -21,28 +27,34 @@ class MainActivity : AppCompatActivity() {
         val infoButton: ImageButton = findViewById(R.id.info_button)
 
         infoButton.setOnClickListener{
-            startActivity(Intent(this,ReferencesActivity::class.java))
+            startActivity(Intent(this, ReferencesActivity::class.java))
         }
 
         listItems.apply {
             add( MainItem(
                     id = 0,
                     text = R.string.imc,
-                    icon = R.drawable.conditions))
+                    icon = R.drawable.conditions
+            )
+            )
             add( MainItem(
                     id = 1,
                     text = R.string.tmb,
                     icon = R.drawable.fire
-            ))
+            )
+            )
             add( MainItem(
                     id = 2,
                     text = R.string.bpm,
                     icon = R.drawable.heart_rate
-            ))
+            )
+            )
             add( MainItem(
                 id = 3,
                 text = R.string.water,
-                icon = R.drawable.water))
+                icon = R.drawable.water
+            )
+            )
         }
 
         var mainAdapter = MainAdapter(listItems)
@@ -53,10 +65,10 @@ class MainActivity : AppCompatActivity() {
 
     fun onClick(id: Int){
         when(id){
-            0 -> startActivity(Intent(this,ImcActivity::class.java))
-            1 -> startActivity(Intent(this,TmbActivity::class.java))
-            2 -> startActivity(Intent(this,HeartRateActivity::class.java))
-            3 -> startActivity(Intent(this,WaterActivity::class.java))
+            0 -> startActivity(Intent(this, ImcActivity::class.java))
+            1 -> startActivity(Intent(this, TmbActivity::class.java))
+            2 -> startActivity(Intent(this, HeartRateActivity::class.java))
+            3 -> startActivity(Intent(this, WaterActivity::class.java))
         }
     }
 
@@ -96,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.main_refs -> startActivity(Intent(this,ReferencesActivity::class.java))
+            R.id.main_refs -> startActivity(Intent(this, ReferencesActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
