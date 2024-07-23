@@ -16,8 +16,9 @@ O app possui um sistema de banco de dados para que o usuário possa ver o histó
 - Android Studio
 - Kotlin
 - Room (Biblioteca de banco de dados SQLite)
+- Arquitetura MVP
 
-# Download atualizado (v1.0.2)
+# Download atualizado (v1.0.3)
 Faça o download clicando [aqui.](https://github.com/HugoJordan7/health-tracker/raw/main/Health%20Tracker.apk)
 
 # Visualização
