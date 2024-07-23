@@ -1,4 +1,4 @@
-package com.example.healthtracker.base
+package com.example.healthtracker.common.base
 
 interface BasePresenter{
     fun onDestroy()

@@ -18,7 +18,7 @@ import com.example.healthtracker.model.Calc
 
 class ListCalcActivity : AppCompatActivity(), ListCalc.View {
 
-    private lateinit var presenter: ListCalc.Presenter
+    override lateinit var presenter: ListCalc.Presenter
     private lateinit var adapter: ListCalcAdapter
     private lateinit var type: String
 
@@ -59,14 +59,19 @@ class ListCalcActivity : AppCompatActivity(), ListCalc.View {
         adapter.notifyDataSetChanged()
     }
 
-    override fun displayFailure(@StringRes message: Int) {
-        Toast.makeText(this@ListCalcActivity, message, Toast.LENGTH_LONG).show()
+    override fun displayFailure(message: String) {
+        Toast.makeText(this@ListCalcActivity, R.string.toast_delete_history_error, Toast.LENGTH_LONG).show()
     }
 
     override fun onDeleteRegisters() {
         Toast.makeText(this@ListCalcActivity,R.string.toast_delete_history,Toast.LENGTH_LONG).show()
         displayAllRegisters(emptyList())
         finish()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 
 }

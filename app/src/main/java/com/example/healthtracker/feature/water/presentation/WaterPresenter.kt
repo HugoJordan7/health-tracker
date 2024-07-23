@@ -3,8 +3,9 @@ package com.example.healthtracker.feature.water.presentation
 import com.example.healthtracker.feature.water.Water
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 
-class WaterPresenter(private val view: Water.View): Water.Presenter {
+class WaterPresenter(private var view: Water.View?): Water.Presenter {
 
     private val presenter = CoroutineScope(Dispatchers.IO)
 
@@ -31,6 +32,11 @@ class WaterPresenter(private val view: Water.View): Water.Presenter {
             array[4] -> 1500
             else -> 2250
         }
+    }
+
+    override fun onDestroy() {
+        presenter.cancel()
+        view = null
     }
 
 }

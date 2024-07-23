@@ -1,15 +1,18 @@
 package com.example.healthtracker.feature.listCalc.presentation
 
+import android.content.Context
+import android.content.res.Resources
 import com.example.healthtracker.R
 import com.example.healthtracker.feature.listCalc.ListCalc
 import com.example.healthtracker.model.Calc
 import com.example.healthtracker.model.CalcDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ListCalcPresenter(private val view: ListCalc.View): ListCalc.Presenter {
+class ListCalcPresenter(private var view: ListCalc.View?): ListCalc.Presenter {
 
     private val presenterScope = CoroutineScope(Dispatchers.IO)
 
@@ -17,7 +20,7 @@ class ListCalcPresenter(private val view: ListCalc.View): ListCalc.Presenter {
         presenterScope.launch {
             val list = dao.getRegisterByType(type)
             withContext(Dispatchers.Main){
-                view.displayAllRegisters(list)
+                view?.displayAllRegisters(list)
             }
         }
     }
@@ -26,15 +29,20 @@ class ListCalcPresenter(private val view: ListCalc.View): ListCalc.Presenter {
         presenterScope.launch {
             if (list.isEmpty()){
                 withContext(Dispatchers.Main){
-                    view.displayFailure(R.string.toast_delete_history_error)
+                    view?.displayFailure("")
                 }
             } else {
                 dao.deleteAllByType(type)
                 withContext(Dispatchers.Main){
-                    view.onDeleteRegisters()
+                    view?.onDeleteRegisters()
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        presenterScope.cancel()
+        view = null
     }
 
 }

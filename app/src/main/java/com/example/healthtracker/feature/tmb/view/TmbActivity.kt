@@ -16,11 +16,7 @@ import com.example.healthtracker.model.Calc
 
 class TmbActivity : AppCompatActivity(), Tmb.View {
 
-    companion object{
-        const val TMB = "tmb"
-    }
-
-    private lateinit var presenter: Tmb.Presenter
+    override lateinit var presenter: Tmb.Presenter
     private lateinit var editHeight: EditText
     private lateinit var editWeight: EditText
     private lateinit var editAge: EditText
@@ -77,7 +73,7 @@ class TmbActivity : AppCompatActivity(), Tmb.View {
 
                 }
                 setNegativeButton(R.string.save){ _, _ ->
-                    presenter.registerTmbValue(tmbAdapted, TMB, dao)
+                    presenter.registerTmbValue(tmbAdapted, dao)
                 }
                 create()
                 show()
@@ -105,6 +101,11 @@ class TmbActivity : AppCompatActivity(), Tmb.View {
 
     override fun displayFailure(message: String) {
         Toast.makeText(this, message,Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 
 }

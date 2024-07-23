@@ -2,29 +2,31 @@ package com.example.healthtracker.feature.imc.presentation
 
 import androidx.annotation.StringRes
 import com.example.healthtracker.R
+import com.example.healthtracker.common.util.IMC
 import com.example.healthtracker.feature.imc.Imc
 import com.example.healthtracker.model.Calc
 import com.example.healthtracker.model.CalcDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class ImcPresenter(private val view: Imc.View): Imc.Presenter {
+class ImcPresenter(private var view: Imc.View?): Imc.Presenter {
 
     private val presenterScope = CoroutineScope(Dispatchers.IO)
 
-    override fun registerImcValue(imc: Double, type: String, dao: CalcDao) {
+    override fun registerImcValue(imc: Double, dao: CalcDao) {
         presenterScope.launch {
             try {
-                dao.insert(Calc(type = type, res = imc))
+                dao.insert(Calc(type = IMC, res = imc))
                 withContext(Dispatchers.Main){
-                    view.onRegisterImcValue()
+                    view?.onRegisterImcValue()
                 }
             } catch (e: Exception){
                 withContext(Dispatchers.Main){
-                    view.displayFailure(e.message ?: "Unknown error")
+                    view?.displayFailure(e.message ?: "Unknown error")
                 }
             }
         }
@@ -49,6 +51,11 @@ class ImcPresenter(private val view: Imc.View): Imc.Presenter {
             imc<40.0 -> R.string.imc_above_2
             else -> R.string.imc_above_3
         }
+    }
+
+    override fun onDestroy() {
+        presenterScope.cancel()
+        view = null
     }
 
 }

@@ -1,28 +1,30 @@
 package com.example.healthtracker.feature.tmb.presentation
 
+import com.example.healthtracker.common.util.TMB
 import com.example.healthtracker.feature.tmb.Tmb
 import com.example.healthtracker.model.Calc
 import com.example.healthtracker.model.CalcDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class TmbPresenter(private val view: Tmb.View): Tmb.Presenter {
+class TmbPresenter(private var view: Tmb.View?): Tmb.Presenter {
 
     private val presenterScope = CoroutineScope(Dispatchers.IO)
 
-    override fun registerTmbValue(tmb: Double, type: String, dao: CalcDao) {
+    override fun registerTmbValue(tmb: Double, dao: CalcDao) {
         presenterScope.launch {
             try {
-                dao.insert(Calc(type = "tmb", res = tmb))
+                dao.insert(Calc(type = TMB, res = tmb))
                 withContext(Dispatchers.Main){
-                    view.onRegisterTmbValue()
+                    view?.onRegisterTmbValue()
                 }
             } catch (e: Exception){
                 withContext(Dispatchers.Main){
-                    view.displayFailure(e.message ?: "Unknown error")
+                    view?.displayFailure(e.message ?: "Unknown error")
                 }
             }
         }
@@ -48,6 +50,11 @@ class TmbPresenter(private val view: Tmb.View): Tmb.Presenter {
             arrayLifestyle[4] -> tmb * 1.9
             else->0.0
         }
+    }
+
+    override fun onDestroy() {
+        presenterScope.cancel()
+        view = null
     }
 
 }

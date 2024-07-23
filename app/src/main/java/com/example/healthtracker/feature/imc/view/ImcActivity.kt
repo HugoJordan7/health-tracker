@@ -10,6 +10,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import com.example.healthtracker.App
 import com.example.healthtracker.R
+import com.example.healthtracker.common.util.IMC
 import com.example.healthtracker.feature.imc.Imc
 import com.example.healthtracker.feature.imc.presentation.ImcPresenter
 import com.example.healthtracker.feature.listCalc.view.ListCalcActivity
@@ -17,11 +18,7 @@ import com.example.healthtracker.model.Calc
 
 class ImcActivity : AppCompatActivity(), Imc.View {
 
-    companion object{
-        const val IMC = "imc"
-    }
-
-    private lateinit var presenter: Imc.Presenter
+    override lateinit var presenter: Imc.Presenter
 
     private lateinit var editHeight: EditText
     private lateinit var editWeight: EditText
@@ -65,7 +62,7 @@ class ImcActivity : AppCompatActivity(), Imc.View {
 
                 }
                 setNegativeButton(R.string.save){ _, _ ->
-                    presenter.registerImcValue(imcResult, IMC, dao)
+                    presenter.registerImcValue(imcResult, dao)
                 }
                 create()
                 show()
@@ -93,6 +90,11 @@ class ImcActivity : AppCompatActivity(), Imc.View {
 
     override fun displayFailure(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 
 }

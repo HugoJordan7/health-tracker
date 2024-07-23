@@ -1,19 +1,17 @@
 package com.example.healthtracker.feature.heartRate.presentation
 
 import com.example.healthtracker.R
+import com.example.healthtracker.common.util.BPM
 import com.example.healthtracker.feature.heartRate.HeartRate
 import com.example.healthtracker.model.Calc
 import com.example.healthtracker.model.CalcDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HeartRatePresenter(private val view: HeartRate.View): HeartRate.Presenter {
-
-    companion object{
-        const val BPM = "bpm"
-    }
+class HeartRatePresenter(private var view: HeartRate.View?): HeartRate.Presenter {
 
     private val presenterScope = CoroutineScope(Dispatchers.IO)
 
@@ -22,11 +20,11 @@ class HeartRatePresenter(private val view: HeartRate.View): HeartRate.Presenter 
             try {
                 dao.insert(Calc(type = BPM, res = bpm, situation = hrClassification))
                 withContext(Dispatchers.Main){
-                    view.onHeartRateRegister()
+                    view?.onHeartRateRegister()
                 }
             } catch (e: Exception){
                 withContext(Dispatchers.Main){
-                    view.displayFailure(e.message ?: "Unknown error")
+                    view?.displayFailure(e.message ?: "Unknown error")
                 }
             }
         }
@@ -179,5 +177,9 @@ class HeartRatePresenter(private val view: HeartRate.View): HeartRate.Presenter 
         }
     }
 
+    override fun onDestroy() {
+        presenterScope.cancel()
+        view = null
+    }
 
 }

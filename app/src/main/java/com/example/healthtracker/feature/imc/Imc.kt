@@ -1,17 +1,19 @@
 package com.example.healthtracker.feature.imc
 
 import androidx.annotation.StringRes
+import com.example.healthtracker.common.base.BasePresenter
+import com.example.healthtracker.common.base.BaseView
+import com.example.healthtracker.feature.heartRate.HeartRate
 import com.example.healthtracker.model.CalcDao
 
 interface Imc {
 
-    interface View{
+    interface View: BaseView<Presenter> {
         fun onRegisterImcValue()
-        fun displayFailure(message: String)
     }
 
-    interface Presenter{
-        fun registerImcValue(imc: Double, type: String, dao: CalcDao)
+    interface Presenter: BasePresenter {
+        fun registerImcValue(imc: Double, dao: CalcDao)
         fun validate(height: String, weight: String): Boolean
         fun calculateImc(height: Int, weight: Int): Double
         @StringRes

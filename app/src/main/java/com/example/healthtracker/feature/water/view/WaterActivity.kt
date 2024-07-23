@@ -16,7 +16,7 @@ import com.example.healthtracker.feature.water.presentation.WaterPresenter
 
 class WaterActivity : AppCompatActivity(), Water.View {
 
-    private lateinit var presenter: Water.Presenter
+    override lateinit var presenter: Water.Presenter
     private lateinit var editWeight: EditText
     private lateinit var editAge: EditText
     private lateinit var button: Button
@@ -26,6 +26,7 @@ class WaterActivity : AppCompatActivity(), Water.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_water)
+        presenter = WaterPresenter(this)
         editWeight = findViewById(R.id.water_weight)
         editAge = findViewById(R.id.water_age)
         editQuantity = findViewById(R.id.water_quantity)
@@ -73,6 +74,11 @@ class WaterActivity : AppCompatActivity(), Water.View {
 
     override fun displayFailure(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 
 }

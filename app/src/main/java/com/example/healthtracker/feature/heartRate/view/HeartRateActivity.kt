@@ -17,7 +17,7 @@ import com.example.healthtracker.feature.listCalc.view.ListCalcActivity
 
 class HeartRateActivity : AppCompatActivity(), HeartRate.View {
 
-    private lateinit var presenter: HeartRate.Presenter
+    override lateinit var presenter: HeartRate.Presenter
     private lateinit var editHeartRate: EditText
     private lateinit var editAge: EditText
     private lateinit var radioMasculine: RadioButton
@@ -98,6 +98,11 @@ class HeartRateActivity : AppCompatActivity(), HeartRate.View {
 
     override fun displayFailure(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 
 }
