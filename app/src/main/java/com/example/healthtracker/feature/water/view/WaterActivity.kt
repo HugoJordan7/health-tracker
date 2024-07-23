@@ -11,14 +11,18 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.healthtracker.R
+import com.example.healthtracker.feature.water.Water
+import com.example.healthtracker.feature.water.presentation.WaterPresenter
 
-class WaterActivity : AppCompatActivity() {
+class WaterActivity : AppCompatActivity(), Water.View {
 
+    private lateinit var presenter: Water.Presenter
     private lateinit var editWeight: EditText
     private lateinit var editAge: EditText
     private lateinit var button: Button
     private lateinit var editQuantity: EditText
     private lateinit var autoExercise: AutoCompleteTextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_water)
@@ -39,14 +43,17 @@ class WaterActivity : AppCompatActivity() {
         autoExercise.setAdapter(adapter)
 
         button.setOnClickListener {
-            if(!validate()){
-                Toast.makeText(this, R.string.toast_invalid_info, Toast.LENGTH_SHORT).show()
+
+            if(!presenter.validate(editWeight.text.toString(), editAge.text.toString())){
+                displayFailure(getString(R.string.toast_invalid_info))
                 return@setOnClickListener
             }
+
             val weight = editWeight.text.toString().toInt()
             val age = editAge.text.toString().toInt()
             val quantity = editQuantity.text.toString().toDouble()
-            val idealQuantityWater = calculateIdealQuantityWater(age,weight) + quantityByExercise(arrayExercise)
+            val idealQuantityWater =
+                presenter.calculateIdealQuantityWater(age,weight) + presenter.quantityByExercise(autoExercise.text.toString(), arrayExercise)
             val idealQuantityWaterL: Double = idealQuantityWater/1000.0
 
             @StringRes
@@ -64,30 +71,8 @@ class WaterActivity : AppCompatActivity() {
         }
     }
 
-    private fun validate(): Boolean{
-        return (editWeight.text.toString().isNotEmpty() &&
-                !editWeight.text.toString().startsWith("0") &&
-                editAge.text.toString().isNotEmpty() &&
-                !editAge.text.toString().startsWith("0"))
+    override fun displayFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun calculateIdealQuantityWater(age: Int, weight: Int): Int{
-        return when(age){
-            in 0 .. 17 -> (40 * weight)
-            in 18 .. 55 -> (35 * weight)
-            in 56 .. 65 -> (30 * weight)
-            else -> (25 * weight)
-        }
-    }
-
-    private fun quantityByExercise(array: Array<String>): Int{
-        return when(autoExercise.text.toString()){
-            array[0] -> 0
-            array[1] -> 325
-            array[2] -> 750
-            array[3] -> 1075
-            array[4] -> 1500
-            else -> 2250
-        }
-    }
 }

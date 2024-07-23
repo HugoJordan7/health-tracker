@@ -1,6 +1,5 @@
 package com.example.healthtracker.feature.heartRate.presentation
 
-import com.example.healthtracker.App
 import com.example.healthtracker.R
 import com.example.healthtracker.feature.heartRate.HeartRate
 import com.example.healthtracker.model.Calc
@@ -9,7 +8,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class HeartRatePresenter(private val view: HeartRate.View): HeartRate.Presenter {
 
