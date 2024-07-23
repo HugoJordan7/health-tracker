@@ -10,20 +10,28 @@ import androidx.appcompat.app.AlertDialog
 import com.example.healthtracker.App
 import com.example.healthtracker.R
 import com.example.healthtracker.feature.listCalc.view.ListCalcActivity
+import com.example.healthtracker.feature.tmb.Tmb
+import com.example.healthtracker.feature.tmb.presentation.TmbPresenter
 import com.example.healthtracker.model.Calc
 
-class TmbActivity : AppCompatActivity() {
+class TmbActivity : AppCompatActivity(), Tmb.View {
 
-    lateinit var editHeight: EditText
-    lateinit var editWeight: EditText
-    lateinit var editAge: EditText
-    lateinit var buttonResult: Button
-    lateinit var autoLifestyle: AutoCompleteTextView
-    lateinit var radioButtonMasculine: RadioButton
+    companion object{
+        const val TMB = "tmb"
+    }
+
+    private lateinit var presenter: Tmb.Presenter
+    private lateinit var editHeight: EditText
+    private lateinit var editWeight: EditText
+    private lateinit var editAge: EditText
+    private lateinit var buttonResult: Button
+    private lateinit var autoLifestyle: AutoCompleteTextView
+    private lateinit var radioButtonMasculine: RadioButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tmb)
+        presenter = TmbPresenter(this)
         editHeight = findViewById(R.id.tmb_height)
         editWeight = findViewById(R.id.tmb_weight)
         editAge = findViewById(R.id.tmb_age)
@@ -32,6 +40,9 @@ class TmbActivity : AppCompatActivity() {
         radioButtonMasculine = findViewById(R.id.radio_button_masculine_tmb)
         radioButtonMasculine.isChecked = true
 
+        val app = application as App
+        val dao = app.db.calcDao()
+
         val arrowBackButton: ImageButton = findViewById(R.id.arrow_refs_tmb)
         arrowBackButton.setOnClickListener {
             finish()
@@ -39,7 +50,7 @@ class TmbActivity : AppCompatActivity() {
 
         val historyButton: ImageButton = findViewById(R.id.historic_refs_tmb)
         historyButton.setOnClickListener {
-            openListCalcActivity()
+            onRegisterTmbValue()
         }
 
         val items = resources.getStringArray(R.array.lifestye_tmb)
@@ -48,57 +59,29 @@ class TmbActivity : AppCompatActivity() {
         autoLifestyle.setAdapter(adapter)
 
         buttonResult.setOnClickListener {
-            if(!validate(editHeight.text.toString(),editWeight.text.toString(),editAge.text.toString())){
-                Toast.makeText(this, R.string.toast_invalid_info,Toast.LENGTH_SHORT).show()
+
+            if(!presenter.validate(editHeight.text.toString(),editWeight.text.toString(),editAge.text.toString())){
+                displayFailure(getString(R.string.toast_invalid_info))
                 return@setOnClickListener
             }
+
             val height = editHeight.text.toString().toInt()
             val weight = editWeight.text.toString().toInt()
             val age = editAge.text.toString().toInt()
-            val tmb = calculateTmb(height, weight, age)
-            val tmbAdapted = tmbAdaptedForLifestyle(tmb,items)
+            val tmb = presenter.calculateTmb(radioButtonMasculine.isChecked, height, weight, age)
+            val tmbAdapted = presenter.tmbAdaptedForLifestyle(autoLifestyle.text.toString(), tmb, items)
+
             AlertDialog.Builder(this).apply {
                 setTitle(getString(R.string.dialog_tmb_title,tmbAdapted))
                 setPositiveButton(R.string.ok){ _, _ ->
 
                 }
                 setNegativeButton(R.string.save){ _, _ ->
-                    Thread{
-                        val app = application as App
-                        val dao = app.db.calcDao()
-                        dao.insert(Calc(type = "tmb", res = tmbAdapted))
-                        runOnUiThread{
-                            openListCalcActivity()
-                        }
-                    }.start()
+                    presenter.registerTmbValue(tmbAdapted, TMB, dao)
                 }
                 create()
                 show()
             }
-        }
-    }
-
-    private fun validate(height: String, weight: String, age: String): Boolean{
-        return (height.isNotEmpty() && !height.startsWith("0") &&
-                weight.isNotEmpty() && !weight.startsWith("0") &&
-                age.isNotEmpty() && !age.startsWith("0") )
-    }
-
-    private fun calculateTmb(height: Int, weight: Int, age: Int): Double{
-        if(radioButtonMasculine.isChecked) {
-            return (66 + (13.7 * weight) + (5 * height) - (6.8 * age))
-        }
-        return (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age))
-    }
-
-    private fun tmbAdaptedForLifestyle(tmb: Double, arrayLifestyle: Array<String>): Double{
-        return when(autoLifestyle.text.toString()){
-            arrayLifestyle[0] -> tmb * 1.2
-            arrayLifestyle[1] -> tmb * 1.375
-            arrayLifestyle[2] -> tmb * 1.55
-            arrayLifestyle[3] -> tmb * 1.725
-            arrayLifestyle[4] -> tmb * 1.9
-            else->0.0
         }
     }
 
@@ -109,15 +92,19 @@ class TmbActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.menu_item_search){
-            openListCalcActivity()
+            onRegisterTmbValue()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun openListCalcActivity() {
+    override fun onRegisterTmbValue() {
         startActivity(
             Intent(this, ListCalcActivity::class.java).putExtra("type","tmb")
         )
+    }
+
+    override fun displayFailure(message: String) {
+        Toast.makeText(this, message,Toast.LENGTH_SHORT).show()
     }
 
 }

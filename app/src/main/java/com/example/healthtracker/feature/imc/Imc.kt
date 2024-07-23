@@ -18,5 +18,4 @@ interface Imc {
         fun getImcSituation(imc: Double): Int
     }
 
-
 }
