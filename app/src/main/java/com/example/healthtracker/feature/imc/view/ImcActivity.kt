@@ -10,10 +10,18 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import com.example.healthtracker.App
 import com.example.healthtracker.R
+import com.example.healthtracker.feature.imc.Imc
+import com.example.healthtracker.feature.imc.presentation.ImcPresenter
 import com.example.healthtracker.feature.listCalc.view.ListCalcActivity
 import com.example.healthtracker.model.Calc
 
-class ImcActivity : AppCompatActivity() {
+class ImcActivity : AppCompatActivity(), Imc.View {
+
+    companion object{
+        const val IMC = "imc"
+    }
+
+    private lateinit var presenter: Imc.Presenter
 
     private lateinit var editHeight: EditText
     private lateinit var editWeight: EditText
@@ -26,6 +34,10 @@ class ImcActivity : AppCompatActivity() {
         editWeight = findViewById(R.id.imc_weight)
         buttonResult = findViewById(R.id.imc_button)
 
+        presenter = ImcPresenter(this)
+        val app = application as App
+        val dao = app.db.calcDao()
+
         val arrowBackButton: ImageButton = findViewById(R.id.arrow_refs_imc)
         arrowBackButton.setOnClickListener {
             finish()
@@ -33,58 +45,31 @@ class ImcActivity : AppCompatActivity() {
 
         val historyButton: ImageButton = findViewById(R.id.historic_refs_imc)
         historyButton.setOnClickListener {
-            openListCalcActivity()
+            onRegisterImcValue()
         }
 
         buttonResult.setOnClickListener {
-            if(!validate(editHeight.text.toString(), editWeight.text.toString())){
-                Toast.makeText(this, R.string.toast_invalid_info,Toast.LENGTH_SHORT).show()
+
+            if(!presenter.validate(editHeight.text.toString(), editWeight.text.toString())){
+                displayFailure(getString(R.string.toast_invalid_info))
                 return@setOnClickListener
             }
             val height = editHeight.text.toString().toDouble()
             val weight = editWeight.text.toString().toDouble()
-            val imcResult = calculateImc(height.toInt(),weight.toInt())
+            val imcResult = presenter.calculateImc(height.toInt(),weight.toInt())
 
             AlertDialog.Builder(this).apply {
                 setTitle(getString(R.string.dialog_imc_title,imcResult))
-                setMessage(getImcSituation(imcResult))
+                setMessage(presenter.getImcSituation(imcResult))
                 setPositiveButton(R.string.ok){ _, _ ->
 
                 }
                 setNegativeButton(R.string.save){ _, _ ->
-                    Thread{
-                        val app = application as App
-                        val dao = app.db.calcDao()
-                        dao.insert(Calc(type = "imc",res = imcResult))
-                        runOnUiThread{
-                            openListCalcActivity()
-                        }
-                    }.start()
+                    presenter.registerImcValue(imcResult, IMC, dao)
                 }
                 create()
                 show()
             }
-        }
-    }
-
-    private fun validate(height: String, weight: String): Boolean{
-        return height.isNotEmpty() && weight.isNotEmpty() &&
-                !height.startsWith("0") && !weight.startsWith("0")
-    }
-
-    private fun calculateImc(height: Int, weight: Int): Double{
-        return (weight / ((height/100.00)*(height/100.00)))
-    }
-
-    @StringRes
-    private fun getImcSituation(imc: Double): Int{
-        return when{
-            imc<18.5 -> R.string.imc_low_weight
-            imc<25.0 -> R.string.imc_normal_weight
-            imc<30.0 -> R.string.imc_so_above_weight
-            imc<35.0 -> R.string.imc_above_1
-            imc<40.0 -> R.string.imc_above_2
-            else -> R.string.imc_above_3
         }
     }
 
@@ -95,15 +80,19 @@ class ImcActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.menu_item_search){
-            openListCalcActivity()
+            onRegisterImcValue()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun openListCalcActivity() {
+    override fun onRegisterImcValue() {
         startActivity(
             Intent(this, ListCalcActivity::class.java).putExtra("type","imc")
         )
+    }
+
+    override fun displayFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
 }
