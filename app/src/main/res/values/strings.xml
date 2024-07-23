@@ -44,26 +44,10 @@
     <string name="list_calc_register_tmb">A sua TMB em %1$s foi de %2$.2f</string>
     <string name="search">Buscar</string>
     <string name="refs_title">Todas as informações necessárias para realizar os cálculos deste aplicativo estão disponíveis em:</string>
-    <string name="imc_ref">
-        <![CDATA[
-            <a href="https://www.tuasaude.com/calculadora/imc/">IMC: www.tuasaude.com</a>
-        ]]>
-    </string>
-    <string name="tmb_ref">
-        <![CDATA[
-            <a href="https://nutrium.com/blog/pt-br/calculadora-da-equacao-de-harris-benedict-para-nutricionistas/">TMB: www.nutrium.com</a>
-        ]]>
-    </string>
-    <string name="hr_ref">
-        <![CDATA[
-            <a href="https://www.tuasaude.com/frequencia-cardiaca/">BPM: www.tuasaude.com</a>
-        ]]>
-    </string>
-    <string name="water_ref">
-        <![CDATA[
-            <a href="https://blog.portoseguro.com.br/quantos-litros-de-agua-devemos-beber-por-dia">Água: www.blog.portoseguro.com.br</a>
-        ]]>
-    </string>
+    <string name="imc_ref">https://www.tuasaude.com/calculadora/imc/</string>
+    <string name="tmb_ref">https://nutrium.com/blog/pt-br/calculadora-da-equacao-de-harris-benedict-para-nutricionistas/</string>
+    <string name="hr_ref">https://www.tuasaude.com/frequencia-cardiaca/</string>
+    <string name="water_ref">https://blog.portoseguro.com.br/quantos-litros-de-agua-devemos-beber-por-dia/</string>
     <string name="date_access">Acessados em 27/12/2023 17:52h</string>
     <string name="dialog_title_delete_history">Deseja excluir o histórico de todos os registros salvos?</string>
     <string name="yes">Sim</string>

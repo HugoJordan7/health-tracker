@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReferencesActivity"
+    tools:context=".feature.references.view.ReferencesActivity"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,28 +35,24 @@
 
     <TextView
         android:id="@+id/ref_imc"
-        style="@style/DefaultTextView"
+        style="@style/DefaultTextLink"
         android:text="@string/imc_ref"
-        android:textSize="20sp"
         android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/ref_tmb"
-        style="@style/DefaultTextView"
-        android:text="@string/tmb_ref"
-        android:textSize="20sp"/>
+        style="@style/DefaultTextLink"
+        android:text="@string/tmb_ref"/>
 
     <TextView
         android:id="@+id/ref_tgc"
-        style="@style/DefaultTextView"
-        android:text="@string/hr_ref"
-        android:textSize="20sp"/>
+        style="@style/DefaultTextLink"
+        android:text="@string/hr_ref"/>
 
     <TextView
         android:id="@+id/ref_water"
-        style="@style/DefaultTextView"
-        android:text="@string/water_ref"
-        android:textSize="20sp"/>
+        style="@style/DefaultTextLink"
+        android:text="@string/water_ref"/>
 
     <TextView
         android:id="@+id/textView"

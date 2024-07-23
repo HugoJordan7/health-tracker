@@ -20,6 +20,12 @@
         <item name="android:layout_marginBottom">16dp</item>
     </style>
 
+    <style name="DefaultTextLink" parent="DefaultTextView">
+        <item name="android:textColor">@color/red_center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:autoLink">web</item>
+    </style>
+
     <style name="DefaultEditText" parent="DefaultAlignment">
         <item name="android:layout_height">50dp</item>
         <item name="android:layout_width">match_parent</item>

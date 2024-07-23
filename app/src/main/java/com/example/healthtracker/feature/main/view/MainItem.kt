@@ -1,6 +1,5 @@
-package com.example.healthtracker
+package com.example.healthtracker.feature.main.view
 
-import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
