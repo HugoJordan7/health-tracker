@@ -1,5 +1,7 @@
 package com.example.healthtracker.feature.references.view
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
@@ -9,23 +11,10 @@ import android.widget.TextView
 import com.example.healthtracker.R
 
 class ReferencesActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_references)
-        var imcRef: TextView = findViewById(R.id.ref_imc)
-        var tmbRef: TextView = findViewById(R.id.ref_tmb)
-        var tgcRef: TextView = findViewById(R.id.ref_tgc)
-        var waterRef: TextView = findViewById(R.id.ref_water)
-
-        imcRef.text = Html.fromHtml(getString(R.string.imc_ref))
-        tmbRef.text = Html.fromHtml(getString(R.string.tmb_ref))
-        tgcRef.text = Html.fromHtml(getString(R.string.hr_ref))
-        waterRef.text = Html.fromHtml(getString(R.string.water_ref))
-
-        imcRef.movementMethod = LinkMovementMethod.getInstance()
-        tmbRef.movementMethod = LinkMovementMethod.getInstance()
-        tgcRef.movementMethod = LinkMovementMethod.getInstance()
-        waterRef.movementMethod = LinkMovementMethod.getInstance()
 
         val arrowBackButton: ImageButton = findViewById(R.id.arrow_refs)
         arrowBackButton.setOnClickListener {
@@ -33,4 +22,5 @@ class ReferencesActivity : AppCompatActivity() {
         }
 
     }
+
 }
