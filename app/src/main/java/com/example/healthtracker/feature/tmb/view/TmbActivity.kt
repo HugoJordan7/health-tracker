@@ -12,7 +12,6 @@ import com.example.healthtracker.R
 import com.example.healthtracker.feature.listCalc.view.ListCalcActivity
 import com.example.healthtracker.feature.tmb.Tmb
 import com.example.healthtracker.feature.tmb.presentation.TmbPresenter
-import com.example.healthtracker.model.Calc
 
 class TmbActivity : AppCompatActivity(), Tmb.View {
 

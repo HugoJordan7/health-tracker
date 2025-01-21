@@ -9,7 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class TmbPresenter(private var view: Tmb.View?): Tmb.Presenter {
 
@@ -18,7 +17,7 @@ class TmbPresenter(private var view: Tmb.View?): Tmb.Presenter {
     override fun registerTmbValue(tmb: Double, dao: CalcDao) {
         presenterScope.launch {
             try {
-                dao.insert(Calc(type = TMB, res = tmb))
+                dao.insert(Calc(TMB, tmb, null))
                 withContext(Dispatchers.Main){
                     view?.onRegisterTmbValue()
                 }

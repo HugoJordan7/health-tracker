@@ -20,7 +20,7 @@ class ImcPresenter(private var view: Imc.View?): Imc.Presenter {
     override fun registerImcValue(imc: Double, dao: CalcDao) {
         presenterScope.launch {
             try {
-                dao.insert(Calc(type = IMC, res = imc))
+                dao.insert(Calc(IMC, imc, null))
                 withContext(Dispatchers.Main){
                     view?.onRegisterImcValue()
                 }

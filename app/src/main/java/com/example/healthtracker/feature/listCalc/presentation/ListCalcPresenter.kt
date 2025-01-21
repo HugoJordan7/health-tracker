@@ -1,8 +1,5 @@
 package com.example.healthtracker.feature.listCalc.presentation
 
-import android.content.Context
-import android.content.res.Resources
-import com.example.healthtracker.R
 import com.example.healthtracker.feature.listCalc.ListCalc
 import com.example.healthtracker.model.Calc
 import com.example.healthtracker.model.CalcDao

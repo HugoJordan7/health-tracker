@@ -6,15 +6,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import com.example.healthtracker.App
 import com.example.healthtracker.R
-import com.example.healthtracker.common.util.IMC
 import com.example.healthtracker.feature.imc.Imc
 import com.example.healthtracker.feature.imc.presentation.ImcPresenter
 import com.example.healthtracker.feature.listCalc.view.ListCalcActivity
-import com.example.healthtracker.model.Calc
 
 class ImcActivity : AppCompatActivity(), Imc.View {
 

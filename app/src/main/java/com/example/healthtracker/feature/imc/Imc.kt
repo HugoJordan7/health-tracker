@@ -3,7 +3,6 @@ package com.example.healthtracker.feature.imc
 import androidx.annotation.StringRes
 import com.example.healthtracker.common.base.BasePresenter
 import com.example.healthtracker.common.base.BaseView
-import com.example.healthtracker.feature.heartRate.HeartRate
 import com.example.healthtracker.model.CalcDao
 
 interface Imc {
