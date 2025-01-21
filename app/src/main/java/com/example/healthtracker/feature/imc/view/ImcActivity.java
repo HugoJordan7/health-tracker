@@ -17,7 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthtracker.App;
 import com.example.healthtracker.R;
+import com.example.healthtracker.di.DependencyInjector;
 import com.example.healthtracker.feature.imc.Imc;
+import com.example.healthtracker.feature.imc.data.repository.ImcRepository;
 import com.example.healthtracker.feature.imc.presentation.ImcPresenter;
 import com.example.healthtracker.feature.listCalc.view.ListCalcActivity;
 import com.example.healthtracker.model.CalcDao;
@@ -28,15 +30,15 @@ public class ImcActivity extends AppCompatActivity implements Imc.View {
 
     private EditText editHeight;
     private EditText editWeight;
-    private Button buttonResult;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_imc);
 
         editHeight = findViewById(R.id.imc_height);
         editWeight = findViewById(R.id.imc_weight);
-        buttonResult = findViewById(R.id.imc_button);
+        Button buttonResult = findViewById(R.id.imc_button);
 
         ImageButton arrowBackButton = findViewById(R.id.arrow_refs_imc);
         arrowBackButton.setOnClickListener(view -> {
@@ -48,7 +50,9 @@ public class ImcActivity extends AppCompatActivity implements Imc.View {
             onRegisterImcValue();
         });
 
-        presenter = new ImcPresenter(ImcActivity.this);
+        ImcRepository repository = DependencyInjector.getImcRepository();
+        presenter = new ImcPresenter(ImcActivity.this, repository);
+
         App app = (App) getApplication();
         CalcDao dao = app.db.calcDao();
 
@@ -71,7 +75,8 @@ public class ImcActivity extends AppCompatActivity implements Imc.View {
                     })
                     .setNegativeButton(R.string.save, (dialogInterface, i) -> {
                         presenter.registerImcValue(imcResult, dao);
-                    });
+                    })
+                    .show();
         });
     }
 

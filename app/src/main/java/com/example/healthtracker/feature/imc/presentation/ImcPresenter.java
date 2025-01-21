@@ -1,8 +1,10 @@
 package com.example.healthtracker.feature.imc.presentation;
 
 import com.example.healthtracker.R;
+import com.example.healthtracker.common.base.RequestCallback;
 import com.example.healthtracker.common.util.Constants;
 import com.example.healthtracker.feature.imc.Imc;
+import com.example.healthtracker.feature.imc.data.repository.ImcRepository;
 import com.example.healthtracker.model.Calc;
 import com.example.healthtracker.model.CalcDao;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -15,39 +17,28 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ImcPresenter implements Imc.Presenter {
 
+
     private Imc.View view;
 
-    private final CompositeDisposable disposables = new CompositeDisposable();
+    private ImcRepository repository;
 
-    public ImcPresenter(Imc.View view) {
+    public ImcPresenter(Imc.View view, ImcRepository repository) {
         this.view = view;
+        this.repository = repository;
     }
 
     @Override
     public void registerImcValue(double imc, CalcDao dao) {
-        Completable
-                .fromAction(() -> {
-                    dao.insert(new Calc(Constants.IMC, imc, null));
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        disposables.add(d);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        view.onRegisterImcValue();
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        view.displayFailure(e.getMessage());
-                    }
-                });
-
+        repository.registerImcValue(imc, dao, new RequestCallback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean data) {
+                view.onRegisterImcValue();
+            }
+            @Override
+            public void onFailure(String message) {
+                view.displayFailure(message);
+            }
+        });
     }
 
     @Override
@@ -80,7 +71,6 @@ public class ImcPresenter implements Imc.Presenter {
 
     @Override
     public void onDestroy() {
-        disposables.clear();
         view = null;
     }
 }
