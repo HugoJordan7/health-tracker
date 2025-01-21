@@ -18,7 +18,7 @@ class HeartRatePresenter(private var view: HeartRate.View?): HeartRate.Presenter
     override fun registerHeartRateValue(bpm: Double, hrClassification: String, dao: CalcDao) {
         presenterScope.launch {
             try {
-                dao.insert(Calc(type = BPM, res = bpm, situation = hrClassification))
+                dao.insert(Calc(BPM, bpm, hrClassification))
                 withContext(Dispatchers.Main){
                     view?.onHeartRateRegister()
                 }

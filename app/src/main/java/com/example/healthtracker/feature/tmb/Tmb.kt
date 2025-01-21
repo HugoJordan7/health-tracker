@@ -2,7 +2,6 @@ package com.example.healthtracker.feature.tmb
 
 import com.example.healthtracker.common.base.BasePresenter
 import com.example.healthtracker.common.base.BaseView
-import com.example.healthtracker.feature.heartRate.HeartRate
 import com.example.healthtracker.model.CalcDao
 
 interface Tmb {

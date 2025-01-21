@@ -1,6 +1,5 @@
 package com.example.healthtracker.feature.listCalc
 
-import androidx.annotation.StringRes
 import com.example.healthtracker.common.base.BasePresenter
 import com.example.healthtracker.common.base.BaseView
 import com.example.healthtracker.model.Calc
