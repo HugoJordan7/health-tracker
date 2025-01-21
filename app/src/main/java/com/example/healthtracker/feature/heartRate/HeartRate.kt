@@ -6,7 +6,7 @@ import com.example.healthtracker.model.CalcDao
 
 interface HeartRate {
 
-    interface View: BaseView<Presenter> {
+    interface View: BaseView {
         fun onHeartRateRegister()
     }
 

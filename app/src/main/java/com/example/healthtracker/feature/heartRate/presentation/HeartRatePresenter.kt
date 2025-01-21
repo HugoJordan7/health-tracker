@@ -1,7 +1,7 @@
 package com.example.healthtracker.feature.heartRate.presentation
 
 import com.example.healthtracker.R
-import com.example.healthtracker.common.util.BPM
+import com.example.healthtracker.common.util.Constants
 import com.example.healthtracker.feature.heartRate.HeartRate
 import com.example.healthtracker.model.Calc
 import com.example.healthtracker.model.CalcDao
@@ -18,7 +18,7 @@ class HeartRatePresenter(private var view: HeartRate.View?): HeartRate.Presenter
     override fun registerHeartRateValue(bpm: Double, hrClassification: String, dao: CalcDao) {
         presenterScope.launch {
             try {
-                dao.insert(Calc(BPM, bpm, hrClassification))
+                dao.insert(Calc(Constants.BPM, bpm, hrClassification))
                 withContext(Dispatchers.Main){
                     view?.onHeartRateRegister()
                 }

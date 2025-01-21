@@ -15,7 +15,7 @@ import com.example.healthtracker.feature.listCalc.view.ListCalcActivity
 
 class ImcActivity : AppCompatActivity(), Imc.View {
 
-    override lateinit var presenter: Imc.Presenter
+    lateinit var presenter: Imc.Presenter
 
     private lateinit var editHeight: EditText
     private lateinit var editWeight: EditText

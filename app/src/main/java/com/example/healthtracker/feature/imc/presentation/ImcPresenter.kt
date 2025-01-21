@@ -2,7 +2,7 @@ package com.example.healthtracker.feature.imc.presentation
 
 import androidx.annotation.StringRes
 import com.example.healthtracker.R
-import com.example.healthtracker.common.util.IMC
+import com.example.healthtracker.common.util.Constants
 import com.example.healthtracker.feature.imc.Imc
 import com.example.healthtracker.model.Calc
 import com.example.healthtracker.model.CalcDao
@@ -11,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class ImcPresenter(private var view: Imc.View?): Imc.Presenter {
 
@@ -20,7 +19,7 @@ class ImcPresenter(private var view: Imc.View?): Imc.Presenter {
     override fun registerImcValue(imc: Double, dao: CalcDao) {
         presenterScope.launch {
             try {
-                dao.insert(Calc(IMC, imc, null))
+                dao.insert(Calc(Constants.IMC, imc, null))
                 withContext(Dispatchers.Main){
                     view?.onRegisterImcValue()
                 }

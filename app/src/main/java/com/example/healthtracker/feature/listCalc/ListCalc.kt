@@ -7,9 +7,8 @@ import com.example.healthtracker.model.CalcDao
 
 interface ListCalc {
 
-    interface View: BaseView<Presenter> {
+    interface View: BaseView {
         fun displayAllRegisters(list: List<Calc>)
-        //fun displayFailure(@StringRes message: Int)
         fun onDeleteRegisters()
     }
 

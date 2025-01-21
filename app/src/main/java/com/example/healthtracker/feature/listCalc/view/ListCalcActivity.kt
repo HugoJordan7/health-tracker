@@ -16,7 +16,7 @@ import com.example.healthtracker.model.Calc
 
 class ListCalcActivity : AppCompatActivity(), ListCalc.View {
 
-    override lateinit var presenter: ListCalc.Presenter
+    lateinit var presenter: ListCalc.Presenter
     private lateinit var adapter: ListCalcAdapter
     private lateinit var type: String
 

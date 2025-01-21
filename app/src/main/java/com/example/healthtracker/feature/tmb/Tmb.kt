@@ -6,7 +6,7 @@ import com.example.healthtracker.model.CalcDao
 
 interface Tmb {
 
-    interface View: BaseView<Presenter> {
+    interface View: BaseView {
         fun onRegisterTmbValue()
     }
 

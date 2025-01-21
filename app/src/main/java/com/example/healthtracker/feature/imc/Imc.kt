@@ -7,7 +7,7 @@ import com.example.healthtracker.model.CalcDao
 
 interface Imc {
 
-    interface View: BaseView<Presenter> {
+    interface View: BaseView {
         fun onRegisterImcValue()
     }
 

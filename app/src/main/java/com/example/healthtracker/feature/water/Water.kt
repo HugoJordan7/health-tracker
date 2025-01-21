@@ -6,7 +6,7 @@ import com.example.healthtracker.model.CalcDao
 
 interface Water {
 
-    interface View: BaseView<Presenter> {
+    interface View: BaseView {
         fun onWaterRegister(){ throw UnsupportedOperationException() }
     }
 
