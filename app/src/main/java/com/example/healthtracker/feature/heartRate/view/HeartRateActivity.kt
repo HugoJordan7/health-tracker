@@ -17,7 +17,7 @@ import com.example.healthtracker.feature.listCalc.view.ListCalcActivity
 
 class HeartRateActivity : AppCompatActivity(), HeartRate.View {
 
-    override lateinit var presenter: HeartRate.Presenter
+    lateinit var presenter: HeartRate.Presenter
     private lateinit var editHeartRate: EditText
     private lateinit var editAge: EditText
     private lateinit var radioMasculine: RadioButton

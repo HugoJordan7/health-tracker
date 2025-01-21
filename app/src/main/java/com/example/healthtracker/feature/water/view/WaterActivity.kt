@@ -16,7 +16,7 @@ import com.example.healthtracker.feature.water.presentation.WaterPresenter
 
 class WaterActivity : AppCompatActivity(), Water.View {
 
-    override lateinit var presenter: Water.Presenter
+    lateinit var presenter: Water.Presenter
     private lateinit var editWeight: EditText
     private lateinit var editAge: EditText
     private lateinit var button: Button

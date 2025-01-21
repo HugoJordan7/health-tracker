@@ -15,7 +15,7 @@ import com.example.healthtracker.feature.tmb.presentation.TmbPresenter
 
 class TmbActivity : AppCompatActivity(), Tmb.View {
 
-    override lateinit var presenter: Tmb.Presenter
+    lateinit var presenter: Tmb.Presenter
     private lateinit var editHeight: EditText
     private lateinit var editWeight: EditText
     private lateinit var editAge: EditText

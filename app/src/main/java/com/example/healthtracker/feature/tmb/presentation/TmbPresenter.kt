@@ -1,6 +1,6 @@
 package com.example.healthtracker.feature.tmb.presentation
 
-import com.example.healthtracker.common.util.TMB
+import com.example.healthtracker.common.util.Constants
 import com.example.healthtracker.feature.tmb.Tmb
 import com.example.healthtracker.model.Calc
 import com.example.healthtracker.model.CalcDao
@@ -17,7 +17,7 @@ class TmbPresenter(private var view: Tmb.View?): Tmb.Presenter {
     override fun registerTmbValue(tmb: Double, dao: CalcDao) {
         presenterScope.launch {
             try {
-                dao.insert(Calc(TMB, tmb, null))
+                dao.insert(Calc(Constants.TMB, tmb, null))
                 withContext(Dispatchers.Main){
                     view?.onRegisterTmbValue()
                 }
