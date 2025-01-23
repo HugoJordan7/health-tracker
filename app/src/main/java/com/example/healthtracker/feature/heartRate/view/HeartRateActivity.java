@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthtracker.App;
 import com.example.healthtracker.R;
+import com.example.healthtracker.di.DependencyInjector;
 import com.example.healthtracker.feature.heartRate.HeartRate;
+import com.example.healthtracker.feature.heartRate.data.repository.HeartRateRepository;
 import com.example.healthtracker.feature.heartRate.presentation.HeartRatePresenter;
 import com.example.healthtracker.feature.listCalc.view.ListCalcActivity;
 import com.example.healthtracker.model.CalcDao;
@@ -34,7 +36,9 @@ public class HeartRateActivity extends AppCompatActivity implements HeartRate.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heart_rate);
 
-        presenter = new HeartRatePresenter(HeartRateActivity.this);
+        HeartRateRepository repository = DependencyInjector.getHeartRateRepository();
+        presenter = new HeartRatePresenter(HeartRateActivity.this, repository);
+
         editHeartRate = findViewById(R.id.hr_edit_heart_rate);
         editAge = findViewById(R.id.hr_age);
         radioMasculine = findViewById(R.id.hr_radio_masculine);
@@ -50,7 +54,7 @@ public class HeartRateActivity extends AppCompatActivity implements HeartRate.Vi
         });
 
         ImageButton historyButton = findViewById(R.id.historic_refs_hr);
-        arrowBackButton.setOnClickListener(view -> {
+        historyButton.setOnClickListener(view -> {
             onHeartRateRegister();
         });
 

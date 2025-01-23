@@ -1,38 +1,33 @@
 package com.example.healthtracker.feature.heartRate.presentation;
 
 import com.example.healthtracker.R;
-import com.example.healthtracker.common.util.Constants;
+import com.example.healthtracker.common.base.RequestCallback;
 import com.example.healthtracker.feature.heartRate.HeartRate;
-import com.example.healthtracker.model.Calc;
+import com.example.healthtracker.feature.heartRate.data.repository.HeartRateRepository;
 import com.example.healthtracker.model.CalcDao;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import kotlin.Pair;
 
 public class HeartRatePresenter implements HeartRate.Presenter {
 
+    private final HeartRateRepository repository;
     private HeartRate.View view;
-    private final ExecutorService executorService;
 
-    public HeartRatePresenter(HeartRate.View view) {
+    public HeartRatePresenter(HeartRate.View view, HeartRateRepository repository) {
         this.view = view;
-        this.executorService = Executors.newSingleThreadExecutor();
+        this.repository = repository;
     }
 
     @Override
     public void registerHeartRateValue(double bpm, String hrClassification, CalcDao dao) {
-        executorService.execute(() -> {
-            try {
-                dao.insert(new Calc(Constants.BPM, bpm, hrClassification));
-                if (view != null) {
-                    view.onHeartRateRegister();
-                }
-            } catch (Exception e) {
-                if (view != null) {
-                    view.displayFailure(e.getMessage() != null ? e.getMessage() : "Unknown error");
-                }
+        repository.registerHeartRateValue(bpm, hrClassification, dao, new RequestCallback<Boolean>(){
+            @Override
+            public void onSuccess(Boolean data) {
+                view.onHeartRateRegister();
+            }
+            @Override
+            public void onFailure(String message) {
+                view.displayFailure(message != null ? message : "Unknown error");
             }
         });
     }
@@ -103,7 +98,6 @@ public class HeartRatePresenter implements HeartRate.Presenter {
 
     @Override
     public void onDestroy() {
-        executorService.shutdownNow();
         view = null;
     }
 }
