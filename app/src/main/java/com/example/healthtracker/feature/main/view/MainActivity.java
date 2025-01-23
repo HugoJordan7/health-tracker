@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthtracker.R;
-import com.example.healthtracker.feature.heartRate.HeartRate;
+import com.example.healthtracker.feature.heartRate.view.HeartRateActivity;
 import com.example.healthtracker.feature.imc.view.ImcActivity;
 import com.example.healthtracker.feature.references.view.ReferencesActivity;
 import com.example.healthtracker.feature.tmb.view.TmbActivity;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             if (id == 1) {
                 destinationClass = TmbActivity.class;
             } else if (id == 2) {
-                destinationClass = HeartRate.class;
+                destinationClass = HeartRateActivity.class;
             } else if (id == 3) {
                 destinationClass = WaterActivity.class;
             }
