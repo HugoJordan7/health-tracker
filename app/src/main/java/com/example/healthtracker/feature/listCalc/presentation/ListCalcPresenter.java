@@ -1,6 +1,8 @@
 package com.example.healthtracker.feature.listCalc.presentation;
 
+import com.example.healthtracker.common.base.RequestCallback;
 import com.example.healthtracker.feature.listCalc.ListCalc;
+import com.example.healthtracker.feature.listCalc.data.repository.ListCalcRepository;
 import com.example.healthtracker.model.Calc;
 import com.example.healthtracker.model.CalcDao;
 
@@ -11,56 +13,45 @@ import java.util.concurrent.Executors;
 public class ListCalcPresenter implements ListCalc.Presenter {
 
     private ListCalc.View view;
-    private final ExecutorService executorService;
+    private final ListCalcRepository repository;
 
-    public ListCalcPresenter(ListCalc.View view) {
+    public ListCalcPresenter(ListCalc.View view, ListCalcRepository repository) {
         this.view = view;
-        this.executorService = Executors.newSingleThreadExecutor();
+        this.repository = repository;
     }
 
     @Override
     public void getAllRegisters(CalcDao dao, String type) {
-        executorService.execute(() -> {
-            List<Calc> list = dao.getRegisterByType(type);
-            if (view != null) {
-                new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
-                    if (view != null) {
-                        view.displayAllRegisters(list);
-                    }
-                });
+        repository.getAllRegisters(dao, type, new RequestCallback<List<Calc>>() {
+            @Override
+            public void onSuccess(List<Calc> data) {
+                view.displayAllRegisters(data);
+            }
+
+            @Override
+            public void onFailure(String message) {
+                view.displayFailure(message != null ? message : "Unknown error");
             }
         });
     }
 
     @Override
-    public void clearRegisters(List<Calc> list, CalcDao dao, String type) {
-        executorService.execute(() -> {
-            if (list.isEmpty()) {
-                if (view != null) {
-                    new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
-                        if (view != null) {
-                            view.displayFailure("");
-                        }
-                    });
-                }
-            } else {
-                dao.deleteAllByType(type);
-                if (view != null) {
-                    new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
-                        if (view != null) {
-                            view.onDeleteRegisters();
-                        }
-                    });
-                }
+    public void clearRegisters(CalcDao dao, String type) {
+        repository.clearRegisters(dao, type, new RequestCallback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean data) {
+                view.onDeleteRegisters();
+            }
+
+            @Override
+            public void onFailure(String message) {
+                view.displayFailure(message != null ? message : "Unknown error");
             }
         });
     }
 
     @Override
     public void onDestroy() {
-        if (!executorService.isShutdown()) {
-            executorService.shutdown();
-        }
         view = null;
     }
 }

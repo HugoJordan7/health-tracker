@@ -8,6 +8,10 @@ import com.example.healthtracker.feature.imc.data.data_source.ImcDataSource;
 import com.example.healthtracker.feature.imc.data.data_source.ImcDataSourceImpl;
 import com.example.healthtracker.feature.imc.data.repository.ImcRepository;
 import com.example.healthtracker.feature.imc.data.repository.ImcRepositoryImpl;
+import com.example.healthtracker.feature.listCalc.data.data_source.ListCalcDataSource;
+import com.example.healthtracker.feature.listCalc.data.data_source.ListCalcDataSourceImpl;
+import com.example.healthtracker.feature.listCalc.data.repository.ListCalcRepository;
+import com.example.healthtracker.feature.listCalc.data.repository.ListCalcRepositoryImpl;
 import com.example.healthtracker.feature.tmb.data.data_source.TmbDataSource;
 import com.example.healthtracker.feature.tmb.data.data_source.TmbDataSourceImpl;
 import com.example.healthtracker.feature.tmb.data.repository.TmbRepository;
@@ -24,6 +28,9 @@ public class DependencyInjector {
     private static final TmbDataSource tmbDataSource = new TmbDataSourceImpl();
     private static final TmbRepository tmbRepository = new TmbRepositoryImpl(tmbDataSource);
 
+    private static final ListCalcDataSource listCalcDataSource = new ListCalcDataSourceImpl();
+    private static final ListCalcRepository listCalcRepository = new ListCalcRepositoryImpl(listCalcDataSource);
+
     public static ImcRepository getImcRepository() {
         return imcRepository;
     }
@@ -32,6 +39,9 @@ public class DependencyInjector {
     }
     public static TmbRepository getTmbRepository() {
         return tmbRepository;
+    }
+    public static ListCalcRepository getListCalcRepository() {
+        return listCalcRepository;
     }
 
 }

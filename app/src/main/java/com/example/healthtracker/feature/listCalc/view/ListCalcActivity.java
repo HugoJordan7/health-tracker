@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthtracker.App;
 import com.example.healthtracker.R;
+import com.example.healthtracker.di.DependencyInjector;
 import com.example.healthtracker.feature.listCalc.ListCalc;
+import com.example.healthtracker.feature.listCalc.data.repository.ListCalcRepository;
 import com.example.healthtracker.feature.listCalc.presentation.ListCalcPresenter;
 import com.example.healthtracker.model.Calc;
 import com.example.healthtracker.model.CalcDao;
@@ -31,7 +33,9 @@ public class ListCalcActivity extends AppCompatActivity implements ListCalc.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_calc);
 
-        presenter = new ListCalcPresenter(this);
+        ListCalcRepository repository = DependencyInjector.getListCalcRepository();
+        presenter = new ListCalcPresenter(this, repository);
+
         App app = (App) getApplication();
         CalcDao dao = app.db.calcDao();
         type = getIntent().getExtras() != null ? getIntent().getExtras().getString("type") : null;
@@ -49,8 +53,11 @@ public class ListCalcActivity extends AppCompatActivity implements ListCalc.View
         clearHistoryButton.setOnClickListener(view -> {
             new AlertDialog.Builder(this)
                     .setTitle(R.string.dialog_title_delete_history)
-                    .setPositiveButton(R.string.yes, (dialog, which) ->
-                            presenter.clearRegisters(adapter.list, dao, type))
+                    .setPositiveButton(R.string.yes, (dialog, which) -> {
+                        if (!adapter.list.isEmpty()){
+                            presenter.clearRegisters(dao, type);
+                        }
+                    })
                     .setNegativeButton(R.string.back, null)
                     .create()
                     .show();
