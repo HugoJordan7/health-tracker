@@ -9,8 +9,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.healthtracker.App;
 import com.example.healthtracker.R;
+import com.example.healthtracker.di.DependencyInjector;
 import com.example.healthtracker.feature.listCalc.view.ListCalcActivity;
 import com.example.healthtracker.feature.tmb.Tmb;
+import com.example.healthtracker.feature.tmb.data.repository.TmbRepository;
 import com.example.healthtracker.feature.tmb.presentation.TmbPresenter;
 import com.example.healthtracker.model.CalcDao;
 
@@ -29,7 +31,9 @@ public class TmbActivity extends AppCompatActivity implements Tmb.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tmb);
 
-        presenter = new TmbPresenter(this);
+        TmbRepository repository = DependencyInjector.getTmbRepository();
+        presenter = new TmbPresenter(this, repository);
+
         editHeight = findViewById(R.id.tmb_height);
         editWeight = findViewById(R.id.tmb_weight);
         editAge = findViewById(R.id.tmb_age);

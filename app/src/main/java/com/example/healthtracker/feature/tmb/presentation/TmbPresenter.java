@@ -5,33 +5,33 @@ import android.os.Looper;
 
 import androidx.annotation.NonNull;
 
-import com.example.healthtracker.common.util.Constants;
+import com.example.healthtracker.common.base.RequestCallback;
 import com.example.healthtracker.feature.tmb.Tmb;
-import com.example.healthtracker.model.Calc;
+import com.example.healthtracker.feature.tmb.data.repository.TmbRepository;
 import com.example.healthtracker.model.CalcDao;
 
 public class TmbPresenter implements Tmb.Presenter {
 
     private Tmb.View view;
+    private TmbRepository repository;
 
-    public TmbPresenter(Tmb.View view) {
+    public TmbPresenter(Tmb.View view, TmbRepository repository) {
         this.view = view;
+        this.repository = repository;
     }
 
     @Override
     public void registerTmbValue(double tmb, CalcDao dao) {
-        new Thread(() -> {
-            try {
-                dao.insert(new Calc(Constants.TMB, tmb, null));
-                runOnMainTread(() -> {
-                    view.onRegisterTmbValue();
-                });
-            } catch (Exception e) {
-                runOnMainTread(() -> {
-                    view.displayFailure(e.getMessage() != null ? e.getMessage() : "Unknown error");
-                });
+        repository.registerTmbValue(tmb, dao, new RequestCallback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean data) {
+                view.onRegisterTmbValue();
             }
-        }).start();
+            @Override
+            public void onFailure(String message) {
+                view.displayFailure(message != null ? message : "Unknown error");
+            }
+        });
     }
 
     private void runOnMainTread(Runnable action){
