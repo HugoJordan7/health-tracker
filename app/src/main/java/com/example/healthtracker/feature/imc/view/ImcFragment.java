@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.healthtracker.App;
 import com.example.healthtracker.R;
+import com.example.healthtracker.common.base.BaseFragment;
 import com.example.healthtracker.di.DependencyInjector;
 import com.example.healthtracker.feature.calc.view.HeaderActionListener;
 import com.example.healthtracker.feature.imc.Imc;
@@ -28,28 +29,23 @@ import com.example.healthtracker.feature.imc.presentation.ImcPresenter;
 import com.example.healthtracker.feature.listCalc.view.ListCalcActivity;
 import com.example.healthtracker.model.CalcDao;
 
-public class ImcFragment extends Fragment implements Imc.View, HeaderActionListener {
+public class ImcFragment extends BaseFragment<Imc.Presenter> implements Imc.View, HeaderActionListener {
 
-    private Imc.Presenter presenter;
-
-    private EditText editHeight;
-    private EditText editWeight;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_imc, container, false);
+    public ImcFragment() {
+        super(R.layout.activity_imc);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        editHeight = view.findViewById(R.id.imc_height);
-        editWeight = view.findViewById(R.id.imc_weight);
-        Button buttonResult = view.findViewById(R.id.imc_button);
-
+    public Imc.Presenter setPresenter() {
         ImcRepository repository = DependencyInjector.getImcRepository();
-        presenter = new ImcPresenter(this, repository);
+        return new ImcPresenter(this, repository);
+    }
+
+    @Override
+    public void setViews(@NonNull View view) {
+        EditText editHeight = view.findViewById(R.id.imc_height);
+        EditText editWeight = view.findViewById(R.id.imc_weight);
+        Button buttonResult = view.findViewById(R.id.imc_button);
 
         App app = (App) requireActivity().getApplication();
         CalcDao dao = app.db.calcDao();
@@ -78,21 +74,11 @@ public class ImcFragment extends Fragment implements Imc.View, HeaderActionListe
         });
     }
 
-    @Override
-    public void displayFailure(String message) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onRegisterImcValue() {
         Intent intent = new Intent(requireActivity(), ListCalcActivity.class).putExtra("type","imc");
         startActivity(intent);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        presenter.onDestroy();
     }
 
     @Override
