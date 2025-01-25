@@ -2,21 +2,30 @@ package com.example.healthtracker.feature.tmb.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.example.healthtracker.App;
 import com.example.healthtracker.R;
 import com.example.healthtracker.di.DependencyInjector;
+import com.example.healthtracker.feature.calc.view.HeaderActionListener;
 import com.example.healthtracker.feature.listCalc.view.ListCalcActivity;
 import com.example.healthtracker.feature.tmb.Tmb;
 import com.example.healthtracker.feature.tmb.data.repository.TmbRepository;
 import com.example.healthtracker.feature.tmb.presentation.TmbPresenter;
 import com.example.healthtracker.model.CalcDao;
 
-public class TmbActivity extends AppCompatActivity implements Tmb.View {
+public class TmbFragment extends Fragment implements Tmb.View, HeaderActionListener {
 
     private Tmb.Presenter presenter;
     private EditText editHeight;
@@ -26,34 +35,33 @@ public class TmbActivity extends AppCompatActivity implements Tmb.View {
     private AutoCompleteTextView autoLifestyle;
     private RadioButton radioButtonMasculine;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tmb);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_tmb, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         TmbRepository repository = DependencyInjector.getTmbRepository();
         presenter = new TmbPresenter(this, repository);
 
-        editHeight = findViewById(R.id.tmb_height);
-        editWeight = findViewById(R.id.tmb_weight);
-        editAge = findViewById(R.id.tmb_age);
-        buttonResult = findViewById(R.id.tmb_button);
-        autoLifestyle = findViewById(R.id.auto_lifestyle);
-        radioButtonMasculine = findViewById(R.id.radio_button_masculine_tmb);
+        editHeight = view.findViewById(R.id.tmb_height);
+        editWeight = view.findViewById(R.id.tmb_weight);
+        editAge = view.findViewById(R.id.tmb_age);
+        buttonResult = view.findViewById(R.id.tmb_button);
+        autoLifestyle = view.findViewById(R.id.auto_lifestyle);
+        radioButtonMasculine = view.findViewById(R.id.radio_button_masculine_tmb);
         radioButtonMasculine.setChecked(true);
 
-        App app = (App) getApplication();
+        App app = (App) requireActivity().getApplication();
         CalcDao dao = app.db.calcDao();
-
-//        ImageButton arrowBackButton = findViewById(R.id.arrow_refs_tmb);
-//        arrowBackButton.setOnClickListener(v -> finish());
-//
-//        ImageButton historyButton = findViewById(R.id.historic_refs_tmb);
-//        historyButton.setOnClickListener(v -> onRegisterTmbValue());
 
         String[] items = getResources().getStringArray(R.array.lifestye_tmb);
         autoLifestyle.setText(items[0]);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, items);
         autoLifestyle.setAdapter(adapter);
 
         buttonResult.setOnClickListener(v -> {
@@ -68,7 +76,7 @@ public class TmbActivity extends AppCompatActivity implements Tmb.View {
             double tmb = presenter.calculateTmb(radioButtonMasculine.isChecked(), height, weight, age);
             double tmbAdapted = presenter.tmbAdaptedForLifestyle(autoLifestyle.getText().toString(), tmb, items);
 
-            new AlertDialog.Builder(this)
+            new AlertDialog.Builder(requireContext())
                     .setTitle(getString(R.string.dialog_tmb_title, tmbAdapted))
                     .setPositiveButton(R.string.ok, null)
                     .setNegativeButton(R.string.save, (dialog, which) -> presenter.registerTmbValue(tmbAdapted, dao))
@@ -78,32 +86,23 @@ public class TmbActivity extends AppCompatActivity implements Tmb.View {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_item_search) {
-            onRegisterTmbValue();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onRegisterTmbValue() {
-        startActivity(new Intent(this, ListCalcActivity.class).putExtra("type", "tmb"));
+        startActivity(new Intent(requireActivity(), ListCalcActivity.class).putExtra("type", "tmb"));
     }
 
     @Override
     public void displayFailure(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroyView() {
         presenter.onDestroy();
-        super.onDestroy();
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onClickInHistoryButton() {
+        onRegisterTmbValue();
     }
 }

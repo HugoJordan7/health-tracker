@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.healthtracker.R;
 import com.example.healthtracker.feature.heartRate.view.HeartRateFragment;
 import com.example.healthtracker.feature.imc.view.ImcFragment;
+import com.example.healthtracker.feature.tmb.view.TmbFragment;
 
 public class CalcActivity extends AppCompatActivity {
 
