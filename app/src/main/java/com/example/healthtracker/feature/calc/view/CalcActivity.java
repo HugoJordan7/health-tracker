@@ -1,6 +1,7 @@
 package com.example.healthtracker.feature.calc.view;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.example.healthtracker.R;
 import com.example.healthtracker.feature.heartRate.view.HeartRateFragment;
 import com.example.healthtracker.feature.imc.view.ImcFragment;
 import com.example.healthtracker.feature.tmb.view.TmbFragment;
+import com.example.healthtracker.feature.water.view.WaterFragment;
 
 public class CalcActivity extends AppCompatActivity {
 
@@ -58,16 +60,21 @@ public class CalcActivity extends AppCompatActivity {
         });
 
         ImageButton historyButton = findViewById(R.id.historic_refs_header);
-        historyButton.setOnClickListener(v -> {
-            headerActionListener.onClickInHistoryButton();
-        });
+        if (headerActionListener != null) {
+            historyButton.setVisibility(View.VISIBLE);
+            historyButton.setOnClickListener(v -> {
+                headerActionListener.onClickInHistoryButton();
+            });
+        } else {
+            historyButton.setVisibility(View.GONE);
+        }
     }
 
-    private @NonNull HeaderActionListener getHeaderActionListener(){
+    private HeaderActionListener getHeaderActionListener(){
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container_calc);
         if (fragment instanceof HeaderActionListener) {
             return (HeaderActionListener) fragment;
         }
-        throw new IllegalArgumentException("HeaderActionListener not found!");
+        return null;
     }
 }

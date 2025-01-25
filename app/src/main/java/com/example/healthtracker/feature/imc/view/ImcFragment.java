@@ -90,20 +90,6 @@ public class ImcFragment extends Fragment implements Imc.View, HeaderActionListe
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.menu_item_search){
-            onRegisterImcValue();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         presenter.onDestroy();
