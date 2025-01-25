@@ -48,15 +48,15 @@ public class HeartRateActivity extends AppCompatActivity implements HeartRate.Vi
         App app = (App) getApplication();
         CalcDao dao = app.db.calcDao();
 
-        ImageButton arrowBackButton = findViewById(R.id.arrow_refs_hr);
-        arrowBackButton.setOnClickListener(view -> {
-            finish();
-        });
+//        ImageButton arrowBackButton = findViewById(R.id.arrow_refs_hr);
+//        arrowBackButton.setOnClickListener(view -> {
+//            finish();
+//        });
 
-        ImageButton historyButton = findViewById(R.id.historic_refs_hr);
-        historyButton.setOnClickListener(view -> {
-            onHeartRateRegister();
-        });
+//        ImageButton historyButton = findViewById(R.id.historic_refs_hr);
+//        historyButton.setOnClickListener(view -> {
+//            onHeartRateRegister();
+//        });
 
         button.setOnClickListener(view -> {
 

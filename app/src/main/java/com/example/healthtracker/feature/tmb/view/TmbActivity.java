@@ -45,11 +45,11 @@ public class TmbActivity extends AppCompatActivity implements Tmb.View {
         App app = (App) getApplication();
         CalcDao dao = app.db.calcDao();
 
-        ImageButton arrowBackButton = findViewById(R.id.arrow_refs_tmb);
-        arrowBackButton.setOnClickListener(v -> finish());
-
-        ImageButton historyButton = findViewById(R.id.historic_refs_tmb);
-        historyButton.setOnClickListener(v -> onRegisterTmbValue());
+//        ImageButton arrowBackButton = findViewById(R.id.arrow_refs_tmb);
+//        arrowBackButton.setOnClickListener(v -> finish());
+//
+//        ImageButton historyButton = findViewById(R.id.historic_refs_tmb);
+//        historyButton.setOnClickListener(v -> onRegisterTmbValue());
 
         String[] items = getResources().getStringArray(R.array.lifestye_tmb);
         autoLifestyle.setText(items[0]);

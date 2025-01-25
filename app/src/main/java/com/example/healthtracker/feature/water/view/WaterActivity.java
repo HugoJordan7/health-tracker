@@ -34,8 +34,8 @@ public class WaterActivity extends AppCompatActivity implements Water.View {
         editQuantity = findViewById(R.id.water_quantity);
         Button button = findViewById(R.id.water_button);
 
-        ImageButton arrowBackButton = findViewById(R.id.arrow_refs_water);
-        arrowBackButton.setOnClickListener(v -> finish());
+//        ImageButton arrowBackButton = findViewById(R.id.arrow_refs);
+//        arrowBackButton.setOnClickListener(v -> finish());
 
         autoExercise = findViewById(R.id.auto_exercise);
         String[] arrayExercise = getResources().getStringArray(R.array.exercise_frequency);
