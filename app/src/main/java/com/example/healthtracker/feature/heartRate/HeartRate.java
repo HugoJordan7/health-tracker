@@ -9,7 +9,7 @@ import kotlin.Pair;
 public interface HeartRate {
 
     interface View extends BaseView {
-        void onHeartRateRegister();
+        void onRegisterHeartRate();
     }
 
     interface Presenter extends BasePresenter {

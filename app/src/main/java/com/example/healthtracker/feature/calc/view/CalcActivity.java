@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.healthtracker.R;
+import com.example.healthtracker.feature.heartRate.view.HeartRateFragment;
 import com.example.healthtracker.feature.imc.view.ImcFragment;
 
 public class CalcActivity extends AppCompatActivity {

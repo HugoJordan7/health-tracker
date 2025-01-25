@@ -25,9 +25,6 @@
             android:name=".feature.water.view.WaterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.heartRate.view.HeartRateActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".feature.tmb.view.TmbActivity"
             android:screenOrientation="portrait" />
         <activity
