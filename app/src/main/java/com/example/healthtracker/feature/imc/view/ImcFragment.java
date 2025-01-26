@@ -1,22 +1,12 @@
 package com.example.healthtracker.feature.imc.view;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
 
 import com.example.healthtracker.App;
 import com.example.healthtracker.R;
@@ -31,8 +21,9 @@ import com.example.healthtracker.model.CalcDao;
 
 public class ImcFragment extends BaseFragment<Imc.Presenter> implements Imc.View, HeaderActionListener {
 
-    public ImcFragment() {
-        super(R.layout.activity_imc);
+    @Override
+    protected int setLayoutId() {
+        return R.layout.fragment_imc;
     }
 
     @Override

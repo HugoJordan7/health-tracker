@@ -17,8 +17,9 @@ import com.example.healthtracker.feature.water.presentation.WaterPresenter;
 
 public class WaterFragment extends BaseFragment<Water.Presenter> implements Water.View {
 
-    public WaterFragment() {
-        super(R.layout.activity_water);
+    @Override
+    protected int setLayoutId() {
+        return R.layout.fragment_water;
     }
 
     @Override

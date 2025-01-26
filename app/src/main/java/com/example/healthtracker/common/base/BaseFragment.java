@@ -16,9 +16,11 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     private final @LayoutRes int layoutId;
     protected final P presenter = setPresenter();
 
-    public BaseFragment(int layoutId) {
-        this.layoutId = layoutId;
+    public BaseFragment() {
+        this.layoutId = setLayoutId();
     }
+
+    protected abstract @LayoutRes int setLayoutId();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,7 +28,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
         setPresenter();
     }
 
-    public abstract P setPresenter();
+    protected abstract P setPresenter();
 
     @Nullable
     @Override
@@ -40,7 +42,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
         setViews(view);
     }
 
-    public abstract void setViews(@NonNull View view);
+    protected abstract void setViews(@NonNull View view);
 
     @Override
     public void displayFailure(String message) {

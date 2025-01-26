@@ -38,7 +38,7 @@ public class HeartRateFragment extends Fragment implements HeartRate.View, Heade
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_heart_rate, container, false);
+        return inflater.inflate(R.layout.fragment_heart_rate, container, false);
     }
 
     @Override
