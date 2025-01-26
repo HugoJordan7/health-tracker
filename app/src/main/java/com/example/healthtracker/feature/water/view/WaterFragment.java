@@ -1,52 +1,39 @@
 package com.example.healthtracker.feature.water.view;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.example.healthtracker.R;
+import com.example.healthtracker.common.base.BaseFragment;
 import com.example.healthtracker.feature.water.Water;
 import com.example.healthtracker.feature.water.presentation.WaterPresenter;
 
-public class WaterFragment extends Fragment implements Water.View {
+public class WaterFragment extends BaseFragment<Water.Presenter> implements Water.View {
 
-    private Water.Presenter presenter;
-    private EditText editWeight;
-    private EditText editAge;
-    private EditText editQuantity;
-    private AutoCompleteTextView autoExercise;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_water, container, false);
+    public WaterFragment() {
+        super(R.layout.activity_water);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public Water.Presenter setPresenter() {
+        return new WaterPresenter(this);
+    }
 
-        presenter = new WaterPresenter(this);
-
-        editWeight = view.findViewById(R.id.water_weight);
-        editAge = view.findViewById(R.id.water_age);
-        editQuantity = view.findViewById(R.id.water_quantity);
+    @Override
+    public void setViews(@NonNull View view) {
+        EditText editWeight = view.findViewById(R.id.water_weight);
+        EditText editAge = view.findViewById(R.id.water_age);
+        EditText editQuantity = view.findViewById(R.id.water_quantity);
         Button button = view.findViewById(R.id.water_button);
 
-        autoExercise = view.findViewById(R.id.auto_exercise);
+        AutoCompleteTextView autoExercise = view.findViewById(R.id.auto_exercise);
         String[] arrayExercise = getResources().getStringArray(R.array.exercise_frequency);
         autoExercise.setText(arrayExercise[0]);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, arrayExercise);
@@ -78,16 +65,5 @@ public class WaterFragment extends Fragment implements Water.View {
                     .create()
                     .show();
         });
-    }
-
-    @Override
-    public void displayFailure(String message) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDestroyView() {
-        presenter.onDestroy();
-        super.onDestroyView();
     }
 }
