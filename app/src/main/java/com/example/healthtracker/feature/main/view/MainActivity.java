@@ -13,11 +13,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthtracker.R;
-import com.example.healthtracker.feature.heartRate.view.HeartRateActivity;
-import com.example.healthtracker.feature.imc.view.ImcActivity;
+import com.example.healthtracker.feature.calc.view.CalcActivity;
 import com.example.healthtracker.feature.references.view.ReferencesActivity;
-import com.example.healthtracker.feature.tmb.view.TmbActivity;
-import com.example.healthtracker.feature.water.view.WaterActivity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -43,15 +40,16 @@ public class MainActivity extends AppCompatActivity {
         listItems.add(new MainItem(3, R.string.water, R.drawable.water));
 
         MainAdapter adapter = new MainAdapter(listItems, id -> {
-            Class<?> destinationClass= ImcActivity.class;
+            String destinationClassTag = getString(R.string.imc);
             if (id == 1) {
-                destinationClass = TmbActivity.class;
+                destinationClassTag = getString(R.string.tmb);
             } else if (id == 2) {
-                destinationClass = HeartRateActivity.class;
+                destinationClassTag = getString(R.string.bpm);
             } else if (id == 3) {
-                destinationClass = WaterActivity.class;
+                destinationClassTag = getString(R.string.water);
             }
-            Intent intent = new Intent(MainActivity.this, destinationClass);
+            Intent intent = new Intent(MainActivity.this, CalcActivity.class);
+            intent.putExtra("calcType", destinationClassTag);
             startActivity(intent);
         });
 

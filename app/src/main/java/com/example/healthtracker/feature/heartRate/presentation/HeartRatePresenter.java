@@ -23,7 +23,7 @@ public class HeartRatePresenter implements HeartRate.Presenter {
         repository.registerHeartRateValue(bpm, hrClassification, dao, new RequestCallback<Boolean>(){
             @Override
             public void onSuccess(Boolean data) {
-                view.onHeartRateRegister();
+                view.onRegisterHeartRate();
             }
             @Override
             public void onFailure(String message) {

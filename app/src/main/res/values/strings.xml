@@ -3,6 +3,8 @@
     <string name="author_mark">Powered by H. Jordan</string>
     <string name="imc">IMC</string>
     <string name="tmb">TMB</string>
+    <string name="water">Água</string>
+    <string name="bpm">BPM</string>
     <string name="tgc">TGC</string>
     <string name="imc_info">O Índice de Massa Corporal (IMC) é um índice que mede se você está abaixo, dentro ou acima do peso, de acordo com a relação entre seu peso e altura. </string>
     <string name="height">Altura (cm)</string>
@@ -27,7 +29,6 @@
     <string name="sex">Sexo (Masculino/Feminino)</string>
     <string name="masculine">Masculino</string>
     <string name="feminine">Feminino</string>
-    <string name="water">Água</string>
     <string name="water_info">É de extrema importância para a saúde conhecer qual a quantidade ideal de água que deve ser ingerida por dia, preencha as informações abaixo para saber a quantidade ideal para você</string>
     <string name="dialog_water_message">A quantidade de água ideal para você é de %1$d mL ou %2$.2f L diários</string>
     <string name="dialog_water_title_above">Parabéns, você consome além do ideal</string>
@@ -55,7 +56,6 @@
     <string name="toast_delete_history">Histórico deletado com sucesso!</string>
     <string name="toast_delete_history_error">Não há registros salvos para serem deletados</string>
     <string name="heart_rate">Frequência cardíaca (bpm em repouso)</string>
-    <string name="bpm">BPM</string>
     <string name="bellow_normal_heart_rate">abaixo do normal</string>
     <string name="excellent_heart_rate">excelente</string>
     <string name="optimum_heart_rate">ótima</string>

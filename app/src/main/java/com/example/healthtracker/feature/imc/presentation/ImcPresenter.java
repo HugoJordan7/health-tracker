@@ -20,7 +20,7 @@ public class ImcPresenter implements Imc.Presenter {
 
     private Imc.View view;
 
-    private ImcRepository repository;
+    private final ImcRepository repository;
 
     public ImcPresenter(Imc.View view, ImcRepository repository) {
         this.view = view;

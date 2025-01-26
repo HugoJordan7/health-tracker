@@ -1,46 +1,43 @@
 package com.example.healthtracker.feature.water.view;
 
-import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.healthtracker.R;
+import com.example.healthtracker.common.base.BaseFragment;
 import com.example.healthtracker.feature.water.Water;
 import com.example.healthtracker.feature.water.presentation.WaterPresenter;
 
-public class WaterActivity extends AppCompatActivity implements Water.View {
-
-    private Water.Presenter presenter;
-    private EditText editWeight;
-    private EditText editAge;
-    private EditText editQuantity;
-    private AutoCompleteTextView autoExercise;
+public class WaterFragment extends BaseFragment<Water.Presenter> implements Water.View {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_water);
+    protected int setLayoutId() {
+        return R.layout.fragment_water;
+    }
 
-        presenter = new WaterPresenter(this);
+    @Override
+    public Water.Presenter setPresenter() {
+        return new WaterPresenter(this);
+    }
 
-        editWeight = findViewById(R.id.water_weight);
-        editAge = findViewById(R.id.water_age);
-        editQuantity = findViewById(R.id.water_quantity);
-        Button button = findViewById(R.id.water_button);
+    @Override
+    public void setViews(@NonNull View view) {
+        EditText editWeight = view.findViewById(R.id.water_weight);
+        EditText editAge = view.findViewById(R.id.water_age);
+        EditText editQuantity = view.findViewById(R.id.water_quantity);
+        Button button = view.findViewById(R.id.water_button);
 
-        ImageButton arrowBackButton = findViewById(R.id.arrow_refs_water);
-        arrowBackButton.setOnClickListener(v -> finish());
-
-        autoExercise = findViewById(R.id.auto_exercise);
+        AutoCompleteTextView autoExercise = view.findViewById(R.id.auto_exercise);
         String[] arrayExercise = getResources().getStringArray(R.array.exercise_frequency);
         autoExercise.setText(arrayExercise[0]);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayExercise);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, arrayExercise);
         autoExercise.setAdapter(adapter);
 
         button.setOnClickListener(v -> {
@@ -62,23 +59,12 @@ public class WaterActivity extends AppCompatActivity implements Water.View {
                     R.string.dialog_water_title_above :
                     R.string.dialog_water_title_below;
 
-            new AlertDialog.Builder(this)
+            new AlertDialog.Builder(requireContext())
                     .setTitle(titleType)
                     .setMessage(getString(R.string.dialog_water_message, idealQuantityWater, idealQuantityWaterL))
                     .setPositiveButton(R.string.ok, (dialog, which) -> {})
                     .create()
                     .show();
         });
-    }
-
-    @Override
-    public void displayFailure(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        presenter.onDestroy();
-        super.onDestroy();
     }
 }

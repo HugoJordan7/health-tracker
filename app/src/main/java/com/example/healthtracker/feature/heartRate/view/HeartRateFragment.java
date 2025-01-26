@@ -1,20 +1,19 @@
 package com.example.healthtracker.feature.heartRate.view;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthtracker.App;
 import com.example.healthtracker.R;
+import com.example.healthtracker.common.base.BaseFragment;
 import com.example.healthtracker.di.DependencyInjector;
+import com.example.healthtracker.feature.calc.view.HeaderActionListener;
 import com.example.healthtracker.feature.heartRate.HeartRate;
 import com.example.healthtracker.feature.heartRate.data.repository.HeartRateRepository;
 import com.example.healthtracker.feature.heartRate.presentation.HeartRatePresenter;
@@ -23,43 +22,31 @@ import com.example.healthtracker.model.CalcDao;
 
 import kotlin.Pair;
 
-public class HeartRateActivity extends AppCompatActivity implements HeartRate.View {
-
-    private HeartRate.Presenter presenter;
-    private EditText editHeartRate;
-    private EditText editAge;
-    private RadioButton radioMasculine;
-    private Button button;
+public class HeartRateFragment extends BaseFragment<HeartRate.Presenter> implements HeartRate.View, HeaderActionListener {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_heart_rate);
+    protected int setLayoutId() {
+        return R.layout.fragment_heart_rate;
+    }
 
+    @Override
+    protected HeartRate.Presenter setPresenter() {
         HeartRateRepository repository = DependencyInjector.getHeartRateRepository();
-        presenter = new HeartRatePresenter(HeartRateActivity.this, repository);
+        return new HeartRatePresenter(this, repository);
+    }
 
-        editHeartRate = findViewById(R.id.hr_edit_heart_rate);
-        editAge = findViewById(R.id.hr_age);
-        radioMasculine = findViewById(R.id.hr_radio_masculine);
-        button = findViewById(R.id.hr_button);
+    @Override
+    protected void setViews(@NonNull View view) {
+        EditText editHeartRate = view.findViewById(R.id.hr_edit_heart_rate);
+        EditText editAge = view.findViewById(R.id.hr_age);
+        RadioButton radioMasculine = view.findViewById(R.id.hr_radio_masculine);
+        Button button = view.findViewById(R.id.hr_button);
         radioMasculine.setChecked(true);
 
-        App app = (App) getApplication();
+        App app = (App) requireActivity().getApplication();
         CalcDao dao = app.db.calcDao();
 
-        ImageButton arrowBackButton = findViewById(R.id.arrow_refs_hr);
-        arrowBackButton.setOnClickListener(view -> {
-            finish();
-        });
-
-        ImageButton historyButton = findViewById(R.id.historic_refs_hr);
-        historyButton.setOnClickListener(view -> {
-            onHeartRateRegister();
-        });
-
-        button.setOnClickListener(view -> {
-
+        button.setOnClickListener(v -> {
             if(!presenter.validate(editAge.getText().toString(),editHeartRate.getText().toString())){
                 displayFailure(getString(R.string.toast_invalid_info));
                 return;
@@ -67,7 +54,6 @@ public class HeartRateActivity extends AppCompatActivity implements HeartRate.Vi
 
             int age = Integer.parseInt(editAge.getText().toString());
             int bpm = Integer.parseInt(editHeartRate.getText().toString());
-
             if (age < 18) {
                 displayFailure(getString(R.string.toast_bellow_age));
                 return;
@@ -89,35 +75,26 @@ public class HeartRateActivity extends AppCompatActivity implements HeartRate.Vi
 
             String stringSex = radioMasculine.isChecked() ? getString(R.string.men) : getString(R.string.women);
 
-            new AlertDialog.Builder(this)
+            new AlertDialog.Builder(requireContext())
                     .setTitle(getString(R.string.dialog_title_bpm, hrClassification))
                     .setMessage(getString(R.string.dialog_message_bpm, hrClassification, stringSex, age, currentHrRange))
-                    .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
-
-                    })
+                    .setPositiveButton(R.string.ok, (dialogInterface, i) -> {})
                     .setNegativeButton(R.string.save, (dialogInterface, i) -> {
                         presenter.registerHeartRateValue((double) bpm, hrClassification, dao);
                     })
                     .create()
                     .show();
         });
-
     }
 
     @Override
-    public void onHeartRateRegister() {
-        Intent intent = new Intent(this, ListCalcActivity.class).putExtra("type", "bpm");
+    public void onRegisterHeartRate() {
+        Intent intent = new Intent(requireActivity(), ListCalcActivity.class).putExtra("type", "bpm");
         startActivity(intent);
     }
 
     @Override
-    public void displayFailure(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        presenter.onDestroy();
-        super.onDestroy();
+    public void onClickInHistoryButton() {
+        onRegisterHeartRate();
     }
 }
