@@ -77,9 +77,11 @@
     <string name="email">Email</string>
     <string name="password">Senha</string>
     <string name="confirm_password">Confirmar senha</string>
-    <string name="does_not_have_account">Já tem uma conta? <b>Faça login.</b></string>
+    <string name="go_to_login">Já tem uma conta? <b>Faça login.</b></string>
+    <string name="go_to_register">Não tem uma conta? <b>Registre-se.</b></string>
     <string name="empty_field">Campo vazio</string>
     <string name="confirm_password_not_equals">As senhas não são iguais</string>
     <string name="password_very_short">A senha deve ter no mínimo 8 caracteres</string>
     <string name="register">Criar conta</string>
+    <string name="login">Entrar</string>
 </resources>

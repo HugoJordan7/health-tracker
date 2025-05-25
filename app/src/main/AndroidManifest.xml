@@ -11,16 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthTracker">
         <activity
+            android:name=".feature.login.view.LoginActivity"
+            android:exported="true"/>
+        <activity
             android:name=".feature.register.view.RegisterActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".feature.calc.view.CalcActivity"
             android:exported="false"
@@ -39,6 +34,13 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.HealthTracker.Splash">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
     </application>
 

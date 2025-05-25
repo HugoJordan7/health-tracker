@@ -14,6 +14,7 @@ import com.example.healthtracker.databinding.ActivityRegisterBinding;
 import com.example.healthtracker.di.DependencyInjector;
 import com.example.healthtracker.domain.exception.EmailAlreadyExistException;
 import com.example.healthtracker.domain.model.User;
+import com.example.healthtracker.feature.login.view.LoginActivity;
 import com.example.healthtracker.feature.main.view.MainActivity;
 import com.example.healthtracker.feature.register.Register;
 import com.example.healthtracker.feature.register.presentation.RegisterPresenter;
@@ -56,6 +57,12 @@ public class RegisterActivity extends AppCompatActivity implements Register.View
                 presenter.registerUser(user);
             }
         });
+
+        binding.registerGoToLogin.setOnClickListener(view -> {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void cleanErrorsOfEditText(TextInputEditText editText) {
@@ -89,9 +96,9 @@ public class RegisterActivity extends AppCompatActivity implements Register.View
 
     private boolean existErrorsInFields() {
         return binding.registerNameEditText.getError() != null ||
-        binding.registerEmailEditText.getError() != null ||
-        binding.registerPasswordEditText.getError() != null ||
-        binding.registerConfirmPasswordEditText.getError() != null;
+                binding.registerEmailEditText.getError() != null ||
+                binding.registerPasswordEditText.getError() != null ||
+                binding.registerConfirmPasswordEditText.getError() != null;
     }
 
     @Override
@@ -110,4 +117,5 @@ public class RegisterActivity extends AppCompatActivity implements Register.View
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
     }
+
 }
