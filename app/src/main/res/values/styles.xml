@@ -37,12 +37,49 @@
         <item name="android:layout_marginBottom">18dp</item>
     </style>
 
+    <style name="HTEditText" parent="DefaultEditText">
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="DefaultTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingStart">30dp</item>
+        <item name="android:paddingEnd">30dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+    </style>
+
+    <style name="Theme.HealthTracker.DefaultTextInputEditText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLength">80</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="DefaultButton" parent="DefaultAlignment">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@drawable/button_shape</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.HealthTracker.HTButton">
+        <item name="android:layout_height">60dp</item>
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">30dp</item>
+        <item name="android:layout_marginEnd">30dp</item>
     </style>
 
     <style name="AutoTextViewForm" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">

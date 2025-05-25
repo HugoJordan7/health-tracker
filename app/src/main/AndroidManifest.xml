@@ -10,36 +10,36 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthTracker">
-
         <activity
-            android:name=".feature.calc.view.CalcActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:name=".feature.register.view.RegisterActivity"
+            android:exported="true">
 
-        <activity
-            android:name=".feature.references.view.ReferencesActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".feature.listCalc.view.ListCalcActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".feature.main.view.MainActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".feature.splash.view.SplashActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.HealthTracker.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
+        </activity>
+        <activity
+            android:name=".feature.calc.view.CalcActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.references.view.ReferencesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.listCalc.view.ListCalcActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.main.view.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.splash.view.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.HealthTracker.Splash">
+        </activity>
     </application>
 
 </manifest>

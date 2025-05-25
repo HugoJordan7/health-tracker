@@ -73,4 +73,13 @@
     <string name="current_hear_rate_range_bellow_normal">abaixo de %1$d</string>
     <string name="list_calc_register_bpm">A sua frequência cardíaca estava %1$s com %3$.0f bpm em %2$s</string>
     <string name="info">O presente aplicativo apenas tem por objetivo fornecer informações prévias e aproximadas dos cálculos realizados, em todos os casos é sempre recomendado o atendimento ou acompanhamento com um profissional da área de saúde</string>
+    <string name="name">Nome</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="confirm_password">Confirmar senha</string>
+    <string name="does_not_have_account">Já tem uma conta? <b>Faça login.</b></string>
+    <string name="empty_field">Campo vazio</string>
+    <string name="confirm_password_not_equals">As senhas não são iguais</string>
+    <string name="password_very_short">A senha deve ter no mínimo 8 caracteres</string>
+    <string name="register">Criar conta</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.healthtracker.di;
 
+import com.example.healthtracker.domain.service.HealthTrackerService;
+import com.example.healthtracker.domain.service.HealthTrackerServiceMock;
 import com.example.healthtracker.feature.heartRate.data.data_source.HeartRateDataSource;
 import com.example.healthtracker.feature.heartRate.data.data_source.HeartRateDataSourceImpl;
 import com.example.healthtracker.feature.heartRate.data.repository.HeartRateRepository;
@@ -12,12 +14,17 @@ import com.example.healthtracker.feature.listCalc.data.data_source.ListCalcDataS
 import com.example.healthtracker.feature.listCalc.data.data_source.ListCalcDataSourceImpl;
 import com.example.healthtracker.feature.listCalc.data.repository.ListCalcRepository;
 import com.example.healthtracker.feature.listCalc.data.repository.ListCalcRepositoryImpl;
+import com.example.healthtracker.feature.register.data.repository.RegisterRepository;
+import com.example.healthtracker.feature.register.data.repository.RegisterRepositoryImpl;
 import com.example.healthtracker.feature.tmb.data.data_source.TmbDataSource;
 import com.example.healthtracker.feature.tmb.data.data_source.TmbDataSourceImpl;
 import com.example.healthtracker.feature.tmb.data.repository.TmbRepository;
 import com.example.healthtracker.feature.tmb.data.repository.TmbRepositoryImpl;
 
 public class DependencyInjector {
+
+    private static final HealthTrackerService healthTrackerService = new HealthTrackerServiceMock();
+    private static final RegisterRepository registerRepository = new RegisterRepositoryImpl(healthTrackerService);
 
     private static final ImcDataSource imcDataSource = new ImcDataSourceImpl();
     private static final ImcRepository imcRepository = new ImcRepositoryImpl(imcDataSource);
@@ -42,6 +49,10 @@ public class DependencyInjector {
     }
     public static ListCalcRepository getListCalcRepository() {
         return listCalcRepository;
+    }
+
+    public static RegisterRepository getRegisterRepository() {
+        return registerRepository;
     }
 
 }
