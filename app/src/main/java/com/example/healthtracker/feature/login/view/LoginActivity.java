@@ -12,19 +12,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.healthtracker.R;
 import com.example.healthtracker.common.util.TextWatcher;
 import com.example.healthtracker.databinding.ActivityLoginBinding;
+import com.example.healthtracker.di.DependencyInjector;
+import com.example.healthtracker.domain.model.User;
+import com.example.healthtracker.feature.login.Login;
+import com.example.healthtracker.feature.login.presentation.LoginPresenter;
+import com.example.healthtracker.feature.main.view.MainActivity;
 import com.example.healthtracker.feature.register.view.RegisterActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity implements Login.View{
 
     private ActivityLoginBinding binding;
+    private Login.Presenter presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        presenter = new LoginPresenter(this, DependencyInjector.getLoginRepository());
         cleanErrorsOfEditText(binding.loginEmailEditText);
         cleanErrorsOfEditText(binding.loginPasswordEditText);
 
@@ -36,7 +42,9 @@ public class LoginActivity extends AppCompatActivity{
             checkLengthOfPassword();
 
             if (!existErrorsInFields()) {
-                Toast.makeText(this, "Fazendo chamada API", Toast.LENGTH_SHORT).show();
+                String email = binding.loginEmailEditText.getText().toString();
+                String password = binding.loginPasswordEditText.getText().toString();
+                presenter.loginUser(email, password);
             }
         });
 
@@ -72,4 +80,16 @@ public class LoginActivity extends AppCompatActivity{
         return binding.loginEmailEditText.getError() != null || binding.loginPasswordEditText.getError() != null;
     }
 
+    @Override
+    public void onLoginSuccess(User user) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        Toast.makeText(this, "Usuário logado com sucesso", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    @Override
+    public void displayFailure(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 }

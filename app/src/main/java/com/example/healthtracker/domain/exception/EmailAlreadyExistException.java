@@ -5,7 +5,7 @@ public class EmailAlreadyExistException extends RuntimeException {
     public static final String message = "Email já cadastrado";
 
     public EmailAlreadyExistException() {
-        super("Email já cadastrado");
+        super(message);
     }
 
     public EmailAlreadyExistException(String message) {

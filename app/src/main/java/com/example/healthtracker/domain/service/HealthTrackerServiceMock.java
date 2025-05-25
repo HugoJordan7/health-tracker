@@ -1,6 +1,7 @@
 package com.example.healthtracker.domain.service;
 
 import com.example.healthtracker.domain.exception.EmailAlreadyExistException;
+import com.example.healthtracker.domain.exception.UserNotFoundException;
 import com.example.healthtracker.domain.model.User;
 
 import java.util.ArrayList;
@@ -25,6 +26,16 @@ public class HealthTrackerServiceMock implements HealthTrackerService {
         }
         users.add(user);
         return user;
+    }
+
+    @Override
+    public User getUser(String email) {
+        for(User fakeUser: users) {
+            if (fakeUser.getEmail().equals(email)) {
+                return fakeUser;
+            }
+        }
+        throw new UserNotFoundException();
     }
 
 }
