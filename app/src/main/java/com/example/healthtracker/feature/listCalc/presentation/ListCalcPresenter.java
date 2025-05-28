@@ -21,8 +21,8 @@ public class ListCalcPresenter implements ListCalc.Presenter {
     }
 
     @Override
-    public void getAllRegisters(CalcDao dao, String type) {
-        repository.getAllRegisters(dao, type, new RequestCallback<List<Calc>>() {
+    public void getAllRegisters(String type) {
+        repository.getAllRegisters(type, new RequestCallback<List<Calc>>() {
             @Override
             public void onSuccess(List<Calc> data) {
                 view.displayAllRegisters(data);
@@ -36,8 +36,8 @@ public class ListCalcPresenter implements ListCalc.Presenter {
     }
 
     @Override
-    public void clearRegisters(CalcDao dao, String type) {
-        repository.clearRegisters(dao, type, new RequestCallback<Boolean>() {
+    public void clearRegisters(String type) {
+        repository.clearRegisters(type, new RequestCallback<Boolean>() {
             @Override
             public void onSuccess(Boolean data) {
                 view.onDeleteRegisters();

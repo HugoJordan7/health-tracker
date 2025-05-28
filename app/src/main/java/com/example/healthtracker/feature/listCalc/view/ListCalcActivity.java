@@ -33,18 +33,16 @@ public class ListCalcActivity extends AppCompatActivity implements ListCalc.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_calc);
 
-        ListCalcRepository repository = DependencyInjector.getListCalcRepository();
-        presenter = new ListCalcPresenter(this, repository);
-
-        App app = (App) getApplication();
-        CalcDao dao = app.db.calcDao();
         type = getIntent().getExtras() != null ? getIntent().getExtras().getString("type") : null;
 
         if (type == null) {
             throw new RuntimeException("The type is not specified");
         }
 
-        presenter.getAllRegisters(dao, type);
+        adapter = new ListCalcAdapter(this);
+        RecyclerView rvListCalc = findViewById(R.id.rv_list_calc);
+        rvListCalc.setAdapter(adapter);
+        rvListCalc.setLayoutManager(new LinearLayoutManager(this));
 
         ImageButton arrowBackButton = findViewById(R.id.arrow_refs_history);
         arrowBackButton.setOnClickListener(view -> finish());
@@ -55,7 +53,7 @@ public class ListCalcActivity extends AppCompatActivity implements ListCalc.View
                     .setTitle(R.string.dialog_title_delete_history)
                     .setPositiveButton(R.string.yes, (dialog, which) -> {
                         if (!adapter.list.isEmpty()){
-                            presenter.clearRegisters(dao, type);
+                            presenter.clearRegisters(type);
                         }
                     })
                     .setNegativeButton(R.string.back, null)
@@ -63,10 +61,10 @@ public class ListCalcActivity extends AppCompatActivity implements ListCalc.View
                     .show();
         });
 
-        adapter = new ListCalcAdapter(this);
-        RecyclerView rvListCalc = findViewById(R.id.rv_list_calc);
-        rvListCalc.setAdapter(adapter);
-        rvListCalc.setLayoutManager(new LinearLayoutManager(this));
+        ListCalcRepository repository = DependencyInjector.getListCalcRepository();
+        presenter = new ListCalcPresenter(this, repository);
+
+        presenter.getAllRegisters(type);
     }
 
     @SuppressLint("NotifyDataSetChanged")

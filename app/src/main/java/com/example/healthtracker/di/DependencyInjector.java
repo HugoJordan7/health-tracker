@@ -38,7 +38,7 @@ public class DependencyInjector {
     private static final TmbRepository tmbRepository = new TmbRepositoryImpl(tmbDataSource);
 
     private static final ListCalcDataSource listCalcDataSource = new ListCalcDataSourceImpl();
-    private static final ListCalcRepository listCalcRepository = new ListCalcRepositoryImpl(listCalcDataSource);
+    private static final ListCalcRepository listCalcRepository = new ListCalcRepositoryImpl(healthTrackerService);
 
     public static ImcRepository getImcRepository() {
         return imcRepository;

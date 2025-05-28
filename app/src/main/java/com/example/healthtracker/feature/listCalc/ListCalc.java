@@ -14,7 +14,7 @@ public interface ListCalc {
     }
 
     interface Presenter extends BasePresenter {
-        void getAllRegisters(CalcDao dao, String type);
-        void clearRegisters(CalcDao dao, String type);
+        void getAllRegisters(String type);
+        void clearRegisters(String type);
     }
 }
