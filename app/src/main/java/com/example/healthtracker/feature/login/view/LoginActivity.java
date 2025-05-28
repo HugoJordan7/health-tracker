@@ -13,6 +13,8 @@ import com.example.healthtracker.R;
 import com.example.healthtracker.common.util.TextWatcher;
 import com.example.healthtracker.databinding.ActivityLoginBinding;
 import com.example.healthtracker.di.DependencyInjector;
+import com.example.healthtracker.domain.exception.InvalidPasswordException;
+import com.example.healthtracker.domain.exception.UserNotFoundException;
 import com.example.healthtracker.domain.model.User;
 import com.example.healthtracker.feature.login.Login;
 import com.example.healthtracker.feature.login.presentation.LoginPresenter;
@@ -90,6 +92,12 @@ public class LoginActivity extends AppCompatActivity implements Login.View{
 
     @Override
     public void displayFailure(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        if (message.equals(UserNotFoundException.message)) {
+            binding.loginEmailEditText.setError(message);
+        } else if (message.equals(InvalidPasswordException.message)) {
+            binding.loginPasswordEditText.setError(message);
+        } else {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
     }
 }
