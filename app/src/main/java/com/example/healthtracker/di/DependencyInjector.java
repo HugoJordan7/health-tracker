@@ -28,8 +28,7 @@ public class DependencyInjector {
     private static final HealthTrackerService healthTrackerService = new HealthTrackerServiceMock();
     private static final RegisterRepository registerRepository = new RegisterRepositoryImpl(healthTrackerService);
     private static final LoginRepository loginRepository = new LoginRepositoryImpl(healthTrackerService);
-    private static final ImcDataSource imcDataSource = new ImcDataSourceImpl();
-    private static final ImcRepository imcRepository = new ImcRepositoryImpl(imcDataSource);
+    private static final ImcRepository imcRepository = new ImcRepositoryImpl(healthTrackerService);
 
     private static final HeartRateDataSource heartRateDataSource = new HeartRateDataSourceImpl();
     private static final HeartRateRepository heartRateRepository = new HeartRateRepositoryImpl(heartRateDataSource);

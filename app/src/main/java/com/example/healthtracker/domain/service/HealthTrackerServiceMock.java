@@ -59,4 +59,9 @@ public class HealthTrackerServiceMock implements HealthTrackerService {
         return true;
     }
 
+    @Override
+    public void insertCalc(Calc calc) {
+        calcs.add(calc);
+    }
+
 }
