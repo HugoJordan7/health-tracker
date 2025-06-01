@@ -43,9 +43,6 @@ public class HeartRateFragment extends BaseFragment<HeartRate.Presenter> impleme
         Button button = view.findViewById(R.id.hr_button);
         radioMasculine.setChecked(true);
 
-        App app = (App) requireActivity().getApplication();
-        CalcDao dao = app.db.calcDao();
-
         button.setOnClickListener(v -> {
             if(!presenter.validate(editAge.getText().toString(),editHeartRate.getText().toString())){
                 displayFailure(getString(R.string.toast_invalid_info));
@@ -80,7 +77,7 @@ public class HeartRateFragment extends BaseFragment<HeartRate.Presenter> impleme
                     .setMessage(getString(R.string.dialog_message_bpm, hrClassification, stringSex, age, currentHrRange))
                     .setPositiveButton(R.string.ok, (dialogInterface, i) -> {})
                     .setNegativeButton(R.string.save, (dialogInterface, i) -> {
-                        presenter.registerHeartRateValue((double) bpm, hrClassification, dao);
+                        presenter.registerHeartRateValue((double) bpm, hrClassification);
                     })
                     .create()
                     .show();

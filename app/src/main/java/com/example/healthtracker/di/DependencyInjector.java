@@ -29,14 +29,11 @@ public class DependencyInjector {
     private static final RegisterRepository registerRepository = new RegisterRepositoryImpl(healthTrackerService);
     private static final LoginRepository loginRepository = new LoginRepositoryImpl(healthTrackerService);
     private static final ImcRepository imcRepository = new ImcRepositoryImpl(healthTrackerService);
-
-    private static final HeartRateDataSource heartRateDataSource = new HeartRateDataSourceImpl();
-    private static final HeartRateRepository heartRateRepository = new HeartRateRepositoryImpl(heartRateDataSource);
+    private static final HeartRateRepository heartRateRepository = new HeartRateRepositoryImpl(healthTrackerService);
 
     private static final TmbDataSource tmbDataSource = new TmbDataSourceImpl();
     private static final TmbRepository tmbRepository = new TmbRepositoryImpl(tmbDataSource);
 
-    private static final ListCalcDataSource listCalcDataSource = new ListCalcDataSourceImpl();
     private static final ListCalcRepository listCalcRepository = new ListCalcRepositoryImpl(healthTrackerService);
 
     public static ImcRepository getImcRepository() {

@@ -13,7 +13,7 @@ public interface HeartRate {
     }
 
     interface Presenter extends BasePresenter {
-        void registerHeartRateValue(double bpm, String hrClassification, CalcDao dao);
+        void registerHeartRateValue(double bpm, String hrClassification);
         boolean validate(String age, String bpm);
         Pair<Integer, Pair<Integer, Integer>> getClassificationHeartRate(boolean isMan, int bpm, int age);
     }
