@@ -11,7 +11,7 @@ public interface Tmb {
     }
 
     interface Presenter extends BasePresenter {
-        void registerTmbValue(double tmb, CalcDao dao);
+        void registerTmbValue(double tmb);
         boolean validate(String height, String weight, String age);
         double calculateTmb(boolean isMan, int height, int weight, int age);
         double tmbAdaptedForLifestyle(String currentLifeStyle, double tmb, String[] arrayLifestyle);
