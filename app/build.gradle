@@ -30,6 +30,9 @@ android {
     kotlinOptions {
         jvmTarget = '21'
     }
+    viewBinding {
+        enabled = true
+    }
     namespace 'com.example.healthtracker'
 }
 

@@ -38,9 +38,6 @@ public class ImcFragment extends BaseFragment<Imc.Presenter> implements Imc.View
         EditText editWeight = view.findViewById(R.id.imc_weight);
         Button buttonResult = view.findViewById(R.id.imc_button);
 
-        App app = (App) requireActivity().getApplication();
-        CalcDao dao = app.db.calcDao();
-
         buttonResult.setOnClickListener(v -> {
 
             if(!presenter.validate(editHeight.getText().toString(), editWeight.getText().toString())){
@@ -59,7 +56,7 @@ public class ImcFragment extends BaseFragment<Imc.Presenter> implements Imc.View
 
                     })
                     .setNegativeButton(R.string.save, (dialogInterface, i) -> {
-                        presenter.registerImcValue(imcResult, dao);
+                        presenter.registerImcValue(imcResult);
                     })
                     .show();
         });

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthtracker.R;
 import com.example.healthtracker.feature.calc.view.CalcActivity;
+import com.example.healthtracker.feature.login.view.LoginActivity;
 import com.example.healthtracker.feature.references.view.ReferencesActivity;
 
 import java.util.LinkedList;
@@ -32,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
         infoButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, ReferencesActivity.class);
             startActivity(intent);
+        });
+
+        ImageButton logoutButton = findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         listItems.add(new MainItem(0, R.string.imc, R.drawable.conditions));

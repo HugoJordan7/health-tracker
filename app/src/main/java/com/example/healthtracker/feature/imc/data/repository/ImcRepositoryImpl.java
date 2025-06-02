@@ -1,19 +1,24 @@
 package com.example.healthtracker.feature.imc.data.repository;
 
 import com.example.healthtracker.common.base.RequestCallback;
+import com.example.healthtracker.common.util.Constants;
+import com.example.healthtracker.domain.service.HealthTrackerService;
 import com.example.healthtracker.feature.imc.data.data_source.ImcDataSource;
+import com.example.healthtracker.model.Calc;
 import com.example.healthtracker.model.CalcDao;
 
 public class ImcRepositoryImpl implements ImcRepository {
 
-    private ImcDataSource dataSource;
+    private final HealthTrackerService healthTrackerService;
 
-    public ImcRepositoryImpl(ImcDataSource dataSource){
-        this.dataSource = dataSource;
+    public ImcRepositoryImpl(HealthTrackerService healthTrackerService){
+        this.healthTrackerService = healthTrackerService;
     }
 
     @Override
-    public void registerImcValue(double imc, CalcDao dao, RequestCallback<Boolean> callback) {
-        dataSource.registerImcValue(imc, dao, callback);
+    public void registerImcValue(double imc, RequestCallback<Boolean> callback) {
+        Calc calc = new Calc(Constants.IMC, imc, null);
+        healthTrackerService.insertCalc(calc);
+        callback.onSuccess(true);
     }
 }

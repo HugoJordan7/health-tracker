@@ -1,27 +1,22 @@
 package com.example.healthtracker.feature.tmb.view;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
 
-import com.example.healthtracker.App;
 import com.example.healthtracker.R;
 import com.example.healthtracker.common.base.BaseFragment;
-import com.example.healthtracker.di.DependencyInjector;
 import com.example.healthtracker.feature.calc.view.HeaderActionListener;
 import com.example.healthtracker.feature.listCalc.view.ListCalcActivity;
 import com.example.healthtracker.feature.tmb.Tmb;
-import com.example.healthtracker.feature.tmb.data.repository.TmbRepository;
 import com.example.healthtracker.feature.tmb.presentation.TmbPresenter;
-import com.example.healthtracker.model.CalcDao;
 
 public class TmbFragment extends BaseFragment<Tmb.Presenter> implements Tmb.View, HeaderActionListener {
 
@@ -32,8 +27,7 @@ public class TmbFragment extends BaseFragment<Tmb.Presenter> implements Tmb.View
 
     @Override
     public Tmb.Presenter setPresenter() {
-        TmbRepository repository = DependencyInjector.getTmbRepository();
-        return new TmbPresenter(this, repository);
+        return new TmbPresenter(this);
     }
 
     @Override
@@ -45,9 +39,6 @@ public class TmbFragment extends BaseFragment<Tmb.Presenter> implements Tmb.View
         AutoCompleteTextView autoLifestyle = view.findViewById(R.id.auto_lifestyle);
         RadioButton radioButtonMasculine = view.findViewById(R.id.radio_button_masculine_tmb);
         radioButtonMasculine.setChecked(true);
-
-        App app = (App) requireActivity().getApplication();
-        CalcDao dao = app.db.calcDao();
 
         String[] items = getResources().getStringArray(R.array.lifestye_tmb);
         autoLifestyle.setText(items[0]);
@@ -69,7 +60,7 @@ public class TmbFragment extends BaseFragment<Tmb.Presenter> implements Tmb.View
             new AlertDialog.Builder(requireContext())
                     .setTitle(getString(R.string.dialog_tmb_title, tmbAdapted))
                     .setPositiveButton(R.string.ok, null)
-                    .setNegativeButton(R.string.save, (dialog, which) -> presenter.registerTmbValue(tmbAdapted, dao))
+                    .setNegativeButton(R.string.save, (dialog, which) -> presenter.registerTmbValue(tmbAdapted))
                     .create()
                     .show();
         });

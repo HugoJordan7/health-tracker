@@ -6,6 +6,7 @@ import android.os.Looper;
 import androidx.annotation.NonNull;
 
 import com.example.healthtracker.common.base.RequestCallback;
+import com.example.healthtracker.di.DependencyInjector;
 import com.example.healthtracker.feature.tmb.Tmb;
 import com.example.healthtracker.feature.tmb.data.repository.TmbRepository;
 import com.example.healthtracker.model.CalcDao;
@@ -15,14 +16,14 @@ public class TmbPresenter implements Tmb.Presenter {
     private Tmb.View view;
     private TmbRepository repository;
 
-    public TmbPresenter(Tmb.View view, TmbRepository repository) {
+    public TmbPresenter(Tmb.View view) {
         this.view = view;
-        this.repository = repository;
+        this.repository = DependencyInjector.getTmbRepository();
     }
 
     @Override
-    public void registerTmbValue(double tmb, CalcDao dao) {
-        repository.registerTmbValue(tmb, dao, new RequestCallback<Boolean>() {
+    public void registerTmbValue(double tmb) {
+        repository.registerTmbValue(tmb, new RequestCallback<Boolean>() {
             @Override
             public void onSuccess(Boolean data) {
                 view.onRegisterTmbValue();
