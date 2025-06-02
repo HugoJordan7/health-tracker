@@ -55,7 +55,7 @@ public class HealthTrackerServiceMock implements HealthTrackerService {
 
     @Override
     public boolean clearCalcs(String type) {
-        calcs = Collections.emptyList();
+        calcs.clear();
         return true;
     }
 
