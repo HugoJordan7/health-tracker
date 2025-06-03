@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.healthtracker.R;
 import com.example.healthtracker.feature.calc.view.CalcActivity;
 import com.example.healthtracker.feature.login.view.LoginActivity;
+import com.example.healthtracker.feature.medication_routine.view.MedicationRoutineActivity;
 import com.example.healthtracker.feature.references.view.ReferencesActivity;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -40,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
+        });
+
+        MaterialButton medicationRoutineButton = findViewById(R.id.medication_routine_button);
+        medicationRoutineButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, MedicationRoutineActivity.class);
+            startActivity(intent);
         });
 
         listItems.add(new MainItem(0, R.string.imc, R.drawable.conditions));
