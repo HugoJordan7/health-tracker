@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthtracker.R;
+import com.example.healthtracker.common.util.Listener;
 import com.example.healthtracker.domain.model.MedicationRoutine;
 import com.example.healthtracker.feature.main.view.MainAdapter;
 
@@ -19,6 +20,11 @@ import java.util.List;
 public class MedicationRoutineAdapter extends RecyclerView.Adapter<MedicationRoutineAdapter.MedicationRoutineViewHolder> {
 
     private List<MedicationRoutine> medicationRoutineList = new ArrayList<>();
+    private Listener listener;
+
+    public MedicationRoutineAdapter(Listener listener) {
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
@@ -62,6 +68,11 @@ public class MedicationRoutineAdapter extends RecyclerView.Adapter<MedicationRou
 
             TextView medicationHour = itemView.findViewById(R.id.medication_hour);
             medicationHour.setText(medicationRoutine.getSchedules());
+
+            itemView.findViewById(R.id.routine_config).setOnClickListener(view -> {
+                listener.run();
+            });
+
         }
     }
 }

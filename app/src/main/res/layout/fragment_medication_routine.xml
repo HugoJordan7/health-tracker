@@ -13,7 +13,7 @@
 
 
     <ImageView
-        android:id="@+id/routine_config"
+        android:id="@+id/delete_routine_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_delete"
@@ -63,7 +63,6 @@
         <Button
             android:id="@+id/save_button"
             style="@style/Theme.HealthTracker.HTButton"
-            android:text="@string/save"
             android:layout_height="50dp"
             android:layout_width="127dp" />
 

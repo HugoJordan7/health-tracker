@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.healthtracker.common.util.Listener;
 import com.example.healthtracker.databinding.ActivityMedicationRoutineBinding;
+import com.example.healthtracker.domain.model.MedicationFragmentType;
 import com.example.healthtracker.domain.model.MedicationRoutine;
 
 public class MedicationRoutineActivity extends AppCompatActivity {
@@ -22,7 +24,12 @@ public class MedicationRoutineActivity extends AppCompatActivity {
         binding = ActivityMedicationRoutineBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        adapter = new MedicationRoutineAdapter();
+        adapter = new MedicationRoutineAdapter(() -> {
+            MedicationRoutineFragment fragment = MedicationRoutineFragment.newInstance(MedicationFragmentType.EDIT, (Listener) () -> {
+
+            });
+            fragment.show(getSupportFragmentManager(), "MedicationRoutineFragment");
+        });
         binding.rvRoutine.setAdapter(adapter);
         binding.rvRoutine.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
@@ -30,6 +37,13 @@ public class MedicationRoutineActivity extends AppCompatActivity {
             MedicationRoutine medicationRoutine = new MedicationRoutine("", "Dipirona", "Diariamente", "8h e 20h");
             adapter.addMedicationRoutine(medicationRoutine);
         }
+
+        binding.addRoutineButton.setOnClickListener(view1 -> {
+            MedicationRoutineFragment fragment = MedicationRoutineFragment.newInstance(MedicationFragmentType.CREATE, (Listener) () -> {
+
+            });
+            fragment.show(getSupportFragmentManager(), "MedicationRoutineFragment");
+        });
 
     }
 

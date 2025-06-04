@@ -91,4 +91,5 @@
     <string name="medication_frequency">Frequência</string>
     <string name="medication_schedules">Horários</string>
     <string name="cancel">Cancelar</string>
+    <string name="create">Criar</string>
 </resources>
