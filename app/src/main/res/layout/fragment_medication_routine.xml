@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:orientation="vertical"
+    android:background="@drawable/default_item_background"
+    tools:context=".feature.main.view.MainActivity">
+
+
+    <ImageView
+        android:id="@+id/routine_config"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_delete"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="end"
+        app:tint="@color/red_end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/DefaultTextInputLayout"
+        android:hint="@string/medication_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/medication_name_edit_text"
+            style="@style/Theme.HealthTracker.DefaultTextInputEditText" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/DefaultTextInputLayout"
+        android:hint="@string/medication_frequency">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/medication_frequency_edit_text"
+            style="@style/Theme.HealthTracker.DefaultTextInputEditText" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/DefaultTextInputLayout"
+        android:hint="@string/medication_schedules">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/medication_schedule_edit_text"
+            style="@style/Theme.HealthTracker.DefaultTextInputEditText" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp">
+        <Button
+            android:id="@+id/save_button"
+            style="@style/Theme.HealthTracker.HTButton"
+            android:text="@string/save"
+            android:layout_height="50dp"
+            android:layout_width="127dp" />
+
+        <Button
+            android:id="@+id/cancel_button"
+            style="@style/Theme.HealthTracker.HTButton"
+            android:text="@string/cancel"
+            android:layout_height="50dp"
+            android:layout_width="125dp" />
+    </LinearLayout>
+
+
+
+</LinearLayout>
