@@ -9,7 +9,6 @@ import com.example.healthtracker.common.base.RequestCallback;
 import com.example.healthtracker.di.DependencyInjector;
 import com.example.healthtracker.feature.tmb.Tmb;
 import com.example.healthtracker.feature.tmb.data.repository.TmbRepository;
-import com.example.healthtracker.model.CalcDao;
 
 public class TmbPresenter implements Tmb.Presenter {
 
@@ -19,6 +18,11 @@ public class TmbPresenter implements Tmb.Presenter {
     public TmbPresenter(Tmb.View view) {
         this.view = view;
         this.repository = DependencyInjector.getTmbRepository();
+    }
+
+    public TmbPresenter(Tmb.View view, TmbRepository repository){
+        this.view = view;
+        this.repository = repository;
     }
 
     @Override
