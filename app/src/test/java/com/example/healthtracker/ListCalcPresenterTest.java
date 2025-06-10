@@ -1,6 +1,7 @@
 package com.example.healthtracker;
 
 import com.example.healthtracker.feature.listCalc.data.repository.ListCalcRepository;
+import com.example.healthtracker.feature.listCalc.data.repository.ListCalcRepositoryImpl;
 import com.example.healthtracker.common.base.RequestCallback;
 import com.example.healthtracker.feature.listCalc.ListCalc;
 import com.example.healthtracker.feature.listCalc.presentation.ListCalcPresenter;
@@ -39,12 +40,12 @@ public class ListCalcPresenterTest {
         );
 
         doAnswer(invocation -> {
-            RequestCallback<List<Calc>> callback = invocation.getArgument(2);
+            RequestCallback<List<Calc>> callback = invocation.getArgument(1);
             callback.onSuccess(mockList);
             return null;
-        }).when(repository).getAllRegisters(eq(dao), eq("imc"), any());
+        }).when(repository).getAllRegisters(eq("imc"), any());
 
-        presenter.getAllRegisters(dao, "imc");
+        presenter.getAllRegisters("imc");
 
         verify(view).displayAllRegisters(mockList);
     }
@@ -52,12 +53,12 @@ public class ListCalcPresenterTest {
     @Test
     public void testGetAllRegisters_failure() {
         doAnswer(invocation -> {
-            RequestCallback<List<Calc>> callback = invocation.getArgument(2);
+            RequestCallback<List<Calc>> callback = invocation.getArgument(1);
             callback.onFailure("Falha ao carregar");
             return null;
-        }).when(repository).getAllRegisters(eq(dao), eq("imc"), any());
+        }).when(repository).getAllRegisters(eq("imc"), any());
 
-        presenter.getAllRegisters(dao, "imc");
+        presenter.getAllRegisters("imc");
 
         verify(view).displayFailure("Falha ao carregar");
     }
@@ -65,12 +66,12 @@ public class ListCalcPresenterTest {
     @Test
     public void testClearRegisters_success() {
         doAnswer(invocation -> {
-            RequestCallback<Boolean> callback = invocation.getArgument(2);
+            RequestCallback<Boolean> callback = invocation.getArgument(1);
             callback.onSuccess(true);
             return null;
-        }).when(repository).clearRegisters(eq(dao), eq("tmb"), any());
+        }).when(repository).clearRegisters(eq("tmb"), any());
 
-        presenter.clearRegisters(dao, "tmb");
+        presenter.clearRegisters("tmb");
 
         verify(view).onDeleteRegisters();
     }
@@ -78,12 +79,12 @@ public class ListCalcPresenterTest {
     @Test
     public void testClearRegisters_failure() {
         doAnswer(invocation -> {
-            RequestCallback<Boolean> callback = invocation.getArgument(2);
+            RequestCallback<Boolean> callback = invocation.getArgument(1);
             callback.onFailure("Erro ao limpar");
             return null;
-        }).when(repository).clearRegisters(eq(dao), eq("tmb"), any());
+        }).when(repository).clearRegisters(eq("tmb"), any());
 
-        presenter.clearRegisters(dao, "tmb");
+        presenter.clearRegisters("tmb");
 
         verify(view).displayFailure("Erro ao limpar");
     }
@@ -91,12 +92,12 @@ public class ListCalcPresenterTest {
     @Test
     public void testClearRegisters_failureWithNullMessage() {
         doAnswer(invocation -> {
-            RequestCallback<Boolean> callback = invocation.getArgument(2);
+            RequestCallback<Boolean> callback = invocation.getArgument(1);
             callback.onFailure(null);
             return null;
-        }).when(repository).clearRegisters(eq(dao), eq("tmb"), any());
+        }).when(repository).clearRegisters(eq("tmb"), any());
 
-        presenter.clearRegisters(dao, "tmb");
+        presenter.clearRegisters("tmb");
 
         verify(view).displayFailure("Unknown error");
     }

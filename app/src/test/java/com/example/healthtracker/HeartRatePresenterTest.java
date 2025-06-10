@@ -15,6 +15,7 @@ import kotlin.Pair;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.ArgumentMatchers;
 
 public class HeartRatePresenterTest {
 
@@ -48,12 +49,12 @@ public class HeartRatePresenterTest {
         CalcDao dao = mock(CalcDao.class);
 
         doAnswer(invocation -> {
-            RequestCallback<Boolean> callback = invocation.getArgument(3);
+            RequestCallback<Boolean> callback = invocation.getArgument(2);
             callback.onSuccess(true);
             return null;
-        }).when(repository).registerHeartRateValue(anyDouble(), anyString(), any(CalcDao.class), any());
+        }).when(repository).registerHeartRateValue(anyDouble(), anyString(), ArgumentMatchers.<RequestCallback<Boolean>>any());
 
-        presenter.registerHeartRateValue(72.0, "Normal", dao);
+        presenter.registerHeartRateValue(72.0, "Normal");
         verify(view).onRegisterHeartRate();
     }
 
@@ -62,12 +63,12 @@ public class HeartRatePresenterTest {
         CalcDao dao = mock(CalcDao.class);
 
         doAnswer(invocation -> {
-            RequestCallback<Boolean> callback = invocation.getArgument(3);
+            RequestCallback<Boolean> callback = invocation.getArgument(2);
             callback.onFailure("Something went wrong");
             return null;
-        }).when(repository).registerHeartRateValue(anyDouble(), anyString(), any(CalcDao.class), any());
+        }).when(repository).registerHeartRateValue(anyDouble(), anyString(), ArgumentMatchers.<RequestCallback<Boolean>>any());
 
-        presenter.registerHeartRateValue(72.0, "Normal", dao);
+        presenter.registerHeartRateValue(72.0, "Normal");
         verify(view).displayFailure("Something went wrong");
     }
 
@@ -89,7 +90,7 @@ public class HeartRatePresenterTest {
     public void testOnDestroy_setsViewNull() throws Exception {
         presenter.onDestroy();
         // Não é possivel testar diretamente, porém se não houver nenhum registro após deletar é possível o teste.
-        presenter.registerHeartRateValue(70, "Normal", mock(CalcDao.class));
+        presenter.registerHeartRateValue(70, "Normal");
         // No exception = passou
     }
 }
