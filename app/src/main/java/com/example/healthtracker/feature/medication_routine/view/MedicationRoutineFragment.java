@@ -151,7 +151,8 @@ public class MedicationRoutineFragment extends DialogFragment {
 
         binding.deleteRoutineButton.setOnClickListener((view2) -> {
             presenter.removeMedicationRoutine(medicationRoutine.getId());
-            activity.onRemoveMedicationRoutineSuccess(medicationRoutine.getId());
+            activity.onRemoveMedicationRoutineSuccess(medicationRoutine);
+            dismiss();
         });
 
     }

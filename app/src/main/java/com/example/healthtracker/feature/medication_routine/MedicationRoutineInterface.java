@@ -12,7 +12,7 @@ public interface MedicationRoutineInterface {
     interface View extends BaseView {
         void onCreateMedicationRoutineSuccess(MedicationRoutine medicationRoutine);
         void onUpdateMedicationRoutineSuccess(MedicationRoutine medicationRoutine);
-        void onRemoveMedicationRoutineSuccess(String medicationRoutineId);
+        void onRemoveMedicationRoutineSuccess(MedicationRoutine medicationRoutine);
     }
 
     interface Presenter extends BasePresenter {

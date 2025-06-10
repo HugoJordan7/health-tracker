@@ -67,7 +67,7 @@ public class MedicationRoutine {
         StringBuilder schedulesString = new StringBuilder();
         for (int i = 0; i < schedules.size(); i++) {
             Schedule schedule = schedules.get(i);
-            String interval = i == schedules.size()-1 ? "h." : "h; ";
+            String interval = i == schedules.size()-1 ? "." : "; ";
             schedulesString.append(schedule.getFormatSchedule()).append(interval);
         }
         return schedulesString.toString();

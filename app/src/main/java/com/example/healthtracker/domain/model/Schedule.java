@@ -10,7 +10,7 @@ public class Schedule {
     }
 
     public String getFormatSchedule() {
-        return String.format("%02d:%02d", hour, minute);
+        return String.format("%02d:%02dh", hour, minute);
     }
 
     public int getHour() {

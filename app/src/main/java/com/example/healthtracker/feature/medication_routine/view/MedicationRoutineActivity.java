@@ -1,5 +1,11 @@
 package com.example.healthtracker.feature.medication_routine.view;
 
+import static com.example.healthtracker.domain.service.alarm.MedicationAlarmManager.cancelScheduledMedication;
+import static com.example.healthtracker.domain.service.alarm.MedicationAlarmManager.toScheduleMedication;
+
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -14,9 +20,11 @@ import com.example.healthtracker.databinding.ActivityMedicationRoutineBinding;
 import com.example.healthtracker.domain.model.MedicationFragmentType;
 import com.example.healthtracker.domain.model.MedicationRoutine;
 import com.example.healthtracker.domain.model.Schedule;
+import com.example.healthtracker.domain.service.alarm.AlarmReceiver;
 import com.example.healthtracker.feature.medication_routine.MedicationRoutineInterface;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MedicationRoutineActivity extends AppCompatActivity implements MedicationRoutineInterface.View {
@@ -60,15 +68,28 @@ public class MedicationRoutineActivity extends AppCompatActivity implements Medi
     @Override
     public void onCreateMedicationRoutineSuccess(MedicationRoutine medicationRoutine) {
         adapter.addMedicationRoutine(medicationRoutine);
+        for(Schedule schedule: medicationRoutine.getSchedules()) {
+            toScheduleMedication(medicationRoutine, schedule);
+        }
     }
 
     @Override
     public void onUpdateMedicationRoutineSuccess(MedicationRoutine medicationRoutine) {
         adapter.updateMedicationRoutine(medicationRoutine);
+        for (Schedule schedule : medicationRoutine.getSchedules()) {
+            cancelScheduledMedication(medicationRoutine, schedule);
+        }
+        for(Schedule schedule: medicationRoutine.getSchedules()) {
+            toScheduleMedication(medicationRoutine, schedule);
+        }
     }
 
     @Override
-    public void onRemoveMedicationRoutineSuccess(String medicationRoutineId) {
-        adapter.removeMedicationRoutine(medicationRoutineId);
+    public void onRemoveMedicationRoutineSuccess(MedicationRoutine medicationRoutine) {
+        adapter.removeMedicationRoutine(medicationRoutine.getId());
+        for (Schedule schedule : medicationRoutine.getSchedules()) {
+            cancelScheduledMedication(medicationRoutine, schedule);
+        }
     }
+
 }
