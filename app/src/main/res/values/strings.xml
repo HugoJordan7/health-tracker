@@ -93,4 +93,6 @@
     <string name="cancel">Cancelar</string>
     <string name="create">Criar</string>
     <string name="add">Adicionar</string>
+    <string name="medications">Medicamentos</string>
+    <string name="schedules_not_found">Informe os horários</string>
 </resources>

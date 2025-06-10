@@ -1,5 +1,5 @@
 package com.example.healthtracker.common.util;
 
-public interface Listener {
-    void run();
+public interface Listener<T> {
+    void run(T data);
 }

@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
 
-        MaterialButton medicationRoutineButton = findViewById(R.id.medication_routine_button);
+        LinearLayout medicationRoutineButton = findViewById(R.id.medication_routine_button);
         medicationRoutineButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, MedicationRoutineActivity.class);
             startActivity(intent);

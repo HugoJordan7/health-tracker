@@ -20,9 +20,9 @@ import java.util.List;
 public class MedicationRoutineAdapter extends RecyclerView.Adapter<MedicationRoutineAdapter.MedicationRoutineViewHolder> {
 
     private List<MedicationRoutine> medicationRoutineList = new ArrayList<>();
-    private Listener listener;
+    private Listener<MedicationRoutine> listener;
 
-    public MedicationRoutineAdapter(Listener listener) {
+    public MedicationRoutineAdapter(Listener<MedicationRoutine> listener) {
         this.listener = listener;
     }
 
@@ -53,6 +53,28 @@ public class MedicationRoutineAdapter extends RecyclerView.Adapter<MedicationRou
         notifyDataSetChanged();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateMedicationRoutine(MedicationRoutine medicationRoutine) {
+        for (int i = 0; i < medicationRoutineList.size(); i++) {
+            if (medicationRoutineList.get(i).getId().equals(medicationRoutine.getId())) {
+                medicationRoutineList.set(i, medicationRoutine);
+                notifyDataSetChanged();
+                break;
+            }
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void removeMedicationRoutine(String medicationRoutineId) {
+        for (int i = 0; i < medicationRoutineList.size(); i++) {
+            if (medicationRoutineList.get(i).getId().equals(medicationRoutineId)) {
+                medicationRoutineList.remove(i);
+                notifyDataSetChanged();
+                break;
+            }
+        }
+    }
+
     class MedicationRoutineViewHolder extends RecyclerView.ViewHolder {
 
         public MedicationRoutineViewHolder(@NonNull View itemView) {
@@ -67,10 +89,10 @@ public class MedicationRoutineAdapter extends RecyclerView.Adapter<MedicationRou
             medicationFrequency.setText(medicationRoutine.getFrequency());
 
             TextView medicationHour = itemView.findViewById(R.id.medication_hour);
-            medicationHour.setText(medicationRoutine.getSchedules());
+            medicationHour.setText(medicationRoutine.getFormatSchedules());
 
             itemView.findViewById(R.id.routine_config).setOnClickListener(view -> {
-                listener.run();
+                listener.run(medicationRoutine);
             });
 
         }

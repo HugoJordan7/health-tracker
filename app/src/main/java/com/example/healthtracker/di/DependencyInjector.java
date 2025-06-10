@@ -10,6 +10,8 @@ import com.example.healthtracker.feature.listCalc.data.repository.ListCalcReposi
 import com.example.healthtracker.feature.listCalc.data.repository.ListCalcRepositoryImpl;
 import com.example.healthtracker.feature.login.data.repository.LoginRepository;
 import com.example.healthtracker.feature.login.data.repository.LoginRepositoryImpl;
+import com.example.healthtracker.feature.medication_routine.data.repository.MedicationRoutineRepository;
+import com.example.healthtracker.feature.medication_routine.data.repository.MedicationRoutineRepositoryImpl;
 import com.example.healthtracker.feature.register.data.repository.RegisterRepository;
 import com.example.healthtracker.feature.register.data.repository.RegisterRepositoryImpl;
 import com.example.healthtracker.feature.tmb.data.data_source.TmbDataSource;
@@ -27,6 +29,8 @@ public class DependencyInjector {
     private static final TmbRepository tmbRepository = new TmbRepositoryImpl(healthTrackerService);
 
     private static final ListCalcRepository listCalcRepository = new ListCalcRepositoryImpl(healthTrackerService);
+
+    private static final MedicationRoutineRepository medicationRoutineRepository = new MedicationRoutineRepositoryImpl(healthTrackerService);
 
     public static ImcRepository getImcRepository() {
         return imcRepository;
@@ -48,4 +52,7 @@ public class DependencyInjector {
         return loginRepository;
     }
 
+    public static MedicationRoutineRepository getMedicationRoutineRepository() {
+        return medicationRoutineRepository;
+    }
 }
