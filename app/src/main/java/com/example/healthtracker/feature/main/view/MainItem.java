@@ -3,24 +3,24 @@ package com.example.healthtracker.feature.main.view;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 
+import com.example.healthtracker.common.util.Listener;
+import com.example.healthtracker.common.util.OnClickListener;
+
 public class MainItem {
 
-    private int id;
     @StringRes private int text;
     @DrawableRes private int icon;
 
-    public MainItem(int id, int text, int icon) {
-        this.id = id;
+    private OnClickListener onClickListener;
+
+    public MainItem(int text, int icon, OnClickListener onClickListener) {
         this.text = text;
         this.icon = icon;
+        this.onClickListener = onClickListener;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void onClickListener() {
+        onClickListener.run();
     }
 
     public int getText() {
