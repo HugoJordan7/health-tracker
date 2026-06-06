@@ -71,12 +71,12 @@ public class TmbPresenterTest {
         double tmbValue = 1800.0;
 
         doAnswer(invocation -> {
-            RequestCallback<Boolean> callback = invocation.getArgument(2);
+            RequestCallback<Boolean> callback = invocation.getArgument(1);
             callback.onSuccess(true);
             return null;
-        }).when(mockRepository).registerTmbValue(eq(tmbValue), eq(mockDao), any());
+        }).when(mockRepository).registerTmbValue(eq(tmbValue), any());
 
-        presenter.registerTmbValue(tmbValue, mockDao);
+        presenter.registerTmbValue(tmbValue);
         verify(mockView).onRegisterTmbValue();
     }
 
@@ -85,12 +85,12 @@ public class TmbPresenterTest {
         double tmbValue = 1800.0;
 
         doAnswer(invocation -> {
-            RequestCallback<Boolean> callback = invocation.getArgument(2);
+            RequestCallback<Boolean> callback = invocation.getArgument(1);
             callback.onFailure("Erro");
             return null;
-        }).when(mockRepository).registerTmbValue(eq(tmbValue), eq(mockDao), any());
+        }).when(mockRepository).registerTmbValue(eq(tmbValue),any());
 
-        presenter.registerTmbValue(tmbValue, mockDao);
+        presenter.registerTmbValue(tmbValue);
         verify(mockView).displayFailure("Erro");
     }
 
