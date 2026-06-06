@@ -16,15 +16,9 @@ import java.util.List;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
 
     private List<MainItem> items;
-    private final ItemClickListener callback;
 
-    public interface ItemClickListener {
-        void onItemClick(int id);
-    }
-
-    public MainAdapter(List<MainItem> items, ItemClickListener callback) {
+    public MainAdapter(List<MainItem> items) {
         this.items = items;
-        this.callback = callback;
     }
 
     @NonNull
@@ -56,9 +50,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
             itemText.setText(item.getText());
             itemIcon.setImageResource(item.getIcon());
 
-            itemView.setOnClickListener(v -> {
-                callback.onItemClick(item.getId());
-            });
+            itemView.setOnClickListener(v -> item.onClickListener());
         }
     }
 }

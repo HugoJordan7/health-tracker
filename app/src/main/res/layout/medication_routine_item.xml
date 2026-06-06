@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".feature.main.view.MainActivity"
+    android:id="@+id/item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    app:cardBackgroundColor="@color/light_gray"
+    app:strokeWidth="3dp"
+    app:strokeColor="@color/red_end"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="25dp"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/medication_name"
+                style="@style/MedicationText"
+                android:textSize="30sp"
+                tools:text="Dipirona" />
+
+            <TextView
+                android:id="@+id/medication_frequency"
+                style="@style/MedicationText"
+                android:textSize="20sp"
+                tools:text="Diariamente " />
+
+            <TextView
+                android:id="@+id/medication_hour"
+                style="@style/MedicationText"
+                android:textSize="20sp"
+                tools:text="08:00h e 16:00h" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/routine_config"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/black" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:checked="false"
+            android:id="@+id/active_routine_button"
+            app:thumbTint="@color/white"
+            app:trackTint="@drawable/switch_track_color_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

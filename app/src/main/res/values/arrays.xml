@@ -16,4 +16,10 @@
         <item>2h de exercício diário</item>
         <item>3h de exercício diário</item>
     </string-array>
+
+    <string-array name="medication_frequency">
+        <item>Uma vez</item>
+        <item>Diariamente</item>
+        <item>Personalizado</item>
+    </string-array>
 </resources>

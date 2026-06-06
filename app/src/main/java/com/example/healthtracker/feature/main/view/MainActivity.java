@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,9 +16,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthtracker.R;
+import com.example.healthtracker.common.util.OnClickListener;
 import com.example.healthtracker.feature.calc.view.CalcActivity;
 import com.example.healthtracker.feature.login.view.LoginActivity;
+import com.example.healthtracker.feature.medication_routine.view.MedicationRoutineActivity;
 import com.example.healthtracker.feature.references.view.ReferencesActivity;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -42,28 +48,36 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
 
-        listItems.add(new MainItem(0, R.string.imc, R.drawable.conditions));
-        listItems.add(new MainItem(1, R.string.tmb, R.drawable.fire));
-        listItems.add(new MainItem(2, R.string.bpm, R.drawable.heart_rate));
-        listItems.add(new MainItem(3, R.string.water, R.drawable.water));
-
-        MainAdapter adapter = new MainAdapter(listItems, id -> {
-            String destinationClassTag = getString(R.string.imc);
-            if (id == 1) {
-                destinationClassTag = getString(R.string.tmb);
-            } else if (id == 2) {
-                destinationClassTag = getString(R.string.bpm);
-            } else if (id == 3) {
-                destinationClassTag = getString(R.string.water);
-            }
-            Intent intent = new Intent(MainActivity.this, CalcActivity.class);
-            intent.putExtra("calcType", destinationClassTag);
+        listItems.add(new MainItem(R.string.imc, R.drawable.conditions, () -> {
+            navigateToCalcScreen(getString(R.string.imc));
+        }));
+        listItems.add(new MainItem(R.string.tmb, R.drawable.fire, () -> {
+            navigateToCalcScreen(getString(R.string.tmb));
+        }));
+        listItems.add(new MainItem(R.string.bpm, R.drawable.heart_rate, () -> {
+            navigateToCalcScreen(getString(R.string.bpm));
+        }));
+        listItems.add(new MainItem(R.string.water, R.drawable.water, () -> {
+            navigateToCalcScreen(getString(R.string.water));
+        }));
+        listItems.add(new MainItem(R.string.medications, R.drawable.ic_pill, () -> {
+            Intent intent = new Intent(MainActivity.this, MedicationRoutineActivity.class);
             startActivity(intent);
-        });
+        }));
+        listItems.add(new MainItem(R.string.food_scanner, R.drawable.ic_food, () -> {
+            Toast.makeText(this, "Indo para a tela do scanner de alimentos...", Toast.LENGTH_SHORT).show();
+        }));
 
+        MainAdapter adapter = new MainAdapter(listItems);
         RecyclerView recyclerView = findViewById(R.id.main_rv);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
+    }
+
+    private void navigateToCalcScreen(String calcType) {
+        Intent intent = new Intent(MainActivity.this, CalcActivity.class);
+        intent.putExtra("calcType", calcType);
+        startActivity(intent);
     }
 
     @Override
