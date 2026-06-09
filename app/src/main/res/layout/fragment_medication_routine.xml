@@ -37,21 +37,93 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/AutoTextViewForm"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/select_days"
+            android:textSize="16sp" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:hint="@string/medication_frequency">
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <AutoCompleteTextView
-                android:id="@+id/auto_medication_frequency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none" />
+            <TextView
+                android:id="@+id/tv_sunday"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/day_circle_background"
+                android:gravity="center"
+                android:text="@string/sunday"
+                android:textColor="@color/black" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/tv_monday"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/day_circle_background"
+                android:gravity="center"
+                android:text="@string/monday"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_tuesday"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/day_circle_background"
+                android:gravity="center"
+                android:text="@string/tuesday"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_wednesday"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/day_circle_background"
+                android:gravity="center"
+                android:text="@string/wednesday"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_thursday"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/day_circle_background"
+                android:gravity="center"
+                android:text="@string/thursday"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_friday"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/day_circle_background"
+                android:gravity="center"
+                android:text="@string/friday"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_saturday"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/day_circle_background"
+                android:gravity="center"
+                android:text="@string/saturday"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"

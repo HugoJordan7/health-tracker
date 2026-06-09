@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthtracker.R;
 import com.example.healthtracker.common.util.Listener;
 import com.example.healthtracker.domain.model.MedicationRoutine;
-import com.example.healthtracker.feature.main.view.MainAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +20,12 @@ import java.util.List;
 public class MedicationRoutineAdapter extends RecyclerView.Adapter<MedicationRoutineAdapter.MedicationRoutineViewHolder> {
 
     private List<MedicationRoutine> medicationRoutineList = new ArrayList<>();
-    private Listener<MedicationRoutine> listener;
+    private Listener<MedicationRoutine> configListener;
+    private Listener<MedicationRoutine> toggleListener;
 
-    public MedicationRoutineAdapter(Listener<MedicationRoutine> listener) {
-        this.listener = listener;
+    public MedicationRoutineAdapter(Listener<MedicationRoutine> configListener, Listener<MedicationRoutine> toggleListener) {
+        this.configListener = configListener;
+        this.toggleListener = toggleListener;
     }
 
     @NonNull
@@ -85,14 +87,27 @@ public class MedicationRoutineAdapter extends RecyclerView.Adapter<MedicationRou
             TextView medicationName = itemView.findViewById(R.id.medication_name);
             medicationName.setText(medicationRoutine.getName());
 
-            TextView medicationFrequency = itemView.findViewById(R.id.medication_frequency);
-            medicationFrequency.setText(medicationRoutine.getFrequency());
+            TextView medicationDays = itemView.findViewById(R.id.medication_days);
+            medicationDays.setText(medicationRoutine.getFormatDaysOfWeek());
 
             TextView medicationHour = itemView.findViewById(R.id.medication_hour);
             medicationHour.setText(medicationRoutine.getFormatSchedules());
 
+            SwitchCompat activeRoutineButton = itemView.findViewById(R.id.active_routine_button);
+            activeRoutineButton.setOnCheckedChangeListener(null); // Clear previous listener to avoid triggering it during bind
+            activeRoutineButton.setChecked(medicationRoutine.isEnabled());
+            
+            activeRoutineButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                medicationRoutine.setEnabled(isChecked);
+                if (toggleListener != null) {
+                    toggleListener.run(medicationRoutine);
+                }
+            });
+
             itemView.findViewById(R.id.routine_config).setOnClickListener(view -> {
-                listener.run(medicationRoutine);
+                if (configListener != null) {
+                    configListener.run(medicationRoutine);
+                }
             });
 
         }

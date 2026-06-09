@@ -64,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, MedicationRoutineActivity.class);
             startActivity(intent);
         }));
-        listItems.add(new MainItem(R.string.food_scanner, R.drawable.ic_food, () -> {
-            Toast.makeText(this, "Indo para a tela do scanner de alimentos...", Toast.LENGTH_SHORT).show();
-        }));
+//        listItems.add(new MainItem(R.string.food_scanner, R.drawable.ic_food, () -> {
+//            Toast.makeText(this, "Indo para a tela do scanner de alimentos...", Toast.LENGTH_SHORT).show();
+//        }));
 
         MainAdapter adapter = new MainAdapter(listItems);
         RecyclerView recyclerView = findViewById(R.id.main_rv);

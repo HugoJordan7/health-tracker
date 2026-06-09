@@ -18,7 +18,9 @@ public interface HealthTrackerService {
 
     void insertCalc(Calc calc);
 
-    MedicationRoutine postMedicationRoutine(String name, String frequency, List<Schedule> schedules);
+    List<MedicationRoutine> getAllMedicationRoutines();
+
+    MedicationRoutine postMedicationRoutine(String name, List<Schedule> schedules, List<Integer> daysOfWeek);
 
     MedicationRoutine putMedicationRoutine(MedicationRoutine medicationRoutine);
 

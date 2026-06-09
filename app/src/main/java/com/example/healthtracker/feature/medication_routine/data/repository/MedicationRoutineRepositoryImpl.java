@@ -15,8 +15,13 @@ public class MedicationRoutineRepositoryImpl implements MedicationRoutineReposit
     }
 
     @Override
-    public MedicationRoutine createMedicationRoutine(String name, String frequency, List<Schedule> schedules) {
-        return healthTrackerService.postMedicationRoutine(name, frequency, schedules);
+    public List<MedicationRoutine> getAllMedicationRoutines() {
+        return healthTrackerService.getAllMedicationRoutines();
+    }
+
+    @Override
+    public MedicationRoutine createMedicationRoutine(String name, List<Schedule> schedules, List<Integer> daysOfWeek) {
+        return healthTrackerService.postMedicationRoutine(name, schedules, daysOfWeek);
     }
 
     @Override

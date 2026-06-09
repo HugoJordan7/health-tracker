@@ -96,4 +96,12 @@
     <string name="medications">Medicamentos</string>
     <string name="food_scanner">Scanner de alimentos</string>
     <string name="schedules_not_found">Informe os horários</string>
+    <string name="sunday">D</string>
+    <string name="monday">S</string>
+    <string name="tuesday">T</string>
+    <string name="wednesday">Q</string>
+    <string name="thursday">Q</string>
+    <string name="friday">S</string>
+    <string name="saturday">S</string>
+    <string name="select_days">Selecione os dias:</string>
 </resources>

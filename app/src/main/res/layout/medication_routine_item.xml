@@ -35,19 +35,19 @@
             <TextView
                 android:id="@+id/medication_name"
                 style="@style/MedicationText"
-                android:textSize="30sp"
+                android:textSize="26sp"
                 tools:text="Dipirona" />
 
             <TextView
-                android:id="@+id/medication_frequency"
+                android:id="@+id/medication_days"
                 style="@style/MedicationText"
-                android:textSize="20sp"
-                tools:text="Diariamente " />
+                android:textSize="18sp"
+                tools:text="Seg, Qua, Sex" />
 
             <TextView
                 android:id="@+id/medication_hour"
                 style="@style/MedicationText"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 tools:text="08:00h e 16:00h" />
 
         </LinearLayout>
