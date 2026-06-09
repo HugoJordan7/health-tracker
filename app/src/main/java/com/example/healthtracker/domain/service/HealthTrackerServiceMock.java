@@ -9,9 +9,9 @@ import com.example.healthtracker.domain.model.User;
 import com.example.healthtracker.model.Calc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 public class HealthTrackerServiceMock implements HealthTrackerService {
@@ -41,6 +41,12 @@ public class HealthTrackerServiceMock implements HealthTrackerService {
                 calcs.add(calc);
             }
         }
+
+        // Mocking Medication Routines
+        List<Schedule> schedules = new ArrayList<>();
+        schedules.add(new Schedule(8, 0));
+        schedules.add(new Schedule(20, 0));
+        medications.add(new MedicationRoutine("mock-user-id", "Dipirona", schedules, Arrays.asList(2, 4, 6)));
     }
 
     private double generateMockResult(String type, int index) {
@@ -116,9 +122,14 @@ public class HealthTrackerServiceMock implements HealthTrackerService {
     }
 
     @Override
-    public MedicationRoutine postMedicationRoutine(String name, String frequency, List<Schedule> schedules) {
+    public List<MedicationRoutine> getAllMedicationRoutines() {
+        return new ArrayList<>(medications);
+    }
+
+    @Override
+    public MedicationRoutine postMedicationRoutine(String name, List<Schedule> schedules, List<Integer> daysOfWeek) {
         String userEmail = new SharedPreferencesService(App.getContext()).getEmail();
-        MedicationRoutine medicationRoutine = new MedicationRoutine(userEmail, name, frequency, schedules);
+        MedicationRoutine medicationRoutine = new MedicationRoutine(userEmail, name, schedules, daysOfWeek);
         medications.add(medicationRoutine);
         return medicationRoutine;
     }

@@ -2,7 +2,6 @@ package com.example.healthtracker.feature.medication_routine.presenter;
 
 import com.example.healthtracker.domain.model.MedicationRoutine;
 import com.example.healthtracker.domain.model.Schedule;
-import com.example.healthtracker.domain.model.User;
 import com.example.healthtracker.feature.medication_routine.MedicationRoutineInterface;
 import com.example.healthtracker.feature.medication_routine.data.repository.MedicationRoutineRepository;
 
@@ -19,9 +18,19 @@ public class MedicationRoutinePresenter implements MedicationRoutineInterface.Pr
     }
 
     @Override
-    public void createMedicationRoutine(String name, String frequency, List<Schedule> schedules) {
+    public void getAllMedicationRoutines() {
         try {
-            MedicationRoutine medicationRoutine = repository.createMedicationRoutine(name, frequency, schedules);
+            List<MedicationRoutine> medicationRoutines = repository.getAllMedicationRoutines();
+            view.onGetMedicationRoutinesSuccess(medicationRoutines);
+        } catch (Exception e){
+            view.displayFailure(e.getMessage());
+        }
+    }
+
+    @Override
+    public void createMedicationRoutine(String name, List<Schedule> schedules, List<Integer> daysOfWeek) {
+        try {
+            MedicationRoutine medicationRoutine = repository.createMedicationRoutine(name, schedules, daysOfWeek);
             view.onCreateMedicationRoutineSuccess(medicationRoutine);
         } catch (Exception e){
             view.displayFailure(e.getMessage());
@@ -32,15 +41,17 @@ public class MedicationRoutinePresenter implements MedicationRoutineInterface.Pr
     public void updateMedicationRoutine(MedicationRoutine medicationRoutine) {
         try {
             repository.updateMedicationRoutine(medicationRoutine);
+            view.onUpdateMedicationRoutineSuccess(medicationRoutine);
         } catch (Exception e){
             view.displayFailure(e.getMessage());
         }
     }
 
     @Override
-    public void removeMedicationRoutine(String medicationRoutineId) {
+    public void removeMedicationRoutine(MedicationRoutine medicationRoutine) {
         try {
-            repository.removeMedicationRoutine(medicationRoutineId);
+            repository.removeMedicationRoutine(medicationRoutine.getId());
+            view.onRemoveMedicationRoutineSuccess(medicationRoutine);
         } catch (Exception e){
             view.displayFailure(e.getMessage());
         }

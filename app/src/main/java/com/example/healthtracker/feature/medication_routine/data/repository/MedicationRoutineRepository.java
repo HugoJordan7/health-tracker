@@ -6,7 +6,8 @@ import com.example.healthtracker.domain.model.Schedule;
 import java.util.List;
 
 public interface MedicationRoutineRepository {
-    MedicationRoutine createMedicationRoutine(String name, String frequency, List<Schedule> schedules);
+    List<MedicationRoutine> getAllMedicationRoutines();
+    MedicationRoutine createMedicationRoutine(String name, List<Schedule> schedules, List<Integer> daysOfWeek);
     MedicationRoutine updateMedicationRoutine(MedicationRoutine medicationRoutine);
     void removeMedicationRoutine(String medicationRoutineId);
 }
