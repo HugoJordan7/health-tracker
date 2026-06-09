@@ -28,8 +28,8 @@ public class ImcPresenter implements Imc.Presenter {
     }
 
     @Override
-    public void registerImcValue(double imc) {
-        repository.registerImcValue(imc, new RequestCallback<Boolean>() {
+    public void registerImcValue(double imc, String situation) {
+        repository.registerImcValue(imc, situation, new RequestCallback<Boolean>() {
             @Override
             public void onSuccess(Boolean data) {
                 view.onRegisterImcValue();

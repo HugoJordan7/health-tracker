@@ -31,12 +31,12 @@ public class ImcPresenterTest {
         CalcDao dao = mock(CalcDao.class);
 
         doAnswer(invocation -> {
-            RequestCallback<Boolean> callback = invocation.getArgument(1);
+            RequestCallback<Boolean> callback = invocation.getArgument(2);
             callback.onSuccess(true);
             return null;
-        }).when(repository).registerImcValue(anyDouble(), any());
+        }).when(repository).registerImcValue(anyDouble(), anyString(), any());
 
-        presenter.registerImcValue(22.0);
+        presenter.registerImcValue(22.0, "Peso normal");
 
         verify(view).onRegisterImcValue();
     }
@@ -46,12 +46,12 @@ public class ImcPresenterTest {
         CalcDao dao = mock(CalcDao.class);
 
         doAnswer(invocation -> {
-            RequestCallback<Boolean> callback = invocation.getArgument(1);
+            RequestCallback<Boolean> callback = invocation.getArgument(2);
             callback.onFailure("Erro ao salvar");
             return null;
-        }).when(repository).registerImcValue(anyDouble(), any());
+        }).when(repository).registerImcValue(anyDouble(), anyString(), any());
 
-        presenter.registerImcValue(22.0);
+        presenter.registerImcValue(22.0, "Peso normal");
 
         verify(view).displayFailure("Erro ao salvar");
     }

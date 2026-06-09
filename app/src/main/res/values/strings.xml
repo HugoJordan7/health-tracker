@@ -41,7 +41,7 @@
     <string name="warning">Cuidado</string>
     <string name="above">acima</string>
     <string name="below">abaixo</string>
-    <string name="list_calc_register_imc">O seu IMC em %1$s foi de %2$.2f</string>
+    <string name="list_calc_register_imc">O seu IMC em %1$s foi de %2$.2f. Estado: %3$s</string>
     <string name="list_calc_register_tmb">A sua TMB em %1$s foi de %2$.2f</string>
     <string name="search">Buscar</string>
     <string name="refs_title">Todas as informações necessárias para realizar os cálculos deste aplicativo estão disponíveis em:</string>

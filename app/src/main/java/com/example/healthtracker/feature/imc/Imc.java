@@ -13,7 +13,7 @@ public interface Imc {
     }
 
     interface Presenter extends BasePresenter {
-        void registerImcValue(double imc);
+        void registerImcValue(double imc, String situation);
         boolean validate(String height, String weight);
         double calculateImc(double height, double weight);
         @StringRes

@@ -63,7 +63,7 @@ public class ListCalcAdapter extends RecyclerView.Adapter<ListCalcAdapter.ListCa
             String text = "";
             switch (item.getType()) {
                 case "imc":
-                    text = context.getString(R.string.list_calc_register_imc, date, item.getRes());
+                    text = context.getString(R.string.list_calc_register_imc, date, item.getRes(), item.getSituation());
                     break;
                 case "tmb":
                     text = context.getString(R.string.list_calc_register_tmb, date, item.getRes());

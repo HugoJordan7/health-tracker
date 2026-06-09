@@ -16,8 +16,8 @@ public class ImcRepositoryImpl implements ImcRepository {
     }
 
     @Override
-    public void registerImcValue(double imc, RequestCallback<Boolean> callback) {
-        Calc calc = new Calc(Constants.IMC, imc, null);
+    public void registerImcValue(double imc, String situation, RequestCallback<Boolean> callback) {
+        Calc calc = new Calc(Constants.IMC, imc, situation);
         healthTrackerService.insertCalc(calc);
         callback.onSuccess(true);
     }
