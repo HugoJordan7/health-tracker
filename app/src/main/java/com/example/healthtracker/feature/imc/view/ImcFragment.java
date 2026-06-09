@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.healthtracker.App;
@@ -48,15 +49,16 @@ public class ImcFragment extends BaseFragment<Imc.Presenter> implements Imc.View
             double height = Double.parseDouble(editHeight.getText().toString());
             double weight = Double.parseDouble(editWeight.getText().toString());
             double imcResult = presenter.calculateImc(height, weight);
+            int imcSituation = presenter.getImcSituation(imcResult);
 
             new AlertDialog.Builder(requireContext())
                     .setTitle(getString(R.string.dialog_imc_title, imcResult))
-                    .setMessage(presenter.getImcSituation(imcResult))
+                    .setMessage(imcSituation)
                     .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
 
                     })
                     .setNegativeButton(R.string.save, (dialogInterface, i) -> {
-                        presenter.registerImcValue(imcResult);
+                        presenter.registerImcValue(imcResult, getString(imcSituation));
                     })
                     .show();
         });
